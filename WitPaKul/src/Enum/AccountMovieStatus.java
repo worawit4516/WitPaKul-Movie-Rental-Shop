@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wpk.Movie;
+package Enum;
 
 /**
  *
  * @author user
  */
-public enum MovieStatus {
-Available,
-Lost,
-Full ,
-NewMovie
-};
-
+public enum AccountMovieStatus {
+    ACTIVEB,FULL,
+    CANCELED,
+    BLACKLISTED;
+}

@@ -5,10 +5,10 @@
  */
 package wpk.Store;
 
-import wpk.service.EmployeeAccount;
+import wpk.account.EmployeeAccount;
 import wpk.account.Account;
 import wpk.account.AccountStatus;
-import wpk.service.EmployeeAccount;
+import wpk.account.EmployeeAccount;
 import wpk.Store.MovieStore;
 
 /**
@@ -17,12 +17,12 @@ import wpk.Store.MovieStore;
  */
 public class Manager {
 
-    private EmployeeAccount employee[];
-    private int countManager = 0, countMovie = 0, countEmployee = 0;
+    private EmployeeAccount employees[];
+    private int countEmployee = 0;
 
     public Manager(int maxemployee) {
 
-        this.employee = new EmployeeAccount[maxemployee];
+        this.employees = new EmployeeAccount[maxemployee];
     }
 
     public boolean EditData_Employees(EmployeeAccount manager, EmployeeAccount employee) {
@@ -34,7 +34,7 @@ public class Manager {
         if (employee == null) {
             return -1;
         }
-        for (int i = 0; i < this.employee.length; i++) {
+        for (int i = 0; i < this.employees.length; i++) {
 
         }
         return -1;
@@ -51,9 +51,9 @@ public class Manager {
             for (int i = check(obj); i < countEmployee; i++) {
                 // EmployeeAccount employeeAccount = employee[i];
                 if (i == countEmployee - 1) {
-                    employee[i] = null;
+                    employees[i] = null;
                 } else {
-                    employee[i] = employee[i + 1];
+                    employees[i] = employees[i + 1];
                 }
 
             }
@@ -63,9 +63,9 @@ public class Manager {
     }
 
     public boolean AddEmpolyees(EmployeeAccount manager, EmployeeAccount employee) {
-        if (manager.equals(this.employee)) {
-            if (check(countEmployee) == -1 && countEmployee < this.employee.length) {
-                this.employee[countEmployee++] = employee;
+        if (manager.equals(this.employees)) {
+            if (check(countEmployee) == -1 && countEmployee < this.employees.length) {
+                this.employees[countEmployee++] = employee;
                 return true;
             } else {
                 return false;
@@ -78,7 +78,7 @@ public class Manager {
     private int check(Object obj) {
         if (obj instanceof EmployeeAccount) {
             for (int i = 0; i < countEmployee; i++) {
-                if (employee[i].equals(obj)) {
+                if (employees[i].equals(obj)) {
                     return i;
                 }
             }

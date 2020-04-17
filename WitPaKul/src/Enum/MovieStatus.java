@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wpk.service;
+package Enum;
 
 /**
  *
  * @author user
  */
-public class AccountMovieStatus {
-    
-}
+public enum MovieStatus {
+Available,
+Lost,
+Full ,
+NewMovie
+};
+

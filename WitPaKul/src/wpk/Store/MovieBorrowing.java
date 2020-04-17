@@ -10,9 +10,11 @@ import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import wpk.Movie.Movie;
 import wpk.account.Account;
-import wpk.service.EmployeeAccount;
-import wpk.service.MemberAccount;
+import wpk.account.EmployeeAccount;
+import wpk.account.MemberAccount;
 import wpk.Store.MovieStore;
+import wpk.service.Specifications;
+import wpk.account.AccountStatus;
 
 public class MovieBorrowing {
 
@@ -36,14 +38,17 @@ public class MovieBorrowing {
     public int getFine(LocalDate returnDate) {
         if (returnDate.compareTo(dueDate) > 0) {
             long days = ChronoUnit.DAYS.between(dueDate, returnDate);
-            //return  * (int) days;
+            return  Specifications.FINE_PERDAYS* (int) days;
         }
         return 0;
     }
-    public MovieBorrowing checkOutIItem(Movie borrowMovie,MemberAccount borrowAccount){
+    public MovieBorrowing checkOutMovie(Movie borrowMovie,MemberAccount borrowAccount){
+        if (borrowAccount.getMemberStatus().equals(AccountStatus.MEMBER)) {
+            
+        }
         this.borrowDate = LocalDate.of(2020, Month.FEBRUARY, 20);
-        //this.borrowDate = LocalDate.now;
-      //  this.dueDate = borrowDate.plus();
+        //this.borrowDate = LocalDate.now();
+        this.dueDate = borrowDate.plus(Specifications.MAX_BORROWDAYS, ChronoUnit.DAYS);
        // this.lendingItem = borrowItem;
        // this.lendingMember = lendingMember;
       //  this.lendingItem.setItemStatus();

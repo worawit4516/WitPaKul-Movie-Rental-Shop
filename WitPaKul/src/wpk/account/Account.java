@@ -1,49 +1,50 @@
 package wpk.account;
 import java.util.Objects;
-import wpk.person.Person;
+
 /**
  *
  * @author Sathipp
  */
-public abstract class Account {
-    private String id;
+public class Account {
+    private String id,fristname,lastname;
     private String password;
+    private long phone;
     private AccountStatus status;
-    private Person person;
-   
-    public Account(Account account){
-        this.id = account.id;
-        this.password = account.password;
-        this.person = account.person;
-    }
-    
-    public Account(String id, String password, Person person) {
+
+    public Account(String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
         this.id = id;
+        this.fristname = fristname;
+        this.lastname = lastname;
         this.password = password;
-        this.person = person;
-        this.status = AccountStatus.ACTIVEB;
-    }
-    
-     protected boolean resetPassword() {
-        this.password = null;
-        return true;
+        this.phone = phone;
+        this.status = status;
     }
 
     public String getId() {
         return id;
     }
-   
+
+    public String getFristname() {
+        return fristname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public long getPhone() {
+        return phone;
+    }
+
     public AccountStatus getStatus() {
         return status;
     }
 
-    protected void setPassword(String password) {
-        this.password = password;
-    }
-
-    protected void setStatus(AccountStatus status) {
-        this.status = status;
-    }
+    
 
     @Override
     public boolean equals(Object obj) {
@@ -57,15 +58,58 @@ public abstract class Account {
             return false;
         }
         final Account other = (Account) obj;
+        if (this.phone != other.phone) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.fristname, other.fristname)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastname, other.lastname)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (this.status != other.status) {
             return false;
         }
         return true;
     }
-    
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setFristname(String fristname) {
+        this.fristname = fristname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setPhone(long phone) {
+        this.phone = phone;
+    }
+
+    public void setStatus(AccountStatus status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return "Account: " + "id = " + id + ", name = " + person;
-        
+        return "Account{" + "id=" + id + ", fristname=" + fristname + ", lastname=" + lastname + ", password=" + password + ", phone=" + phone + ", status=" + status + '}';
     }
+   
+    
+    
+    
+   
 }

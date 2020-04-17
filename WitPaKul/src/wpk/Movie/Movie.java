@@ -5,6 +5,7 @@
  */
 package wpk.Movie;
 
+import Enum.MovieStatus;
 import java.util.Objects;
 
 /**
@@ -16,9 +17,9 @@ public class Movie {
     private String movield;
     private String movieTitle;
     private MovieStatus movieStaus;
-    private String premiumStatus;
+    private int premiumStatus = 1;
 
-    public Movie(String movield, String movieTitle,String premiumStatus) {
+    public Movie(String movield, String movieTitle,int premiumStatus) {
         this.movield = movield;
         this.movieTitle = movieTitle;
         this.movieStaus = movieStaus.Available;
@@ -41,15 +42,10 @@ public class Movie {
         this.movieStaus = movieStaus;
     }
 
-    public String getPremiumStatus() {
+    public int getPremiumStatus() {
         return premiumStatus;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        return hash;
-    }
 
     @Override
     public boolean equals(Object obj) {

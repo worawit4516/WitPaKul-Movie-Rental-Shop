@@ -5,16 +5,17 @@
  */
 package wpk.Store;
 
+import wpk.service.EmployeeService;
 import java.util.Iterator;
 import wpk.account.Account;
 import wpk.account.AccountStatus;
-import wpk.person.Person;
+
 import wpk.Movie.Movie;
-import wpk.Movie.MovieStatus;
-import wpk.service.MemberAccount;
-import wpk.service.EmployeeAccount;
-import wpk.Store.MemberService;
-import wpk.Store.Specifications;
+import Enum.MovieStatus;
+import wpk.account.MemberAccount;
+import wpk.account.EmployeeAccount;
+import wpk.service.MemberService;
+import wpk.service.Specifications;
 
 /**
  *
@@ -155,7 +156,7 @@ public class MovieStore implements Specifications,EmployeeService{
     }
 
     public boolean SetEmployee(EmployeeAccount employee) {
-
+       return true;
     }
 
     public int check(Object obj) {

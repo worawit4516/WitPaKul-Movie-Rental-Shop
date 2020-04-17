@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wpk.Store;
+package wpk.service;
 
 import wpk.Movie.Movie;
-import wpk.service.EmployeeAccount;
-import wpk.service.MemberAccount;
+import wpk.account.EmployeeAccount;
+import wpk.account.MemberAccount;
 import wpk.Store.MovieStore;
 
 /**
