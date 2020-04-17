@@ -34,10 +34,10 @@ public class Manager {
         if (employee == null) {
             return -1;
         }
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < this.employee.length; i++) {
 
         }
-
+        return -1;
     }
 //NO
 
@@ -64,7 +64,7 @@ public class Manager {
 
     public boolean AddEmpolyees(EmployeeAccount manager, EmployeeAccount employee) {
         if (manager.equals(this.employee)) {
-            if (check(countEmployee) == -1 && countEmployee < employee.length) {
+            if (check(countEmployee) == -1 && countEmployee < this.employee.length) {
                 this.employee[countEmployee++] = employee;
                 return true;
             } else {

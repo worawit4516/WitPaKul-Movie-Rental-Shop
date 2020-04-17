@@ -3,12 +3,14 @@ import java.time.LocalDate;
 import wpk.Store.MovieBorrowing;
 import wpk.account.Account;
 import wpk.person.Person;
+import wpk.Store.Specifications;
+import wpk.Movie.Movie;
 /**
  *
  * @author Sathipp
  */
-public abstract class MemberAccount extends Account{
-    private borrowingMovie[] MovieBorrowing = new borrowingMovie[Policy.MAX_BORROWMOVIE_MEMBER] ;
+public class MemberAccount extends Account{
+    private MovieBorrowing borrowingMovie[]  = new MovieBorrowing[Specifications.MAX_BORROWMOVIE_MEMBER] ;
     private int totalBorrowMovie = 0;
     private int overDue = 0;
     
@@ -19,10 +21,12 @@ public abstract class MemberAccount extends Account{
     public MemberAccount(Account account) {
         super(account);
     }
+
+   
     
-    boolean checkoutItem(Movie borrowMovie) {
+    boolean checkoutItem(MovieBorrowing borrowMovie) {
         if (borrowMovie != null) {
-            this.MovieBorrowing[totalBorrowMovie++] = borrowMovie;
+            borrowingMovie[totalBorrowMovie++] = borrowMovie;
             return true;
         } else {
             return false;
@@ -33,8 +37,9 @@ public abstract class MemberAccount extends Account{
         return totalBorrowMovie;
     }
 
-    MovieBrrowing[] getMovieBorrowList() {
-        return this.MovieBorrowing;
+    public MovieBorrowing getMovieBorrowList() {
+        int i = 0;
+        return this.borrowingMovie[i];
     }
 
     int check(MovieBorrowing movie) {
@@ -67,7 +72,7 @@ public abstract class MemberAccount extends Account{
         }
     }
     
-    int checkForFine(MovieBorrowing borrowedMovie){
+    public  int checkForFine(MovieBorrowing borrowedMovie){
         return borrowedMovie.getFine(LocalDate.now());
     }
 }

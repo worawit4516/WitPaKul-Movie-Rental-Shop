@@ -12,7 +12,7 @@ package wpk.Movie;
 public enum MovieStatus {
 Available,
 Lost,
-FULL ,
+Full ,
 NewMovie
 };
 

@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Earty/Desktop/GIT/WitPaKul-Movie-Rental-Shop/WitPaKul/src/wpk_DataBase/Testdatabase.java</file>
+            <file>file:/C:/Users/Earty/Desktop/GIT/WitPaKul-Movie-Rental-Shop/WitPaKul/src/wpk/Store/EmployeeService.java</file>
+            <file>file:/C:/Users/Earty/Desktop/GIT/WitPaKul-Movie-Rental-Shop/WitPaKul/src/wpk/Store/MemberService.java</file>
+            <file>file:/C:/Users/Earty/Desktop/GIT/WitPaKul-Movie-Rental-Shop/WitPaKul/src/wpk/Store/Manager.java</file>
+            <file>file:/C:/Users/Earty/Desktop/GIT/WitPaKul-Movie-Rental-Shop/WitPaKul/src/wpk/service/MemberAccount.java</file>
+            <file>file:/C:/Users/Earty/Desktop/GIT/WitPaKul-Movie-Rental-Shop/WitPaKul/src/wpk/Store/MovieStore.java</file>
+            <file>file:/C:/Users/Earty/Desktop/GIT/WitPaKul-Movie-Rental-Shop/WitPaKul/src/wpk/Store/MovieBorrowing.java</file>
         </group>
     </open-files>
 </project-private>

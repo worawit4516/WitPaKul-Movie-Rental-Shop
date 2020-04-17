@@ -9,7 +9,7 @@ package wpk.Store;
  *
  * @author user
  */
-public class Specifications {
+public interface Specifications {
 public static final int MAX_BORROWMOVIE_PREMIUMMEMBER = 10;   
 public static final int MAX_BORROWMOVIE_MEMBER = 5;
 public static final int MAX_BORROWDAYS = 3;
