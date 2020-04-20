@@ -19,16 +19,28 @@ public class ManagerService {
 
     private EmployeeAccount employees[];
     private Manager manager;
-    private int maxemployee ;
-    public int countEmployee ;
+    private int maxemployee;
+    public int countEmployee = 0;
 
-    public ManagerService(int maxemployees) {
-        this.maxemployee = maxemployees;
+    public ManagerService(int maxemployees, Manager manager) {
+        this.employees = new EmployeeAccount[maxemployees];
+        this.manager = manager;
 
     }
 
-    public boolean EditData_Employees(EmployeeAccount manager, EmployeeAccount employee) {
-        return false;
+    public boolean EditData_Employees(Manager manager, EmployeeAccount employee, String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
+        if (manager.equals(this.manager) && check(employee) != -1) {
+            for (int i = 0; i < countEmployee; i++) {
+                if (employees[i] == employee) {
+                    employees[i].editdata(id, fristname, lastname, password, phone, status);
+                    System.out.println("Compleate");
+                }
+            }
+
+        } else {
+            System.out.println("Can't fine this Employee");
+        }
+        return true;
 
     }
 
@@ -37,19 +49,24 @@ public class ManagerService {
         if (employee == null) {
             return -1;
         }
-        if (manager.equals(this.manager)) {
-            check(employee);
+        if (manager.equals(this.manager) && check(employee) != -1) {
+            for (int i = 0; i < countEmployee; i++) {
+                if (employee == employees[i]) {
+                    System.out.println("Found! Data this Employee");
+                    System.out.println(employees[i]);
+                }
+            }
+        } else {
+            System.out.println("Not found!");
         }
-//        for (int i = 0; i < this.employees.length; i++) {
-//               
-//        }
+
         return -1;
     }
-//NO
 
     public int ListEmployees() {
+        System.out.println("All Employees is " + countEmployee);
         for (int i = 0; i < countEmployee; i++) {
-            System.out.println(employees[i]);
+            System.out.println(employees[i].toString());
         }
         return -1;
     }
@@ -75,14 +92,14 @@ public class ManagerService {
         if (manager.equals(this.manager)) {
             if (check(employee) == -1 && countEmployee < this.employees.length) {
                 this.employees[countEmployee++] = employee;
-                countEmployee++;
+
                 return true;
             } else {
                 return false;
             }
         }
 
-        return true;
+        return false;
 
     }
 
