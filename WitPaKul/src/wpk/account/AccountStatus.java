@@ -4,8 +4,5 @@ package wpk.account;
  * @author Sathipp
  */
 public enum AccountStatus {
-    ACTIVEB,
-    FULL,
-    CANCELED,
-    BLACKLISTED
+    MEMBER,PREMIUMMEMBER,MANAGER,EMPLOYEE,DEFAULT;
 }
