@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wpk.Store;
+package wpk.account;
 
 import wpk.account.EmployeeAccount;
 import wpk.account.Account;
@@ -15,14 +15,16 @@ import wpk.Store.MovieStore;
  *
  * @author user
  */
-public class Manager {
+public class ManagerService {
 
     private EmployeeAccount employees[];
-    private int countEmployee = 0;
+    private Manager manager;
+    private int maxemployee ;
+    public int countEmployee ;
 
-    public Manager(int maxemployee) {
+    public ManagerService(int maxemployees) {
+        this.maxemployee = maxemployees;
 
-        this.employees = new EmployeeAccount[maxemployee];
     }
 
     public boolean EditData_Employees(EmployeeAccount manager, EmployeeAccount employee) {
@@ -30,20 +32,26 @@ public class Manager {
 
     }
 
-    public int SearchEmployees(EmployeeAccount manager, EmployeeAccount employee) {
+    public int SearchEmployees(Manager manager, EmployeeAccount employee) {
+
         if (employee == null) {
             return -1;
         }
-        for (int i = 0; i < this.employees.length; i++) {
-
+        if (manager.equals(this.manager)) {
+            check(employee);
         }
+//        for (int i = 0; i < this.employees.length; i++) {
+//               
+//        }
         return -1;
     }
 //NO
 
-    public EmployeeAccount[] ListEmployees(EmployeeAccount manager) {
-        return this.ListEmployees(manager);
-
+    public int ListEmployees() {
+        for (int i = 0; i < countEmployee; i++) {
+            System.out.println(employees[i]);
+        }
+        return -1;
     }
 
     public boolean DeleteEmployees(Object obj) {
@@ -62,21 +70,24 @@ public class Manager {
         return false;
     }
 
-    public boolean AddEmpolyees(EmployeeAccount manager, EmployeeAccount employee) {
-        if (manager.equals(this.employees)) {
-            if (check(countEmployee) == -1 && countEmployee < this.employees.length) {
+    public boolean AddEmpolyees(Manager manager, EmployeeAccount employee) {
+
+        if (manager.equals(this.manager)) {
+            if (check(employee) == -1 && countEmployee < this.employees.length) {
                 this.employees[countEmployee++] = employee;
+                countEmployee++;
                 return true;
             } else {
                 return false;
             }
-        } else {
-            return false;
         }
+
+        return true;
+
     }
 
     private int check(Object obj) {
-        if (obj instanceof EmployeeAccount) {
+        if (obj instanceof EmployeeAccount && obj != null) {
             for (int i = 0; i < countEmployee; i++) {
                 if (employees[i].equals(obj)) {
                     return i;

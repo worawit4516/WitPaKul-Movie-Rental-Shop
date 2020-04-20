@@ -2,25 +2,17 @@ package wpk.account;
 
 import wpk.account.Account;
 
-public class EmployeeAccount {
+public class EmployeeAccount extends Account {
 
-    private Account account;
-
-    public EmployeeAccount(Account account) {
-        if (checkstatus(account)) {
-            this.account = account;
-            System.out.println("Setaccount Complate");
-        } else {
-            System.out.println("Can't Set this account");
-        }
+    public EmployeeAccount( String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
+        super(id, fristname, lastname, password, phone, status);
 
     }
 
-    public boolean checkstatus(Account account) {
-        if (account.getStatus().equals(AccountStatus.EMPLOYEE)) {
-            return true;
-        }
-        return false;
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
+    
 }

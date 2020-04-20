@@ -16,12 +16,14 @@ import wpk.account.MemberAccount;
 import wpk.account.EmployeeAccount;
 import wpk.service.MemberService;
 import wpk.service.Specifications;
+import wpk.account.ManagerService;
+import wpk.account.Manager;
 
 /**
  *
  * @author user
  */
-public class MovieStore implements Specifications,EmployeeService{
+public class MovieStore implements Specifications, EmployeeService {
 
     private String storeName;
     MemberAccount member[];
@@ -30,7 +32,6 @@ public class MovieStore implements Specifications,EmployeeService{
     EmployeeAccount employee;
     private int countmember = 0, countMovie = 0, countEmployee = 0;
     private EmployeeAccount employees[];
-   
 
     public MovieStore(String storeName, int maxcustomer, int maxmember, int maxcdStoreMovie, int maxcdStoreBorrowingMovie, int maxemployees) {
         this.storeName = storeName;
@@ -38,10 +39,11 @@ public class MovieStore implements Specifications,EmployeeService{
         this.cdStoreMovie = new Movie[maxcdStoreMovie];
         this.cdStoreBorrowingMovie = new MovieBorrowing[maxcdStoreBorrowingMovie];
         this.employee = employee;
-        
+
     }
-    public Iterator<Movie> iterator(){
-         return new Iterator<Movie>() {
+
+    public Iterator<Movie> iterator() {
+        return new Iterator<Movie>() {
             private int counter = 0;
 
             @Override
@@ -55,37 +57,10 @@ public class MovieStore implements Specifications,EmployeeService{
             }
         };
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //Employeeservice code part//
-    
-  
-   
 
     
+
+    //Employeeservice code part//
     public boolean addMember(EmployeeAccount employee, MemberAccount member) {
         if (employee.equals(this.employee)) {
             MemberAccount newmeber = new MemberAccount(member);
@@ -114,15 +89,15 @@ public class MovieStore implements Specifications,EmployeeService{
     }
 
     public boolean EditData_Member(EmployeeAccount employee, MemberAccount member) {
-      return true;
+        return true;
     }
 
     public int SearchMovie(String movieTitle) {
-      return 1; 
+        return 1;
     }
 
     public int SearchMember(int MemberID) {
-      return 1;
+        return 1;
     }
 
     public boolean DeleteMovie(EmployeeAccount employee, Movie deleteMovie, Object obj) {
@@ -144,7 +119,7 @@ public class MovieStore implements Specifications,EmployeeService{
         if (obj instanceof MemberAccount) {
             for (int i = check(obj); i < countmember; i++) {
                 if (i == countmember - 1) {
-                   this.member[i] = null;
+                    this.member[i] = null;
                 } else {
                     this.member[i] = this.member[i + 1];
                 }
@@ -156,7 +131,7 @@ public class MovieStore implements Specifications,EmployeeService{
     }
 
     public boolean SetEmployee(EmployeeAccount employee) {
-       return true;
+        return true;
     }
 
     public int check(Object obj) {
@@ -186,21 +161,9 @@ public class MovieStore implements Specifications,EmployeeService{
             return -2;
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     //MovieService Code part//
-    
-      public MovieBorrowing checkOutMovie(MemberAccount member, Movie borrowMovie) {
+    public MovieBorrowing checkOutMovie(MemberAccount member, Movie borrowMovie) {
         if (check(member) >= 0) {
             if (member.getTotalMoviecheckedOut() < Specifications.MAX_BORROWDAYS && borrowMovie.getMovieStaus() == MovieStatus.Available) {
                 if (borrowMovie instanceof Movie) {
@@ -250,7 +213,6 @@ public class MovieStore implements Specifications,EmployeeService{
 
     }
 
- 
     public int returnForFine(MemberAccount member, MovieBorrowing returnItem) {
         if (check(member) >= 0) {
             return member.checkForFine(returnItem);

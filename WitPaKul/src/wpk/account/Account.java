@@ -5,7 +5,7 @@ import java.util.Objects;
  *
  * @author Sathipp
  */
-public class Account {
+public abstract class Account {
     private String id,fristname,lastname;
     private String password;
     private long phone;

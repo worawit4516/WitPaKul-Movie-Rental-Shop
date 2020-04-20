@@ -13,6 +13,7 @@ public enum MovieStatus {
 Available,
 Lost,
 Full ,
-NewMovie
+NewMovie,
+Borrowed
 };
 
