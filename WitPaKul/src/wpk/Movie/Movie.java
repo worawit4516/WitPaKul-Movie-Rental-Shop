@@ -19,10 +19,10 @@ public class Movie {
     private MovieStatus movieStaus;
     private int premiumStatus = 1;
 
-    public Movie(String movield, String movieTitle,int premiumStatus) {
+    public Movie(String movield, String movieTitle,int premiumStatus,MovieStatus mos) {
         this.movield = movield;
         this.movieTitle = movieTitle;
-        this.movieStaus = movieStaus.Available;
+        this.movieStaus = mos;
         this.premiumStatus=premiumStatus;
     }
 
@@ -46,6 +46,20 @@ public class Movie {
         return premiumStatus;
     }
 
+    public void setMovield(String movield) {
+        this.movield = movield;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
+    }
+
+    public void setPremiumStatus(int premiumStatus) {
+        this.premiumStatus = premiumStatus;
+    }
+
+    
+    
 
     @Override
     public boolean equals(Object obj) {
@@ -76,7 +90,9 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie{" + "movield=" + movield + ", movieTitle=" + movieTitle + ", movieStaus=" + movieStaus + ", premiumStatus=" + premiumStatus + '}';
+        return "Movie" + " Movield " + movield + ", movieTitle=" + movieTitle + ", movieStaus=" + movieStaus + ", premiumStatus=" + premiumStatus ;
     }
 
+    
+    
 }

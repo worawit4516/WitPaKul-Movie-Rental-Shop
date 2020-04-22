@@ -27,6 +27,10 @@ public class MovieBorrowing {
     private MemberAccount borrowAccount;
     private int fine;
 
+    
+
+    
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -60,6 +64,7 @@ public class MovieBorrowing {
             this.movieBorrow = borrowMovie;
             this.borrowAccount = borrowAccount;
             this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
+            System.out.println("Set Compleate");
             return this;
         } else if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER)) {
             this.borrowDate = LocalDate.now();
@@ -82,11 +87,20 @@ public class MovieBorrowing {
 
     @Override
     public String toString() {
-        return "MovieBorrowing{" + "borrowDate=" + borrowDate + ", dueDate=" + dueDate + ", returnDate=" + returnDate + ", movieBorrow=" + movieBorrow + ", borrowAccount=" + borrowAccount + ", fine=" + fine + '}';
+        return "MovieBorrowing " + "BorrowDate = " + borrowDate 
+                + "\n DueDate = " + dueDate 
+                + "\n returnDate = "  + returnDate
+                + "\n Movie = " + movieBorrow.getMovield()+" "+movieBorrow.getMovieTitle()
+                + "\n Account = " +borrowAccount.getId() +" "+ borrowAccount.getFristname()+" "+borrowAccount.getLastname()
+                + "\n Fine = " + fine ;
     }
 
     public MemberAccount getmyMovieborrowed() {
         return borrowAccount;
+    }
+
+    public Movie getMovieBorrow() {
+        return movieBorrow;
     }
 
 }

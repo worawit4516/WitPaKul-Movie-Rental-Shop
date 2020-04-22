@@ -1,5 +1,7 @@
 package wpk.account;
 import java.util.Objects;
+import wpk.service.Specifications;
+import wpk.account.AccountStatus;
 
 /**
  *
@@ -9,10 +11,10 @@ public abstract class Account {
     private String id,fristname,lastname;
     private String password;
     private long phone;
-    private AccountStatus status;
+    private AccountStatus status ;
 
     public Account(String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
-        this.id = id;
+        this.id=id;
         this.fristname = fristname;
         this.lastname = lastname;
         this.password = password;
@@ -105,7 +107,7 @@ public abstract class Account {
 
     @Override
     public String toString() {
-        return "Account{" + "id=" + id + ", fristname=" + fristname + ", lastname=" + lastname + ", password=" + password + ", phone=" + phone + ", status=" + status + '}';
+        return "Account " + "ID " + id + ", fristname=" + fristname + ", lastname=" + lastname + ", password=" + password + ", phone=" + phone + ", status=" + status ;
     }
    
     

@@ -9,9 +9,8 @@ public class EmployeeAccount extends Account {
         
     }
     
-    public void editdata(String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
+    public void editdata(String fristname, String lastname, String password, long phone, AccountStatus status) {
         this.setFristname(fristname);
-        this.setId(id);
         this.setLastname(lastname);
         this.setPassword(password);
         this.setPhone(phone);

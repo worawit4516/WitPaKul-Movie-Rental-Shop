@@ -9,6 +9,7 @@ import wpk.Movie.Movie;
 import wpk.account.EmployeeAccount;
 import wpk.account.MemberAccount;
 import wpk.Store.MovieStore;
+import wpk.account.AccountStatus;
 
 /**
  *
@@ -16,7 +17,7 @@ import wpk.Store.MovieStore;
  */
 public interface EmployeeService {
 
-    public boolean addMember(EmployeeAccount employee, MemberAccount member);
+    public boolean CreateMember(EmployeeAccount employee,String fristname, String lastname, String password, long phone, AccountStatus status);
 
     public boolean addMovie(EmployeeAccount employee, Movie newmovie);
 

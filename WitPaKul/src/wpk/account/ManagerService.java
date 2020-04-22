@@ -5,6 +5,7 @@
  */
 package wpk.account;
 
+import java.util.Locale;
 import wpk.account.EmployeeAccount;
 import wpk.account.Account;
 import wpk.account.AccountStatus;
@@ -17,22 +18,52 @@ import wpk.Store.MovieStore;
  */
 public class ManagerService {
 
-    private EmployeeAccount employees[];
-    private Manager manager;
+    public EmployeeAccount[] employees;
+    private ManagerAccount manager;
     private int maxemployee;
-    public int countEmployee = 0;
+    private int countEmployee = 0;
 
-    public ManagerService(int maxemployees, Manager manager) {
+    public ManagerService(int maxemployees, ManagerAccount manager) {
         this.employees = new EmployeeAccount[maxemployees];
         this.manager = manager;
 
     }
 
-    public boolean EditData_Employees(Manager manager, EmployeeAccount employee, String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
-        if (manager.equals(this.manager) && check(employee) != -1) {
+    public boolean CreatEmployeesAccount(ManagerAccount manager, String fristname, String lastname, String password, long phone, AccountStatus status) {
+        if (manager.equals(this.manager)) {
+            String id = String.format("EMP0%d", countEmployee + 1);
+
+            EmployeeAccount employee = new EmployeeAccount(id, fristname, lastname, password, phone, status);
+
+            if (check(id) == -1 && countEmployee < this.employees.length && employee.getStatus() == AccountStatus.EMPLOYEE) {
+                this.employees[countEmployee++] = employee;
+                System.out.println("Compleate to Createdata this Employee");
+                return true;
+            }
+        } else {
+            System.out.println("Can't Createdata this Employee");
+        }
+        return true;
+
+    }
+
+    public boolean EditData_Manager(ManagerAccount manager, String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
+        if (manager.equals(this.manager)) {
+            this.manager.editmanager(id, fristname, lastname, password, phone, status);
+
+            System.out.println("Compleate");
+        } else {
+            System.out.println("Can't fine this Manager");
+        }
+        return true;
+
+    }
+
+    public boolean EditData_Employees(ManagerAccount manager, String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
+        if (manager.equals(this.manager) && check(id) != -1) {
             for (int i = 0; i < countEmployee; i++) {
-                if (employees[i] == employee) {
-                    employees[i].editdata(id, fristname, lastname, password, phone, status);
+                if (employees[i].getId() == null ? id == null : employees[i].getId().equals(id)) {
+                    employees[i].editdata(fristname, lastname, password, phone, status);
                     System.out.println("Compleate");
                 }
             }
@@ -44,14 +75,14 @@ public class ManagerService {
 
     }
 
-    public int SearchEmployees(Manager manager, EmployeeAccount employee) {
+    public int SearchEmployees(ManagerAccount manager, String id) {
 
-        if (employee == null) {
+        if (id == null) {
             return -1;
         }
-        if (manager.equals(this.manager) && check(employee) != -1) {
+        if (manager.equals(this.manager) && check(id) != -1) {
             for (int i = 0; i < countEmployee; i++) {
-                if (employee == employees[i]) {
+                if (id == null ? employees[i].getId() == null : id.equals(employees[i].getId())) {
                     System.out.println("Found! Data this Employee");
                     System.out.println(employees[i]);
                 }
@@ -64,19 +95,25 @@ public class ManagerService {
     }
 
     public int ListEmployees() {
+
         System.out.println("All Employees is " + countEmployee);
+        System.out.println("Manager is " + manager.toString());
         for (int i = 0; i < countEmployee; i++) {
-            System.out.println(employees[i].toString());
+
+            System.out.println(". Employees is " + employees[i].toString());
+
         }
         return -1;
     }
 
-    public boolean DeleteEmployees(Object obj) {
-        if (obj instanceof EmployeeAccount) {
-            for (int i = check(obj); i < countEmployee; i++) {
+    public boolean DeleteEmployees(ManagerAccount manager, String id) {
+        if (manager.equals(this.manager) && check(id) != -1) {
+            for (int i = check(id); i < countEmployee; i++) {
                 // EmployeeAccount employeeAccount = employee[i];
                 if (i == countEmployee - 1) {
                     employees[i] = null;
+                    System.out.println("Compleate to Delete data this Employee");
+
                 } else {
                     employees[i] = employees[i + 1];
                 }
@@ -87,26 +124,28 @@ public class ManagerService {
         return false;
     }
 
-    public boolean AddEmpolyees(Manager manager, EmployeeAccount employee) {
-
-        if (manager.equals(this.manager)) {
-            if (check(employee) == -1 && countEmployee < this.employees.length) {
-                this.employees[countEmployee++] = employee;
-
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        return false;
-
-    }
-
-    private int check(Object obj) {
-        if (obj instanceof EmployeeAccount && obj != null) {
+//    public boolean AddEmpolyees(ManagerAccount manager, EmployeeAccount employee) {
+//
+//        if (manager.equals(this.manager) && employee.getStatus() == AccountStatus.EMPLOYEE) {
+//            if (check(employee) == -1 && countEmployee < this.employees.length) {
+//                this.employees[countEmployee++] = employee;
+//                System.out.println("Compleate to Add data this Employee");
+//                return true;
+//            } else {
+//                System.out.println("Failed to Add data this Employee");
+//                return false;
+//            }
+//        }
+//        System.out.println("Failed to Add data this Employee");
+//        System.out.println("this Account does not Employee");
+//
+//        return false;
+//
+//    }
+    private int check(String id) {
+        if (id != null) {
             for (int i = 0; i < countEmployee; i++) {
-                if (employees[i].equals(obj)) {
+                if (employees[i].getId() == null ? id == null : employees[i].getId().equals(id)) {
                     return i;
                 }
             }
@@ -115,4 +154,18 @@ public class ManagerService {
 
     }
 
+    public EmployeeAccount getEmployees(String id) {
+      
+            if (id != null) {
+                for (int i = 0; i < countEmployee; i++) {
+                    if (employees[i].getId() == null ? id == null : employees[i].getId().equals(id)) {
+                        return employees[i];
+
+                    } 
+                }
+            }
+        
+        return getEmployees(id);
+
+    }
 }
