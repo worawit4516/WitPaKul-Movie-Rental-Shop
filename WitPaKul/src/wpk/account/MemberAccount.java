@@ -1,13 +1,11 @@
 package wpk.account;
 
 import java.time.LocalDate;
-import wpk.Store.MovieBorrowing;
+import wpk.Movie.MovieBorrowing;
 import wpk.account.Account;
-import wpk.service.Specifications;
-import wpk.Movie.Movie;
-import wpk.account.AccountStatus;
-import Enum.AccountMovieStatus;
-import Enum.AccountMovieStatus;
+import wpk.serviceITF.Specifications;
+import wpk.Enum.AccountStatus;
+import wpk.Enum.AccountMovieStatus;
 
 /**
  *
@@ -23,6 +21,7 @@ public class MemberAccount extends Account {
 
     public MemberAccount(String id, String fristname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus) {
         super(id, fristname, lastname, password, phone, status);
+        this.setMaxBorrowMovie(status);
         this.setMemberMovieStatus(acstatus);
         this.status = status;
     }
@@ -73,33 +72,25 @@ public class MemberAccount extends Account {
     }
 
     public int getMovieBorrowList() {
+
+        System.out.println("All MovieBorrow of this Member " + totalBorrowMovie);
+
         for (int i = 0; i < totalBorrowMovie; i++) {
 
-            if (borrowingMovie[i] != null) {
-                System.out.println(borrowingMovie[i]);
-            }
+            System.out.println(". Movie is " + borrowingMovie[i].toString());
 
         }
         return -1;
     }
-//     public MovieBorrowing[] getMovieBorrowList2() {
-//        for (int i = 0; i < borrowingMovie.length; i++) {
-//            
-//            if (borrowingMovie[i] != null) {
-//                System.out.println(borrowingMovie[i]);
-//            }
-//            
-//        }
-//        return borrowingMovie;
-//    }
 
     public boolean checkoutMovie(MovieBorrowing borrowMovie) {
-        if (borrowMovie != null) {
-            borrowingMovie[totalBorrowMovie++] = borrowMovie;
-            return true;
-        } else {
+        if (borrowMovie == null) {
             return false;
         }
+        borrowingMovie[totalBorrowMovie++] = borrowMovie;
+
+        return true;
+
     }
 
     int check(MovieBorrowing movie) {
@@ -123,11 +114,11 @@ public class MemberAccount extends Account {
         }
     }
 
-    void returnMovie(MovieBorrowing borrowingMovie, int fine) {
+    public void returnMovie(MovieBorrowing borrowingMovie, int fine) {
         int returnMovie = check(borrowingMovie);
         if (returnMovie >= 0) {
             remove(returnMovie);
-            this.totalBorrowMovie--;
+            //this.totalBorrowMovie--;
             if (fine > 0) {
                 this.overDue++;
             }

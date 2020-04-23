@@ -1,7 +1,6 @@
 package wpk.account;
 import java.util.Objects;
-import wpk.service.Specifications;
-import wpk.account.AccountStatus;
+import wpk.Enum.AccountStatus;
 
 /**
  *

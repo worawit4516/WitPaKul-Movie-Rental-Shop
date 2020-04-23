@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package wpk.account;
 
-import java.util.Locale;
+package wpk.Store;
+
+
+import wpk.Enum.AccountStatus;
 import wpk.account.EmployeeAccount;
-import wpk.account.Account;
-import wpk.account.AccountStatus;
-import wpk.account.EmployeeAccount;
-import wpk.Store.MovieStore;
+import wpk.account.ManagerAccount;
 
 /**
  *

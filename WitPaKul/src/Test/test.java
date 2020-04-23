@@ -2,13 +2,13 @@ package Test;
 
 import wpk.Store.MovieStore;
 import wpk.account.Account;
-import wpk.account.AccountStatus;
+import wpk.Enum.AccountStatus;
 import wpk.account.MemberAccount;
 import wpk.account.EmployeeAccount;
-import wpk.account.ManagerService;
+import wpk.Store.ManagerService;
 import wpk.account.ManagerAccount;
-import Enum.AccountMovieStatus;
-import Enum.MovieStatus;
+import wpk.Enum.AccountMovieStatus;
+import wpk.Enum.MovieStatus;
 
 public class test {
 
@@ -39,15 +39,17 @@ public class test {
 
         miStore.ListMembers();
         miStore.AddMovie("EMP02", "movieTitle", 0, MovieStatus.Available);
-        miStore.ListMovie();
 
-        miStore.checkOutMovie("MEM02", "MOV01");
-
-        
-        miStore.returnMovie("MEM02", "MOV01");
         
         miStore.ListMovieborrow();
-               
+        //miStore.returnMovie("MEM02","MOV01");
+        //miStore.ListmemberBorrowingList("MEM02");
+       // miStore.ListMovieborrow();
+        miStore.CheckoutMovieMember("MEM02","MOV01");
+        miStore.CheckoutMovieMember("MEM02","MOV01");
+        miStore.ListMemberBorrowingList("MEM02");
+        miStore.returnMovie("MEM02","MOV01");
+        
     }
 
 }

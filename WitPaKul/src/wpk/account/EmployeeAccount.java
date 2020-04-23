@@ -1,5 +1,6 @@
 package wpk.account;
 
+import wpk.Enum.AccountStatus;
 import wpk.account.Account;
 
 public class EmployeeAccount extends Account {

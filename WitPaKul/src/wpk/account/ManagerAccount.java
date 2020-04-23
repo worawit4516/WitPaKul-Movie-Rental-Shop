@@ -1,5 +1,7 @@
 package wpk.account;
 
+import wpk.Enum.AccountStatus;
+
 public class ManagerAccount extends Account {
 
    

@@ -1,30 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package wpk.Store;
 
-import wpk.service.EmployeeService;
 import java.util.Iterator;
-import wpk.account.Account;
-import wpk.account.AccountStatus;
-
-import Enum.MovieStatus;
+import wpk.Enum.AccountStatus;
+import wpk.Enum.MovieStatus;
 import wpk.account.MemberAccount;
 import wpk.account.EmployeeAccount;
-import wpk.service.Specifications;
-import wpk.account.ManagerService;
-import wpk.account.ManagerAccount;
+import wpk.serviceITF.Specifications;
 import wpk.Movie.Movie;
-import Enum.AccountMovieStatus;
-import wpk.Store.MovieBorrowing;
+import wpk.Enum.AccountMovieStatus;
+import wpk.Movie.MovieBorrowing;
+import wpk.serviceITF.EmployeeService;
 
 /**
  *
  * @author user
  */
-public class MovieStore implements Specifications {
+public class MovieStore implements Specifications,EmployeeService{
 
     private String storeName;
     private MemberAccount member[];
@@ -46,7 +37,7 @@ public class MovieStore implements Specifications {
 
         try {
             this.resouse = resouse;
-            System.out.println("Setcomplete");
+            System.out.println("Set Complete");
         } catch (Exception e) {
             System.out.println("Set failed");
         }
@@ -55,7 +46,7 @@ public class MovieStore implements Specifications {
     public void SetEmployeesinStore(String EMPid) {
         try {
             this.employeeInstore = this.resouse.getEmployees(EMPid);
-            System.out.println("Setcomplete");
+            System.out.println("Set Complete");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Set failed");
         }
@@ -114,7 +105,7 @@ public class MovieStore implements Specifications {
         return true;
     }
 
-    //Check
+  
     public boolean EditData_Member(String id, String MemberID, String fristname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus) {
 
         if (id.equals(this.employeeInstore.getId()) && checkMember(MemberID) != -1) {
@@ -173,9 +164,26 @@ public class MovieStore implements Specifications {
         return -1;
     }
 
-    
-    
-    
+    public int SearchMovieBorrowinstore(String movieID) {
+        if (movieID == null) {
+            return -1;
+        }
+
+        if (movieID != null) {
+            for (int i = 0; i < countMovieborrowing; i++) {
+                if (movieID == null ? cdStoreBorrowingMovie[i].getMovieBorrow().getMovield() == null : movieID.equals(cdStoreBorrowingMovie[i].getMovieBorrow().getMovield())) {
+                    System.out.println("Found! Data this Member");
+                    System.out.println(member[i]);
+
+                }
+            }
+
+        } else {
+            System.out.println("Not found!");
+        }
+        return -1;
+    }
+
     //Delete Part
     public boolean DeleteMovie(String id, String movieID) {
         if (id.equals(this.employeeInstore.getId()) && checkMember(movieID) != -1) {
@@ -192,19 +200,21 @@ public class MovieStore implements Specifications {
         return false;
     }
 
-    public boolean DeleteMember(String id, String memberID) {
-//        if (id.equals(this.employeeInstore.getId()) && checkMember(memberID) != -1) {
-//            for (int i = checkMember(id); i < countmember; i++) {
-//                if (i == countmember - 1) {
-//                    this.member[i] = null;
-//                } else {
-//                    this.member[i] = this.member[i + 1];
-//                }
-//            }
-//            countmember--;
-//
-//        }
+    private boolean DeleteBorrowMovie(String movieBorrowID) {
+        for (int i = checkMovieBorrow(movieBorrowID); i < countMovieborrowing; i++) {
+            if (i == countMovieborrowing - 1) {
+                for (int j = i + 1; j < countMovieborrowing; j++) {
+                    cdStoreBorrowingMovie[i] = cdStoreBorrowingMovie[j];
+                }
+                cdStoreBorrowingMovie[--countMovieborrowing] = null;
+                return true;
+            }
+        }
 
+        return false;
+    }
+
+    public boolean DeleteMember(String id, String memberID) {
         if (id.equals(this.employeeInstore.getId()) && checkMember(memberID) != -1) {
             for (int i = checkMember(id); i < countmember; i++) {
                 if (i == countmember - 1) {
@@ -221,102 +231,39 @@ public class MovieStore implements Specifications {
     }
 
     //MovieService Code part//
-//    public MovieBorrowing checkOutMovie(MemberAccount member, Movie borrowMovie) {
-//        if (check(member) >= 0) {
-//            if (member.getTotalMoviecheckedOut() < Specifications.MAX_BORROWDAYS && borrowMovie.getMovieStaus() == MovieStatus.Available) {
-//                if (borrowMovie instanceof Movie) {
-//                    Movie movie = (Movie) borrowMovie;
-//
-//                    MemberAccount checkedMovie = new MemberAccount();
-//                    checkedMovie.checkOutMovie(movie, member);
-//                    cdStoreBorrowingMovie[count++] = checkedMovie;
-//                    return checkedMovie;
-//                } else {
-//                    return null;
-//                }
-//            } else {
-//                return null;
-//            }
-//        } else {
-//            return null;
-//        }
-//    }
-    public MovieBorrowing checkOutMovie(String memberId, String movieID) {
-//        MemberAccount memberborrow = null;
-//        Movie borrowmovie = null;
-//        for (int i = 0; i < countmember; i++) {
-//            if (memberId.equals(member[i].getId())) {
-//                memberborrow = member[i];
-//
-//            }
-//        }
-//
-//        for (int i = 0; i < countMovie; i++) {
-//            if (movieID.equals(cdStoreMovie[i].getMovield())) {
-//                borrowmovie = cdStoreMovie[i];
-//
-//            }
-//
-//        }
-//
-//        System.out.println(memberborrow);
-//        System.out.println(borrowmovie);
+    private MovieBorrowing checkOutMovieinstore(String memberId, String movieID) {
+        if (checkMemberByID(memberId).getAccountMovieStatus() != AccountMovieStatus.ACTIVEB) {
+            System.out.println("Your account is not ACTIVEB");
+            return null;
+        }
+
+        if (checkMovieByID(movieID).getMovieStaus() != MovieStatus.Available) {
+            System.out.println("This Movie can't Borrow now");
+            return null;
+        }
         MovieBorrowing movieBorrowing = new MovieBorrowing();
 
         MovieBorrowing checkoutMOvie = movieBorrowing.checkOutMovie(checkMovieByID(movieID), checkMemberByID(memberId));
-
         cdStoreBorrowingMovie[countMovieborrowing++] = checkoutMOvie;
-
+        System.out.println("Check out compleate");
         System.out.println(checkoutMOvie);
 
+        //checkMemberByID(memberId).checkoutMovie(checkoutMOvie);
         return checkoutMOvie;
     }
 
-    /*checkoutItem(Item borrowItem, MemberAccount lendingMember) {
-        this.borrowDate = LocalDate.of(2020, Month.FEBRUARY, 20);
-        //this.borrowDate = LocalDate.now;
-        this.dueDate = borrowDate.plus(Policy.MAX_LENDING_DAYS, ChronoUnit.DAYS);
-        this.lendingItem = borrowItem;
-        this.lendingMember = lendingMember;
-        this.lendingItem.setItemStatus(ItemStatus.BORROWED);
-        return this; 
-    
-    }*/
-//    public boolean returnMovie(MemberAccount member, MovieBorrowing returnItem) {
-//        if (check(member) >= 0) {
-//            //no getlending ??
-//            if (returnItem.getLendingMember().equals(member)) {
-//                int fine = returnItem.returnItem(member);
-//                remove(returnItem);
-//                if (fine > 0) {
-//                    System.out.println("Your fine is " + fine + " Baht.");
-//                }
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } else {
-//            return false;
-//        }
-//
-//    }
-    public boolean returnMovie(String memberId, String movieborrowID) {
-//        MemberAccount memberborrow = null;
-//        MovieBorrowing returnmovie = null;
-//        for (int i = checkMember(memberId); i < countmember; i++) {
-//            if (memberId == null ? member[i].getId() == null : memberId.equals(member[i].getId())) {
-//                memberborrow = member[i];
-//            }
-//        }
-//
-//        for (int i = 0; i < countMovieborrowing; i++) {
-//            if (movieID == null ? cdStoreBorrowingMovie[i].getMovieBorrow().getMovield() == null : movieID.equals(cdStoreBorrowingMovie[i].getMovieBorrow().getMovield())) {
-//                returnmovie = cdStoreBorrowingMovie[i];
-//            }
-//        }
+    public void CheckoutMovieMember(String memberId, String movieID) {
+        checkMemberByID(memberId).checkoutMovie(checkOutMovieinstore(memberId, movieID));
+    }
 
-        if (checkMemberByID(memberId).getId().equals(checkMovieborrowByID(movieborrowID))) {
+    public boolean returnMovie(String memberId, String movieborrowID) {
+
+        if (checkMemberByID(memberId).getId().equals(memberId) && checkMovieborrowByID(movieborrowID).getMovieBorrow().getMovield().equals(movieborrowID)) {
+
             int fine = checkMovieborrowByID(movieborrowID).returnMovie(checkMemberByID(memberId));
+            checkMemberByID(memberId).returnMovie(checkMovieborrowByID(movieborrowID), fine);
+            DeleteBorrowMovie(movieborrowID);
+            System.out.println("Return Compleate");
             if (fine > 0) {
                 System.out.println("Your fine is + " + fine + " Bath");
             }
@@ -327,7 +274,7 @@ public class MovieStore implements Specifications {
     }
 
     public int CheckForFine(String memberId, String movieID) {
-      
+
         if (checkMember(memberId) >= 0) {
             return checkMemberByID(memberId).checkForFine(checkMovieborrowByID(movieID));
         } else {
@@ -335,6 +282,7 @@ public class MovieStore implements Specifications {
         }
 
     }
+
     //List Part
     public int ListMembers() {
 
@@ -366,22 +314,14 @@ public class MovieStore implements Specifications {
 
         for (int i = 0; i < countMovieborrowing; i++) {
 
-            System.out.println(". Movie is " + cdStoreBorrowingMovie[i].toString());
+            System.out.println(countMovieborrowing + ". " + cdStoreBorrowingMovie[i].toString());
 
         }
         return -1;
     }
 
-    
-
-    public int ListmemberBorrowingList(String memberId) {
-       
-        if (checkMember(memberId) >= 0) {
-
-            return checkMemberByID(memberId).getMovieBorrowList();
-        } else {
-            return 1;
-        }
+    public void ListMemberBorrowingList(String id) {
+        checkMemberByID(id).getMovieBorrowList();
     }
 
     //Check path
@@ -401,6 +341,18 @@ public class MovieStore implements Specifications {
         if (id != null) {
             for (int i = 0; i < countMovie; i++) {
                 if (cdStoreMovie[i].getMovield() == null ? id == null : cdStoreMovie[i].getMovield().equals(id)) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+
+    }
+
+    private int checkMovieBorrow(String id) {
+        if (id != null) {
+            for (int i = 0; i < countMovieborrowing; i++) {
+                if (cdStoreBorrowingMovie[i].getMovieBorrow().getMovield() == null ? id == null : cdStoreBorrowingMovie[i].getMovieBorrow().getMovield().equals(id)) {
                     return i;
                 }
             }
@@ -432,11 +384,11 @@ public class MovieStore implements Specifications {
         return null;
 
     }
-    
-       private MovieBorrowing checkMovieborrowByID(String MovieborrowID) {
-        if (MovieborrowID!= null) {
+
+    private MovieBorrowing checkMovieborrowByID(String MovieborrowID) {
+        if (MovieborrowID != null) {
             for (int i = 0; i < countMovieborrowing; i++) {
-                if (cdStoreBorrowingMovie[i].getMovieBorrow().getMovield() == null ? MovieborrowID== null :cdStoreBorrowingMovie[i].getMovieBorrow().getMovield().equals(MovieborrowID)) {
+                if (cdStoreBorrowingMovie[i].getMovieBorrow().getMovield() == null ? MovieborrowID == null : cdStoreBorrowingMovie[i].getMovieBorrow().getMovield().equals(MovieborrowID)) {
                     return cdStoreBorrowingMovie[i];
                 }
             }

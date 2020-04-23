@@ -12,3 +12,9 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\Earty\Desktop\GIT\WitPaKul-Movie-Rental-Shop\JAVADATABASE
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Apr 22 19:04:04 ICT 2020: Shutting down Derby engine
+----------------------------------------------------------------
+Wed Apr 22 19:04:04 ICT 2020:
+Shutting down instance a816c00e-0171-a03d-e366-00003d66b071 on database directory C:\Users\Earty\Desktop\GIT\WitPaKul-Movie-Rental-Shop\JAVADATABASE\wishlist with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+----------------------------------------------------------------

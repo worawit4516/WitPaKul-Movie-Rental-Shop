@@ -1,22 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package wpk.Store;
+
+package wpk.Movie;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import wpk.Movie.Movie;
-import wpk.account.Account;
-import wpk.account.EmployeeAccount;
 import wpk.account.MemberAccount;
-import wpk.Store.MovieStore;
-import wpk.service.Specifications;
-import wpk.account.AccountStatus;
-import Enum.MovieStatus;
+import wpk.serviceITF.Specifications;
+import wpk.Enum.AccountStatus;
+import wpk.Enum.MovieStatus;
 
 public class MovieBorrowing {
 
@@ -87,7 +79,8 @@ public class MovieBorrowing {
 
     @Override
     public String toString() {
-        return "MovieBorrowing " + "BorrowDate = " + borrowDate 
+        return "MovieName "+movieBorrow.getMovieTitle()
+                + "\n BorrowDate = " + borrowDate 
                 + "\n DueDate = " + dueDate 
                 + "\n returnDate = "  + returnDate
                 + "\n Movie = " + movieBorrow.getMovield()+" "+movieBorrow.getMovieTitle()

@@ -1,4 +1,4 @@
-package wpk.account;
+package wpk.Enum;
 /**
  *
  * @author Sathipp

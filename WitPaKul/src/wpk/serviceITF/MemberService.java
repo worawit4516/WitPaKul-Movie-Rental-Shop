@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wpk.service;
+package wpk.serviceITF;
 
 import wpk.Movie.Movie;
-import Enum.MovieStatus;
-import wpk.Store.MovieBorrowing;
-import wpk.account.EmployeeAccount;
+import wpk.Movie.MovieBorrowing;
 import wpk.account.MemberAccount;
 
 /**
