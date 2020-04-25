@@ -1,4 +1,3 @@
-
 package wpk.Movie;
 
 import java.time.LocalDate;
@@ -19,10 +18,6 @@ public class MovieBorrowing {
     private MemberAccount borrowAccount;
     private int fine;
 
-    
-
-    
-    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -58,7 +53,8 @@ public class MovieBorrowing {
             this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
             System.out.println("Set Compleate");
             return this;
-        }  if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER)&& borrowMovie.getMovieStaus().equals(MovieStatus.Available)) {
+        }
+        if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER) && borrowMovie.getMovieStaus().equals(MovieStatus.Available)) {
             this.borrowDate = LocalDate.now();
             this.dueDate = borrowDate.plus(Specifications.MAX_BORROWMOVIE_PREMIUMMEMBER, ChronoUnit.DAYS);
             this.movieBorrow = borrowMovie;
@@ -66,7 +62,7 @@ public class MovieBorrowing {
             this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
             return this;
         }
-          if (borrowAccount.getMemberStatus().equals(AccountStatus.MEMBER)&& borrowMovie.getMovieStaus().equals(MovieStatus.NewMovie)) {
+        if (borrowAccount.getMemberStatus().equals(AccountStatus.MEMBER) && borrowMovie.getMovieStaus().equals(MovieStatus.NewMovie)) {
             this.borrowDate = LocalDate.now();
             this.dueDate = borrowDate.plus(Specifications.MAX_BORROWDAYS_NEWMOVIES, ChronoUnit.DAYS);
             this.movieBorrow = borrowMovie;
@@ -74,7 +70,7 @@ public class MovieBorrowing {
             this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
             return this;
         }
-        if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER)&& borrowMovie.getMovieStaus().equals(MovieStatus.NewMovie)) {
+        if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER) && borrowMovie.getMovieStaus().equals(MovieStatus.NewMovie)) {
             this.borrowDate = LocalDate.now();
             this.dueDate = borrowDate.plus(Specifications.MAX_BORROWDAYS_NEWMOVIES_PREMIUMMEMBER, ChronoUnit.DAYS);
             this.movieBorrow = borrowMovie;
@@ -82,9 +78,13 @@ public class MovieBorrowing {
             this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
             return this;
         }
-        
-        
-        
+
+        this.borrowDate = LocalDate.now();
+        this.dueDate = borrowDate.plus(Specifications.MAX_BORROWMOVIE_PREMIUMMEMBER, ChronoUnit.DAYS);
+        this.movieBorrow = borrowMovie;
+        this.borrowAccount = borrowAccount;
+        this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
+
         return this;
     }
 
@@ -98,13 +98,13 @@ public class MovieBorrowing {
 
     @Override
     public String toString() {
-        return "MovieName "+movieBorrow.getMovieTitle()
-                + "\n BorrowDate = " + borrowDate 
-                + "\n DueDate = " + dueDate 
-                + "\n returnDate = "  + returnDate
-                + "\n Movie = " + movieBorrow.getMovield()+" "+movieBorrow.getMovieTitle()
-                + "\n Account = " +borrowAccount.getId() +" "+ borrowAccount.getFristname()+" "+borrowAccount.getLastname()
-                + "\n Fine = " + fine ;
+        return "MovieName " + movieBorrow.getMovieTitle()
+                + "\n BorrowDate = " + borrowDate
+                + "\n DueDate = " + dueDate
+                + "\n returnDate = " + returnDate
+                + "\n Movie = " + movieBorrow.getMovield() + " " + movieBorrow.getMovieTitle()
+                + "\n Account = " + borrowAccount.getId() + " " + borrowAccount.getFristname() + " " + borrowAccount.getLastname()
+                + "\n Fine = " + fine;
     }
 
     public MemberAccount getmyMovieborrowed() {
