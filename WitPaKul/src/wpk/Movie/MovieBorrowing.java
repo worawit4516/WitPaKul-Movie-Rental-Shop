@@ -50,7 +50,7 @@ public class MovieBorrowing {
     }
 
     public MovieBorrowing checkOutMovie(Movie borrowMovie, MemberAccount borrowAccount) {
-        if (borrowAccount.getMemberStatus().equals(AccountStatus.MEMBER)) {
+        if (borrowAccount.getMemberStatus().equals(AccountStatus.MEMBER) && borrowMovie.getMovieStaus().equals(MovieStatus.Available)) {
             this.borrowDate = LocalDate.now();
             this.dueDate = borrowDate.plus(Specifications.MAX_BORROWDAYS, ChronoUnit.DAYS);
             this.movieBorrow = borrowMovie;
@@ -58,7 +58,7 @@ public class MovieBorrowing {
             this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
             System.out.println("Set Compleate");
             return this;
-        } else if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER)) {
+        }  if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER)&& borrowMovie.getMovieStaus().equals(MovieStatus.Available)) {
             this.borrowDate = LocalDate.now();
             this.dueDate = borrowDate.plus(Specifications.MAX_BORROWMOVIE_PREMIUMMEMBER, ChronoUnit.DAYS);
             this.movieBorrow = borrowMovie;
@@ -66,6 +66,25 @@ public class MovieBorrowing {
             this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
             return this;
         }
+          if (borrowAccount.getMemberStatus().equals(AccountStatus.MEMBER)&& borrowMovie.getMovieStaus().equals(MovieStatus.NewMovie)) {
+            this.borrowDate = LocalDate.now();
+            this.dueDate = borrowDate.plus(Specifications.MAX_BORROWDAYS_NEWMOVIES, ChronoUnit.DAYS);
+            this.movieBorrow = borrowMovie;
+            this.borrowAccount = borrowAccount;
+            this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
+            return this;
+        }
+        if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER)&& borrowMovie.getMovieStaus().equals(MovieStatus.NewMovie)) {
+            this.borrowDate = LocalDate.now();
+            this.dueDate = borrowDate.plus(Specifications.MAX_BORROWDAYS_NEWMOVIES_PREMIUMMEMBER, ChronoUnit.DAYS);
+            this.movieBorrow = borrowMovie;
+            this.borrowAccount = borrowAccount;
+            this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
+            return this;
+        }
+        
+        
+        
         return this;
     }
 

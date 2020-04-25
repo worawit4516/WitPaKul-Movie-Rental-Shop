@@ -118,24 +118,7 @@ public class ManagerService {
         return false;
     }
 
-//    public boolean AddEmpolyees(ManagerAccount manager, EmployeeAccount employee) {
-//
-//        if (manager.equals(this.manager) && employee.getStatus() == AccountStatus.EMPLOYEE) {
-//            if (check(employee) == -1 && countEmployee < this.employees.length) {
-//                this.employees[countEmployee++] = employee;
-//                System.out.println("Compleate to Add data this Employee");
-//                return true;
-//            } else {
-//                System.out.println("Failed to Add data this Employee");
-//                return false;
-//            }
-//        }
-//        System.out.println("Failed to Add data this Employee");
-//        System.out.println("this Account does not Employee");
-//
-//        return false;
-//
-//    }
+
     private int check(String id) {
         if (id != null) {
             for (int i = 0; i < countEmployee; i++) {

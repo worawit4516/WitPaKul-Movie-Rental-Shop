@@ -7,7 +7,7 @@ public class ManagerAccount extends Account {
    
 
     public ManagerAccount( String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
-        super(id, fristname, lastname, password, phone, status);
+        super(id, fristname, lastname,password, phone, status);
        
     }
 

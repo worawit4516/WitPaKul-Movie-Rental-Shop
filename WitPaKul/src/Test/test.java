@@ -38,7 +38,7 @@ public class test {
         miStore.CreateMember("EMP02", "fristname", "lastname", "password", 0, AccountStatus.MEMBER, AccountMovieStatus.ACTIVEB);
 
         miStore.ListMembers();
-        miStore.AddMovie("EMP02", "movieTitle", 0, MovieStatus.Available);
+        miStore.AddMovie("EMP02", "movieTitle",1, MovieStatus.Available);
 
         
         miStore.ListMovieborrow();

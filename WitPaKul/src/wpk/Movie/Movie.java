@@ -1,4 +1,3 @@
-
 package wpk.Movie;
 
 import wpk.Enum.MovieStatus;
@@ -13,13 +12,13 @@ public class Movie {
     private String movield;
     private String movieTitle;
     private MovieStatus movieStaus;
-    private int premiumStatus = 1;
+    private int premiumStatus = 0;
 
-    public Movie(String movield, String movieTitle,int premiumStatus,MovieStatus mos) {
+    public Movie(String movield, String movieTitle, int premiumStatus, MovieStatus mos) {
         this.movield = movield;
         this.movieTitle = movieTitle;
         this.movieStaus = mos;
-        this.premiumStatus=premiumStatus;
+        this.premiumStatus = premiumStatus;
     }
 
     public String getMovield() {
@@ -54,9 +53,6 @@ public class Movie {
         this.premiumStatus = premiumStatus;
     }
 
-    
-    
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -86,9 +82,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie" + " Movield " + movield + ", movieTitle=" + movieTitle + ", movieStaus=" + movieStaus + ", premiumStatus=" + premiumStatus ;
+        return "Movie" + " Movield " + movield + ", movieTitle=" + movieTitle + ", movieStaus=" + movieStaus + " " + premiumStatus;
     }
 
-    
-    
 }

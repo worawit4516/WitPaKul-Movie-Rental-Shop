@@ -34,17 +34,10 @@ public interface EmployeeService {
 
     public boolean DeleteMember(String id, String memberID);
 
-    public void CheckoutMovieMember(String memberId, String movieID);
-
-    public boolean returnMovie(String memberId, String movieborrowID);
-
-    public int CheckForFine(String memberId, String movieID);
-
     public int ListMembers();
 
     public int ListMovie();
 
     public int ListMovieborrow();
 
-    public void ListMemberBorrowingList(String id);
 }

@@ -15,13 +15,12 @@ import wpk.account.MemberAccount;
  */
 public interface MemberService {
 
-    public MovieBorrowing checkOutMovie(MemberAccount member, Movie borrowMovie);
+    public void ListMemberBorrowingList(String id);
 
-    public boolean returnMovie(MemberAccount member, MovieBorrowing returnItem);
+    public int CheckForFine(String memberId, String movieID);
 
-    public int check(Object obj);
+    public boolean CheckoutMovieMember(String memberId, String movieID);
 
-    public int returnForFine(MemberAccount member, MovieBorrowing returnItem);
+    public boolean returnMovie(String memberId, String movieborrowID);
 
-    public MovieBorrowing[] ShowMovieBorrowingList(MemberAccount member);
 }
