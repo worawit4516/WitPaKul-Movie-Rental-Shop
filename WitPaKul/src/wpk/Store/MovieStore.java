@@ -22,7 +22,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     private MemberAccount member[];
     private Movie cdStoreMovie[];//เก็บจำนวนหนังในร้าน
     private MovieBorrowing cdStoreBorrowingMovie[]; //เก็บจำนวนหนังที่ถูกยืมในร้าน
-    private ManagerService resouse;
+    private ManagerService Service;
     private EmployeeAccount employeeInstore;
     private int countmember = 0, countMovie = 0, countMovieborrowing = 0;
 
@@ -34,24 +34,23 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
     }
 
-    public void SetResouse(ManagerService resouse) {
+    public void SetService(ManagerService Service) {
 
         try {
-            this.resouse = resouse;
+            this.Service = Service;
             System.out.println("Set Complete");
         } catch (Exception e) {
             System.out.println("Set failed");
         }
     }
 
-    public void SetEmployeesinStore(String EMPid) {
-        try {
-            this.employeeInstore = this.resouse.getEmployees(EMPid);
+    public void SetEmployeesinStore(String EMPid, String Password) {
+        if (Service.checkEmployeesByID(EMPid).getId().equals(EMPid) && Service.checkEmployeesByID(EMPid).getPassword().equals(Password)) {
+            this.employeeInstore = this.Service.checkEmployeesByID(EMPid);
             System.out.println("Set Complete");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Set failed");
+        } else {
+            System.out.println("Youe account can't set !!");
         }
-
     }
 
     public Iterator<Movie> iterator() {

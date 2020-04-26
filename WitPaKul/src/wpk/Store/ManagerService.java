@@ -1,7 +1,4 @@
-
 package wpk.Store;
-
-
 import wpk.Enum.AccountStatus;
 import wpk.account.EmployeeAccount;
 import wpk.account.ManagerAccount;
@@ -14,7 +11,6 @@ public class ManagerService {
 
     public EmployeeAccount[] employees;
     private ManagerAccount manager;
-    private int maxemployee;
     private int countEmployee = 0;
 
     public ManagerService(int maxemployees, ManagerAccount manager) {
@@ -23,8 +19,19 @@ public class ManagerService {
 
     }
 
-    public boolean CreatEmployeesAccount(ManagerAccount manager, String fristname, String lastname, String password, long phone, AccountStatus status) {
-        if (manager.equals(this.manager)) {
+    public boolean ManagerServiceLogin(String ManagerID, String Password) {
+        if (manager.getId().equals(ManagerID) && manager.getPassword().equals(Password)) {
+            System.out.println("Login Compleate");
+
+            return true;
+        }
+        System.out.println("Can't Login !!");
+        return false;
+    }
+
+    public boolean CreatEmployeesAccount(String managerID, String fristname, String lastname, String password, long phone, AccountStatus status) {
+
+        if (manager.getId().equals(managerID)) {
             String id = String.format("EMP0%d", countEmployee + 1);
 
             EmployeeAccount employee = new EmployeeAccount(id, fristname, lastname, password, phone, status);
@@ -41,8 +48,8 @@ public class ManagerService {
 
     }
 
-    public boolean EditData_Manager(ManagerAccount manager, String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
-        if (manager.equals(this.manager)) {
+    public boolean EditData_Manager(String managerID, String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
+        if (manager.getId().equals(managerID)) {
             this.manager.editmanager(id, fristname, lastname, password, phone, status);
 
             System.out.println("Compleate");
@@ -53,8 +60,8 @@ public class ManagerService {
 
     }
 
-    public boolean EditData_Employees(ManagerAccount manager, String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
-        if (manager.equals(this.manager) && check(id) != -1) {
+    public boolean EditData_Employees(String managerID, String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
+        if (manager.getId().equals(managerID)&& check(id) != -1) {
             for (int i = 0; i < countEmployee; i++) {
                 if (employees[i].getId() == null ? id == null : employees[i].getId().equals(id)) {
                     employees[i].editdata(fristname, lastname, password, phone, status);
@@ -69,12 +76,12 @@ public class ManagerService {
 
     }
 
-    public int SearchEmployees(ManagerAccount manager, String id) {
+    public int SearchEmployees(String managerID, String id) {
 
         if (id == null) {
             return -1;
         }
-        if (manager.equals(this.manager) && check(id) != -1) {
+        if (manager.getId().equals(managerID) && check(id) != -1) {
             for (int i = 0; i < countEmployee; i++) {
                 if (id == null ? employees[i].getId() == null : id.equals(employees[i].getId())) {
                     System.out.println("Found! Data this Employee");
@@ -100,8 +107,8 @@ public class ManagerService {
         return -1;
     }
 
-    public boolean DeleteEmployees(ManagerAccount manager, String id) {
-        if (manager.equals(this.manager) && check(id) != -1) {
+    public boolean DeleteEmployees(String managerID, String id) {
+        if (manager.getId().equals(managerID) && check(id) != -1) {
             for (int i = check(id); i < countEmployee; i++) {
                 // EmployeeAccount employeeAccount = employee[i];
                 if (i == countEmployee - 1) {
@@ -115,9 +122,9 @@ public class ManagerService {
             }
             countEmployee--;
         }
+         System.out.println("Not found!");
         return false;
     }
-
 
     private int check(String id) {
         if (id != null) {
@@ -131,18 +138,24 @@ public class ManagerService {
 
     }
 
-    public EmployeeAccount getEmployees(String id) {
-      
-            if (id != null) {
-                for (int i = 0; i < countEmployee; i++) {
-                    if (employees[i].getId() == null ? id == null : employees[i].getId().equals(id)) {
-                        return employees[i];
+    public EmployeeAccount checkEmployeesByID(String id) {
 
-                    } 
+        if (id != null) {
+            for (int i = 0; i < countEmployee; i++) {
+                if (employees[i].getId() == null ? id == null : employees[i].getId().equals(id)) {
+                   
+                    return employees[i];
+
                 }
             }
-        
-        return getEmployees(id);
+        }
+        System.out.println("Not found!");
 
+        return checkEmployeesByID(id);
+
+    }
+
+    public String checkmanager() {
+        return manager.toString();
     }
 }

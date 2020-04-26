@@ -16,9 +16,9 @@ import wpk.Store.ManagerService;
  */
 public interface EmployeeService {
 
-    public void SetResouse(ManagerService resouse);
+    public void SetService(ManagerService Service);
 
-    public void SetEmployeesinStore(String EMPid);
+    public void SetEmployeesinStore(String EMPid ,String Password);
 
     public boolean CreateMember(String Id, String fristname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus);
 
