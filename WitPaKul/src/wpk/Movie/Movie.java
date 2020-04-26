@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package wpk.Movie;
 
-import Enum.MovieStatus;
+import wpk.Enum.MovieStatus;
 import java.util.Objects;
 
 /**
@@ -17,13 +12,13 @@ public class Movie {
     private String movield;
     private String movieTitle;
     private MovieStatus movieStaus;
-    private int premiumStatus = 1;
+    private int premiumStatus = 0;
 
-    public Movie(String movield, String movieTitle,int premiumStatus) {
+    public Movie(String movield, String movieTitle, int premiumStatus, MovieStatus mos) {
         this.movield = movield;
         this.movieTitle = movieTitle;
-        this.movieStaus = movieStaus.Available;
-        this.premiumStatus=premiumStatus;
+        this.movieStaus = mos;
+        this.premiumStatus = premiumStatus;
     }
 
     public String getMovield() {
@@ -46,6 +41,17 @@ public class Movie {
         return premiumStatus;
     }
 
+    public void setMovield(String movield) {
+        this.movield = movield;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
+    }
+
+    public void setPremiumStatus(int premiumStatus) {
+        this.premiumStatus = premiumStatus;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -76,7 +82,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie{" + "movield=" + movield + ", movieTitle=" + movieTitle + ", movieStaus=" + movieStaus + ", premiumStatus=" + premiumStatus + '}';
+        return "Movie" + " Movield " + movield + ", movieTitle=" + movieTitle + ", movieStaus=" + movieStaus + " " + premiumStatus;
     }
 
 }
