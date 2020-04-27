@@ -39,7 +39,8 @@ public class test {
         miStore.CheckoutMovieMember("MEM02", "MOV01");
         miStore.ListMemberBorrowingList("MEM02");
         miStore.returnMovie("MEM02", "MOV01");
-
+        miStore.ListMembers();
+        
     }
 
 }

@@ -116,7 +116,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
                     return true;
 
                 } else {
-                    System.out.println("Can't Createdata this Movie");
+                    System.out.println("Can't CreateData this Movie");
                 }
             }
         }
@@ -125,7 +125,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
     public boolean EditData_Member(String EMPid, String MemberID, String fristname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus) {
         if (fristname == null || lastname == null || password == null || status == null || acstatus == null) {
-            System.out.println("Insert Data can't null");
+            System.out.println("Insert Data can't Null");
             return false;
         }
 
