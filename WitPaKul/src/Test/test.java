@@ -20,8 +20,8 @@ public class test {
         Desktop.CreateEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
         Desktop.CreateEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
         Desktop.CreateEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
-        Desktop.ListEmployees();
-        Desktop.SearchEmployees("EMP100", "EMP02");
+        //Desktop.ListEmployees();
+        //Desktop.SearchEmployees("EMP100", "EMP02");
 
         Desktop.EditData_Employees("EMP100", "EMP01", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
 
@@ -31,16 +31,16 @@ public class test {
         miStore.CreateMember("EMP02", "firstname", "lastname", "password", 0, AccountStatus.MEMBER, AccountMovieStatus.ACTIVEB);
         miStore.CreateMember("EMP02", "firstname", "lastname", "password", 0, AccountStatus.MEMBER, AccountMovieStatus.ACTIVEB);
 
-        miStore.ListMembers();
+        //miStore.ListMembers();
         miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);
 
-        miStore.ListMovieborrow();
+        //miStore.ListMovieborrow();
         miStore.CheckoutMovieMember("MEM02", "MOV01");
         
-        miStore.ListMemberBorrowingList("MEM02");
+       // miStore.ListMemberBorrowingList("MEM02");
        
-        miStore.ListMembers();
-        miStore.ListMovie();
+       // miStore.ListMembers();
+       // miStore.ListMovie();
         
         Receipts rc = new Receipts(miStore);
         rc.SetMemberID("MEM02");

@@ -303,8 +303,8 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         MovieBorrowing movieBorrowing = new MovieBorrowing();
         MovieBorrowing checkoutMOvie = movieBorrowing.checkOutMovie(checkMovieByID(movieID), checkMemberByID(memberId));
         cdStoreBorrowingMovie[countMovieborrowing++] = checkoutMOvie;
-        System.out.println("Check out complete");
-        System.out.println(checkoutMOvie);
+        System.out.println("Check out complete\n");
+        
 
         //checkMemberByID(memberId).checkoutMovie(checkoutMOvie);
         return checkoutMOvie;

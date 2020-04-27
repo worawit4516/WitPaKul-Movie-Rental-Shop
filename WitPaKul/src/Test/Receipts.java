@@ -32,7 +32,6 @@ public class Receipts {
     public void CreateReceipts() {
         
             try (PrintWriter pw = new PrintWriter(new File("receipts.txt"))) {
-                System.out.println("1");
                 pw.println(movieja.checkMemberByID(memberID).ReturnIO());
             } catch (FileNotFoundException ex) {
             }
@@ -62,8 +61,8 @@ public class Receipts {
 
         try {
             try (BufferedWriter bf = new BufferedWriter(new FileWriter(file, false))) {
-                bf.append(text);
-                bf.newLine();
+                bf.append(movieja.checkMemberByID(memberID).ReturnIO());
+               
             }
         } catch (IOException e) {
             e.printStackTrace();
