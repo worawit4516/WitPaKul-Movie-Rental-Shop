@@ -7,14 +7,14 @@ import wpk.Enum.AccountStatus;
  * @author Sathipp
  */
 public abstract class Account {
-    private String id,fristname,lastname;
+    private String id,firstname,lastname;
     private String password;
     private long phone;
     private AccountStatus status ;
 
-    public Account(String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
+    public Account(String id, String firstname, String lastname, String password, long phone, AccountStatus status) {
         this.id=id;
-        this.fristname = fristname;
+        this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         this.phone = phone;
@@ -25,8 +25,8 @@ public abstract class Account {
         return id;
     }
 
-    public String getFristname() {
-        return fristname;
+    public String getFirstname() {
+        return firstname;
     }
 
     public String getLastname() {
@@ -65,7 +65,7 @@ public abstract class Account {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.fristname, other.fristname)) {
+        if (!Objects.equals(this.firstname, other.firstname)) {
             return false;
         }
         if (!Objects.equals(this.lastname, other.lastname)) {
@@ -84,8 +84,8 @@ public abstract class Account {
         this.id = id;
     }
 
-    public void setFristname(String fristname) {
-        this.fristname = fristname;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public void setLastname(String lastname) {
@@ -106,7 +106,7 @@ public abstract class Account {
 
     @Override
     public String toString() {
-        return "Account " + "ID " + id + ", fristname=" + fristname + ", lastname=" + lastname + ", password=" + password + ", phone=" + phone + ", status=" + status ;
+        return "Account id: " + id + ", Name" + firstname + "  " + lastname + ", password=" + password + ", phone=" + phone + ", status=" + status ;
     }
    
     
