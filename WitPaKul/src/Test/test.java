@@ -11,25 +11,25 @@ public class test {
 
     public static void main(String[] args) {
 
-        ManagerAccount m1 = new ManagerAccount("EMP00", "fristname", "lastname", "password", 05254, AccountStatus.MANAGER);
+        ManagerAccount m1 = new ManagerAccount("EMP00", "firstname", "lastname", "password", 05254, AccountStatus.MANAGER);
 
         ManagerService Desktop = new ManagerService(5, m1);
 
         Desktop.ManagerServiceLogin("EMP00", "password");
-        Desktop.EditData_Manager("EMP00", "EMP100", "fristname", "lastname", "password", 5462552, AccountStatus.MANAGER);
-        Desktop.CreatEmployeesAccount("EMP100", "fristname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
-        Desktop.CreatEmployeesAccount("EMP100", "fristname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
-        Desktop.CreatEmployeesAccount("EMP100", "fristname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
+        Desktop.EditData_Manager("EMP00", "EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.MANAGER);
+        Desktop.CreatEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
+        Desktop.CreatEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
+        Desktop.CreatEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
         Desktop.ListEmployees();
         Desktop.SearchEmployees("EMP100", "EMP02");
 
-        Desktop.EditData_Employees("EMP100", "EMP01", "fristname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
+        Desktop.EditData_Employees("EMP100", "EMP01", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
 
-        MovieStore miStore = new MovieStore("WITpakul", 50, 50, 50, 50, 50, "EMP02");
+        MovieStore miStore = new MovieStore("WitPaKul", 50, 50, 50, 50, 50, "EMP02");
         miStore.SetService(Desktop);
         miStore.SetEmployeesinStore("EMP02","password");
-        miStore.CreateMember("EMP02", "fristname", "lastname", "password", 0, AccountStatus.MEMBER, AccountMovieStatus.ACTIVEB);
-        miStore.CreateMember("EMP02", "fristname", "lastname", "password", 0, AccountStatus.MEMBER, AccountMovieStatus.ACTIVEB);
+        miStore.CreateMember("EMP02", "firstname", "lastname", "password", 0, AccountStatus.MEMBER, AccountMovieStatus.ACTIVEB);
+        miStore.CreateMember("EMP02", "firstname", "lastname", "password", 0, AccountStatus.MEMBER, AccountMovieStatus.ACTIVEB);
 
         miStore.ListMembers();
         miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);
