@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package wpk.serviceITF;
 
 import wpk.Enum.AccountMovieStatus;
@@ -20,11 +15,11 @@ public interface EmployeeService {
 
     public void SetEmployeesinStore(String EMPid ,String Password);
 
-    public boolean CreateMember(String Id, String fristname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus);
+    public boolean CreateMember(String Id, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus);
 
     public boolean AddMovie(String id, String movieTitle, int premiumStatus, MovieStatus mos);
 
-    public boolean EditData_Member(String id, String MemberID, String fristname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus);
+    public boolean EditData_Member(String id, String MemberID, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus);
 
     public int SearchMovie(String movieTitle);
 

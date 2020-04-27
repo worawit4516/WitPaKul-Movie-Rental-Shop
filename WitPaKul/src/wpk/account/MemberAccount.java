@@ -19,15 +19,15 @@ public class MemberAccount extends Account {
     private AccountMovieStatus memberMovieStatus;
     private AccountStatus status;
 
-    public MemberAccount(String id, String fristname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus) {
-        super(id, fristname, lastname, password, phone, status);
+    public MemberAccount(String id, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus) {
+        super(id, firstname, lastname, password, phone, status);
         this.setMaxBorrowMovie(status);
         this.setMemberMovieStatus(acstatus);
         this.status = status;
     }
 
-    public void editDataMember(String fristname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus) {
-        this.setFristname(fristname);
+    public void editDataMember(String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus) {
+        this.setFirstname(firstname);
         this.setLastname(lastname);
         this.setPassword(password);
         this.setPhone(phone);
@@ -50,7 +50,7 @@ public class MemberAccount extends Account {
 
         }
         if (AccountStatus.MEMBER != status || AccountStatus.PREMIUMMEMBER != status) {
-            System.out.println("Cannot Create MemberAccount !");
+            System.out.println("failed to create member account");
         }
 
     }
@@ -73,11 +73,11 @@ public class MemberAccount extends Account {
 
     public int getMovieBorrowList() {
 
-        System.out.println("All MovieBorrow of this Member " + totalBorrowMovie);
+        System.out.println("Total: " + totalBorrowMovie);
 
         for (int i = 0; i < totalBorrowMovie; i++) {
 
-            System.out.println(". Movie is " + borrowingMovie[i].toString());
+            System.out.println(". Movies: " + borrowingMovie[i].toString());
 
         }
         return -1;

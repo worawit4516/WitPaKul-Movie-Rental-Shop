@@ -11,13 +11,13 @@ public class Movie {
 
     private String movield;
     private String movieTitle;
-    private MovieStatus movieStaus;
+    private MovieStatus movieStatus;
     private int premiumStatus = 0;
 
     public Movie(String movield, String movieTitle, int premiumStatus, MovieStatus mos) {
         this.movield = movield;
         this.movieTitle = movieTitle;
-        this.movieStaus = mos;
+        this.movieStatus= mos;
         this.premiumStatus = premiumStatus;
     }
 
@@ -29,12 +29,12 @@ public class Movie {
         return movieTitle;
     }
 
-    public MovieStatus getMovieStaus() {
-        return movieStaus;
+    public MovieStatus getMovieStatus() {
+        return movieStatus;
     }
 
-    public void setMovieStaus(MovieStatus movieStaus) {
-        this.movieStaus = movieStaus;
+    public void setMovieStatus(MovieStatus movieStatus) {
+        this.movieStatus = movieStatus;
     }
 
     public int getPremiumStatus() {
@@ -74,7 +74,7 @@ public class Movie {
         if (!Objects.equals(this.premiumStatus, other.premiumStatus)) {
             return false;
         }
-        if (this.movieStaus != other.movieStaus) {
+        if (this.movieStatus != other.movieStatus) {
             return false;
         }
         return true;
@@ -82,7 +82,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie" + " Movield " + movield + ", movieTitle=" + movieTitle + ", movieStaus=" + movieStaus + " " + premiumStatus;
+        return "Movie" + " Movield " + movield + ", movieTitle=" + movieTitle + ", movieStatus=" + movieStatus + " " + premiumStatus;
     }
 
 }

@@ -288,7 +288,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             return null;
         }
 
-        if (checkMovieByID(movieID).getMovieStaus() == MovieStatus.Borrowed) {
+        if (checkMovieByID(movieID).getMovieStatus() == MovieStatus.Borrowed) {
             System.out.println("cannot borrow now");
             return null;
         }

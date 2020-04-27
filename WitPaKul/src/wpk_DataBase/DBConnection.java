@@ -1,12 +1,9 @@
-
 package wpk_DataBase;
 
 /**
  *
  * @author Earty
  */
-
-
 
 import java.sql.Connection;
 import java.sql.DriverManager;

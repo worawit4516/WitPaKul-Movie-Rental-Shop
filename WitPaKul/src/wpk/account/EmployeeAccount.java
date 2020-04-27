@@ -4,13 +4,13 @@ import wpk.Enum.AccountStatus;
 
 public class EmployeeAccount extends Account {
     
-    public EmployeeAccount(String id, String fristname, String lastname, String password, long phone, AccountStatus status) {
-        super(id, fristname,lastname, password, phone, status);
+    public EmployeeAccount(String id, String firstname, String lastname, String password, long phone, AccountStatus status) {
+        super(id, firstname,lastname, password, phone, status);
         
     }
     
-    public void editdata(String fristname, String lastname, String password, long phone, AccountStatus status) {
-        this.setFristname(fristname);
+    public void editdata(String firstname, String lastname, String password, long phone, AccountStatus status) {
+        this.setFirstname(firstname);
         this.setLastname(lastname);
         this.setPassword(password);
         this.setPhone(phone);

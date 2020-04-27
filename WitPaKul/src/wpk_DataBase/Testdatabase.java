@@ -1,5 +1,5 @@
-
 package wpk_DataBase;
+
 import wpk_DataBase.DBConnection;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +13,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import wpk_DataBase.model.Customer;
+
 /**
  *
  * @author Earty
@@ -45,10 +46,6 @@ public class Testdatabase {
         }
     }
     
-    
-    
-    
-
     public static void readCSV(String file) {
         try {
             sc = new Scanner(new File(file));
@@ -63,8 +60,7 @@ public class Testdatabase {
             sc.close();
         }
     }
-
-    
+   
     public static void testJDBCV2() {
         
         try (Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/WitPaKul_database","wpk","wpk");
@@ -79,7 +75,6 @@ public class Testdatabase {
             System.out.println(ex.getMessage());
         }
     }
-    
     
     public static void selectdata() {
         Customer[] customer = new Customer[10];

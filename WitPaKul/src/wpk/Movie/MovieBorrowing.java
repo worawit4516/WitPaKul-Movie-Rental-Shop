@@ -45,37 +45,37 @@ public class MovieBorrowing {
     }
 
     public MovieBorrowing checkOutMovie(Movie borrowMovie, MemberAccount borrowAccount) {
-        if (borrowAccount.getMemberStatus().equals(AccountStatus.MEMBER) && borrowMovie.getMovieStaus().equals(MovieStatus.Available)) {
+        if (borrowAccount.getMemberStatus().equals(AccountStatus.MEMBER) && borrowMovie.getMovieStatus().equals(MovieStatus.Available)) {
             this.borrowDate = LocalDate.now();
             this.dueDate = borrowDate.plus(Specifications.MAX_BORROWDAYS, ChronoUnit.DAYS);
             this.movieBorrow = borrowMovie;
             this.borrowAccount = borrowAccount;
-            this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
-            System.out.println("Set Compleate");
+            this.movieBorrow.setMovieStatus(MovieStatus.Borrowed);
+            System.out.println("Set Complete");
             return this;
         }
-        if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER) && borrowMovie.getMovieStaus().equals(MovieStatus.Available)) {
+        if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER) && borrowMovie.getMovieStatus().equals(MovieStatus.Available)) {
             this.borrowDate = LocalDate.now();
             this.dueDate = borrowDate.plus(Specifications.MAX_BORROWMOVIE_PREMIUMMEMBER, ChronoUnit.DAYS);
             this.movieBorrow = borrowMovie;
             this.borrowAccount = borrowAccount;
-            this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
+            this.movieBorrow.setMovieStatus(MovieStatus.Borrowed);
             return this;
         }
-        if (borrowAccount.getMemberStatus().equals(AccountStatus.MEMBER) && borrowMovie.getMovieStaus().equals(MovieStatus.NewMovie)) {
+        if (borrowAccount.getMemberStatus().equals(AccountStatus.MEMBER) && borrowMovie.getMovieStatus().equals(MovieStatus.NewMovie)) {
             this.borrowDate = LocalDate.now();
             this.dueDate = borrowDate.plus(Specifications.MAX_BORROWDAYS_NEWMOVIES, ChronoUnit.DAYS);
             this.movieBorrow = borrowMovie;
             this.borrowAccount = borrowAccount;
-            this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
+            this.movieBorrow.setMovieStatus(MovieStatus.Borrowed);
             return this;
         }
-        if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER) && borrowMovie.getMovieStaus().equals(MovieStatus.NewMovie)) {
+        if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER) && borrowMovie.getMovieStatus().equals(MovieStatus.NewMovie)) {
             this.borrowDate = LocalDate.now();
             this.dueDate = borrowDate.plus(Specifications.MAX_BORROWDAYS_NEWMOVIES_PREMIUMMEMBER, ChronoUnit.DAYS);
             this.movieBorrow = borrowMovie;
             this.borrowAccount = borrowAccount;
-            this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
+            this.movieBorrow.setMovieStatus(MovieStatus.Borrowed);
             return this;
         }
 
@@ -83,7 +83,7 @@ public class MovieBorrowing {
         this.dueDate = borrowDate.plus(Specifications.MAX_BORROWMOVIE_PREMIUMMEMBER, ChronoUnit.DAYS);
         this.movieBorrow = borrowMovie;
         this.borrowAccount = borrowAccount;
-        this.movieBorrow.setMovieStaus(MovieStatus.Borrowed);
+        this.movieBorrow.setMovieStatus(MovieStatus.Borrowed);
 
         return this;
     }
@@ -92,7 +92,7 @@ public class MovieBorrowing {
         this.borrowAccount = null;
         this.returnDate = LocalDate.now();
         this.fine = getFine(this.returnDate);
-        this.movieBorrow.setMovieStaus(MovieStatus.Available);
+        this.movieBorrow.setMovieStatus(MovieStatus.Available);
         return this.fine;
     }
 
@@ -103,7 +103,7 @@ public class MovieBorrowing {
                 + "\n DueDate = " + dueDate
                 + "\n returnDate = " + returnDate
                 + "\n Movie = " + movieBorrow.getMovield() + " " + movieBorrow.getMovieTitle()
-                + "\n Account = " + borrowAccount.getId() + " " + borrowAccount.getFristname() + " " + borrowAccount.getLastname()
+                + "\n Account = " + borrowAccount.getId() + " " + borrowAccount.getFirstname() + " " + borrowAccount.getLastname()
                 + "\n Fine = " + fine;
     }
 
