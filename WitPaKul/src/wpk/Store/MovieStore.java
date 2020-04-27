@@ -333,7 +333,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
             System.out.println("Return Complete");
             if (fine > 0) {
-                System.out.println("Your fine is + " + fine + " Bath");
+                System.out.println("Fine: " + fine);
             }
             DeleteBorrowMovie(movieborrowID);
             return true;
@@ -364,7 +364,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
         for (int i = 0; i < countmember; i++) {
 
-            System.out.println(". Members: " + member[i].toString());
+            System.out.println("Members: " + member[i].toString());
 
         }
         return -1;
@@ -376,7 +376,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
         for (int i = 0; i < countMovie; i++) {
 
-            System.out.println(". Movies: " + cdStoreMovie[i].toString());
+            System.out.println("Movies: " + cdStoreMovie[i].toString());
 
         }
         return -1;
@@ -397,6 +397,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     public void ListMemberBorrowingList(String id) {
 
         checkMemberByID(id).getMovieBorrowList();
+       
 
     }
 
@@ -449,7 +450,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
     }
 
-    private MemberAccount checkMemberByID(String MemberID) {
+    public MemberAccount checkMemberByID(String MemberID) {
         if (MemberID != null) {
             for (int i = 0; i < countmember; i++) {
                 if (member[i].getId() == null ? MemberID == null : member[i].getId().equals(MemberID)) {

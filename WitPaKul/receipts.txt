@@ -1,0 +1,13 @@
+--------------------------------------------
+ Borrow date: 2020-04-27
+ Due date:    2020-04-30
+
+ Movie:  MOV01 movieTitle
+ Membe: MEM02 firstname lastname
+--------------------------------------------
+ Price: 
+ Fine:  0
+ Total price: 
+--------------------------------------------
+
+ ***** Thank you ***** 

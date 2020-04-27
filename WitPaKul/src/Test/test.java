@@ -36,11 +36,15 @@ public class test {
 
         miStore.ListMovieborrow();
         miStore.CheckoutMovieMember("MEM02", "MOV01");
-        miStore.CheckoutMovieMember("MEM02", "MOV01");
+        
         miStore.ListMemberBorrowingList("MEM02");
-        miStore.returnMovie("MEM02", "MOV01");
+       
         miStore.ListMembers();
         miStore.ListMovie();
+        
+        Receipts rc = new Receipts(miStore);
+        rc.SetMemberID("MEM02");
+        rc.CreateReceipts();
     }
 
 }
