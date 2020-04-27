@@ -91,7 +91,7 @@ public class MemberAccount extends Account {
 
             for (int i = 0; i < totalBorrowMovie; i++) {
 
-                System.out.println(". Movies: " + borrowingMovie[i].toString());
+                System.out.println(borrowingMovie[i].toString());
                 return borrowingMovie[i].toString();
 
             }
@@ -134,7 +134,6 @@ public class MemberAccount extends Account {
         int returnMovie = check(borrowingMovie);
         if (returnMovie >= 0) {
             remove(returnMovie);
-            //this.totalBorrowMovie--;
             if (fine > 0) {
                 this.overDue++;
             }

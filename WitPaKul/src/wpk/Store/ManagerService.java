@@ -1,4 +1,5 @@
 package wpk.Store;
+
 import wpk.Enum.AccountStatus;
 import wpk.account.EmployeeAccount;
 import wpk.account.ManagerAccount;
@@ -9,7 +10,7 @@ import wpk.account.ManagerAccount;
  */
 public class ManagerService {
 
-    public EmployeeAccount[] employees;
+    private EmployeeAccount[] employees;
     private ManagerAccount manager;
     private int countEmployee = 0;
 
@@ -50,6 +51,7 @@ public class ManagerService {
 
     public boolean EditData_Manager(String managerID, String id, String firstname, String lastname, String password, long phone, AccountStatus status) {
         if (manager.getId().equals(managerID)) {
+
             this.manager.editmanager(id, firstname, lastname, password, phone, status);
 
             System.out.println("Complete");
@@ -61,7 +63,7 @@ public class ManagerService {
     }
 
     public boolean EditData_Employees(String managerID, String id, String firstname, String lastname, String password, long phone, AccountStatus status) {
-        if (manager.getId().equals(managerID)&& check(id) != -1) {
+        if (manager.getId().equals(managerID) && check(id) != -1) {
             for (int i = 0; i < countEmployee; i++) {
                 if (employees[i].getId() == null ? id == null : employees[i].getId().equals(id)) {
                     employees[i].editdata(firstname, lastname, password, phone, status);
@@ -76,17 +78,16 @@ public class ManagerService {
 
     }
 
-    public int SearchEmployees(String managerID, String id) {
+    public int SearchEmployees(String id) {
 
-        if (id == null) {
-            return -1;
-        }
-        if (manager.getId().equals(managerID) && check(id) != -1) {
+        if (id != null) {
             for (int i = 0; i < countEmployee; i++) {
                 if (id == null ? employees[i].getId() == null : id.equals(employees[i].getId())) {
                     System.out.println(employees[i]);
                 }
+
             }
+
         } else {
             System.out.println("404 data not found");
         }
@@ -121,7 +122,7 @@ public class ManagerService {
             }
             countEmployee--;
         }
-         System.out.println("404 data not found");
+        System.out.println("404 data not found");
         return false;
     }
 
@@ -142,7 +143,7 @@ public class ManagerService {
         if (id != null) {
             for (int i = 0; i < countEmployee; i++) {
                 if (employees[i].getId() == null ? id == null : employees[i].getId().equals(id)) {
-                   
+
                     return employees[i];
 
                 }

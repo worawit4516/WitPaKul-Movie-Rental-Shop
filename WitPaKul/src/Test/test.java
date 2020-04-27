@@ -27,7 +27,7 @@ public class test {
 
         MovieStore miStore = new MovieStore("WitPaKul", 50, 50, 50, 50, 50, "EMP02");
         miStore.SetService(Desktop);
-        miStore.SetEmployeesinStore("EMP02","password");
+        miStore.SetEmployeesinStore("EMP02", "password");
         miStore.CreateMember("EMP02", "firstname", "lastname", "password", 0, AccountStatus.MEMBER, AccountMovieStatus.ACTIVEB);
         miStore.CreateMember("EMP02", "firstname", "lastname", "password", 0, AccountStatus.MEMBER, AccountMovieStatus.ACTIVEB);
 
@@ -36,15 +36,13 @@ public class test {
 
         //miStore.ListMovieborrow();
         miStore.CheckoutMovieMember("MEM02", "MOV01");
-        
-       // miStore.ListMemberBorrowingList("MEM02");
+
+        // miStore.ListMemberBorrowingList("MEM02");
+        // miStore.ListMembers();
+        // miStore.ListMovie();
        
-       // miStore.ListMembers();
-       // miStore.ListMovie();
-        
-        Receipts rc = new Receipts(miStore);
-        rc.SetMemberID("MEM02");
-        rc.CreateReceipts();
+
+         miStore.createNewReceipts("MEM02");
     }
 
 }

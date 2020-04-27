@@ -1,6 +1,12 @@
 package wpk.Store;
 
-import java.util.Iterator;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import wpk.Enum.AccountStatus;
 import wpk.Enum.MovieStatus;
 import wpk.account.MemberAccount;
@@ -35,7 +41,6 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     }
 
     public void SetService(ManagerService Service) {
-
         try {
             this.Service = Service;
             System.out.println("Complete");
@@ -53,21 +58,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         }
     }
 
-    public Iterator<Movie> iterator() {
-        return new Iterator<Movie>() {
-            private int counter = 0;
-
-            @Override
-            public boolean hasNext() {
-                return counter < cdStoreMovie.length;
-            }
-
-            @Override
-            public Movie next() {
-                return cdStoreMovie[counter++];
-            }
-        };
-    }
+   
 
     //Employeeservice code part//
     public boolean CreateMember(String EMPid, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus) {
@@ -473,4 +464,36 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         return null;
 
     }
+    
+    //IO path
+    public void CreateReceipts(String Memberid) {
+        
+            try (PrintWriter pw = new PrintWriter(new File("receipts.txt"))) {
+                pw.println(checkMemberByID(Memberid).ReturnIO());
+            } catch (FileNotFoundException ex) {
+            }
+        }
+    
+
+    public void createNewReceipts(String text) {
+        File file = new File("receipts.txt");
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            try (BufferedWriter bf = new BufferedWriter(new FileWriter(file, false))) {
+                bf.append(checkMemberByID(text).ReturnIO());
+               
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
 }
