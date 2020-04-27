@@ -40,7 +40,7 @@ public class test {
         miStore.ListMemberBorrowingList("MEM02");
         miStore.returnMovie("MEM02", "MOV01");
         miStore.ListMembers();
-        
+        miStore.ListMovie();
     }
 
 }
