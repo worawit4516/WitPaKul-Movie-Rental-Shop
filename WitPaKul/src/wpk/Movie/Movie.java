@@ -2,6 +2,7 @@ package wpk.Movie;
 
 import wpk.Enum.MovieStatus;
 import java.util.Objects;
+import wpk.serviceITF.Specifications;
 
 /**
  *
@@ -10,6 +11,7 @@ import java.util.Objects;
 public class Movie {
 
     private String movield;
+    private int Price;
     private String movieTitle;
     private MovieStatus movieStatus;
     private int premiumStatus = 0;
@@ -17,8 +19,15 @@ public class Movie {
     public Movie(String movield, String movieTitle, int premiumStatus, MovieStatus mos) {
         this.movield = movield;
         this.movieTitle = movieTitle;
-        this.movieStatus= mos;
+        this.movieStatus = mos;
         this.premiumStatus = premiumStatus;
+        if (premiumStatus == 1) {
+            this.Price = Specifications.PremiumMovie_Price;
+        }
+        if (premiumStatus != 1) {
+            this.Price = Specifications.Movie_Price;
+        }
+
     }
 
     public String getMovield() {
@@ -53,6 +62,14 @@ public class Movie {
         this.premiumStatus = premiumStatus;
     }
 
+    public void setPrice(int Price) {
+        this.Price = Price;
+    }
+
+    public int getPrice() {
+        return Price;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -82,7 +99,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie" + " Movield " + movield + ", movieTitle=" + movieTitle + ", movieStatus=" + movieStatus + " " + premiumStatus;
+        return "Movie" + " Movield " + movield + ", movieTitle=" + movieTitle + ", Price " + Price + ", movieStatus=" + movieStatus + " " + premiumStatus;
     }
 
 }

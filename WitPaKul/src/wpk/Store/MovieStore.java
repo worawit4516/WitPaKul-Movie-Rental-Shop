@@ -82,6 +82,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
                 return true;
             } else {
                 System.out.println("failed to create member");
+                return false;
             }
 
         }
@@ -89,6 +90,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     }
 
     public boolean AddMovie(String EMPid, String movieTitle, int premiumStatus, MovieStatus mos) {
+        
         if (movieTitle == null || mos == null) {
             System.out.println("NULL are prohibited");
         }
@@ -100,7 +102,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
             if (EMPid.equals(this.employeeInstore.getId())) {
                 String MovieID = String.format("MOV0%d", countMovie + 1);
-                Movie newMovie = new Movie(MovieID, movieTitle, premiumStatus, mos);
+                Movie newMovie = new Movie(MovieID, movieTitle,premiumStatus, mos);
                 if (checkMovie(MovieID) == -1 && countMovie < cdStoreMovie.length) {
                     this.cdStoreMovie[countMovie++] = newMovie;
                     System.out.println("successfully created");
@@ -284,7 +286,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             return null;
         }
 
-        if (checkMemberByID(memberId).getMemberStatus().equals(AccountStatus.MEMBER) && checkMovieByID(movieID).getPremiumStatus() != 1) {
+        if (checkMemberByID(memberId).getMemberStatus().equals(AccountStatus.MEMBER) && checkMovieByID(movieID).getPremiumStatus() == 1) {
             System.out.println("This movie is Premium");
             System.out.println("Please upgrade your account to borrow this movie");
             return null;
@@ -355,7 +357,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
         for (int i = 0; i < countmember; i++) {
 
-            System.out.println("Members: " + member[i].toString());
+            System.out.println((i+1)+" Members: " + member[i].toString());
 
         }
         return -1;
@@ -367,7 +369,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
         for (int i = 0; i < countMovie; i++) {
 
-            System.out.println("Movies: " + cdStoreMovie[i].toString());
+            System.out.println((i+1)+" Movies: " + cdStoreMovie[i].toString());
 
         }
         return -1;
@@ -378,8 +380,8 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         System.out.println("All borrow movies in our store: " + countMovieborrowing);
 
         for (int i = 0; i < countMovieborrowing; i++) {
-
-            System.out.println(countMovieborrowing + ". " + cdStoreBorrowingMovie[i].toString());
+            
+            System.out.println((i+1)+ ". " + cdStoreBorrowingMovie[i].getMovieBorrow().getMovield()+" "+cdStoreBorrowingMovie[i].getMovieBorrow().getMovieTitle());
 
         }
         return -1;
