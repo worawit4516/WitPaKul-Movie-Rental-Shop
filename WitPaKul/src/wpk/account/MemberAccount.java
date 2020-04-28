@@ -79,25 +79,22 @@ public class MemberAccount extends Account {
 
             for (int i = 0; i < totalBorrowMovie; i++) {
 
-                System.out.println((i+1)+" Movies: " + borrowingMovie[i].getMovieBorrow().getMovield()+" "+borrowingMovie[i].getMovieBorrow().getMovieTitle());
-                
+                System.out.println((i + 1) + " Movies: " + borrowingMovie[i].getMovieBorrow().getMovield() + " " + borrowingMovie[i].getMovieBorrow().getMovieTitle());
 
             }
         }
         return null;
     }
 
-    public String ReturnIO() {
-        if (totalBorrowMovie >= 0) {
+    public MovieBorrowing[] ReturnIO() {
 
-            for (int i = 0; i <= totalBorrowMovie; i++) {
-                System.out.println(borrowingMovie[i].toString());
-                return borrowingMovie[i].toString();
+        if (totalBorrowMovie >= 1) {
 
-            }
+            return borrowingMovie;
+
         }
         System.out.println("no borrow movie");
-        return "no borrow movie";
+        return null;
     }
 
     public boolean checkoutMovie(MovieBorrowing borrowMovie) {

@@ -89,12 +89,11 @@ public class MovieBorrowing {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-
-        str.append("\n--------------------------------------------");
-        str.append("\n Borrow date: " + borrowDate);
+         
+        
+        str.append(" Borrow date: " + borrowDate);
         str.append("\n Due date:    " + dueDate);
         str.append("\r\n");
-
         str.append("\n Movie:  " + movieBorrow.getMovield() + " " + movieBorrow.getMovieTitle());
         str.append("\n Member: " + borrowAccount.getId() + " " + borrowAccount.getFirstname() + " " + borrowAccount.getLastname());
         str.append("\r\n");
@@ -108,7 +107,7 @@ public class MovieBorrowing {
         if (returnDate != null) {
             str.append("\n Date:  " + returnDate);
         }
-        str.append("\n ***** Thank you ***** ");
+       
         return str.toString();
     }
 

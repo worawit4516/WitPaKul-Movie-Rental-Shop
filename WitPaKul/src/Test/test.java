@@ -7,7 +7,6 @@ import wpk.account.ManagerAccount;
 import wpk.Enum.AccountMovieStatus;
 import wpk.Enum.MovieStatus;
 
-
 public class test {
 
     public static void main(String[] args) {
@@ -34,20 +33,21 @@ public class test {
         //miStore.ListMembers();
         miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);
         miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);
+        miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);
         //miStore.ListMovieborrow();
         miStore.CheckoutMovieMember("MEM02", "MOV01");
         miStore.CheckoutMovieMember("MEM02", "MOV02");
+        //  miStore.CheckoutMovieMember("MEM02", "MOV03");
+
         miStore.CreateReceipts("MEM02");
-        miStore.ListMovieborrow();
-        miStore.ListMembers();
-        miStore.ListMemberBorrowingList("MEM02");
-       // miStore.CheckoutMovieMember("MEM01", "MOV02");
-        
+        //  miStore.ListMovieborrow();
+        // miStore.ListMembers();
+        // miStore.ListMemberBorrowingList("MEM02");
+        // miStore.CheckoutMovieMember("MEM01", "MOV02");
+
         // miStore.ListMemberBorrowingList("MEM02");
         // miStore.ListMembers();
         // miStore.ListMovie();
-        
-
     }
 
 }
