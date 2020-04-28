@@ -470,15 +470,15 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             StringBuilder str = new StringBuilder();
             str.append("\n           *******HELLO******\n");
             for (int i = 0; i < me.length; i++) {
-                if (me[i] != null) {
+                if (me[i] != null)  {
 
                     str.append((i+1)+". "+me[i].toString());
 
                 }
 
             }
-            
-            str.append("\n          ******THANK YOU******");
+             str.append("           Total price: " + checkMemberByID(Memberid).getTotalprice());
+            str.append("\n        ******THANK YOU******");
             System.out.println(str);
             pw.println(str);
         } catch (FileNotFoundException ex) {
