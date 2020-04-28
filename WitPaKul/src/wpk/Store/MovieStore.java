@@ -468,8 +468,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         try (PrintWriter pw = new PrintWriter(new File("receipts.txt"))) {
             MovieBorrowing[] me = checkMemberByID(Memberid).ReturnIO();
             StringBuilder str = new StringBuilder();
-            str.append("\n--------------------------------------------");
-            str.append("\n--------------------HELLO-------------------\n");
+            str.append("\n           *******HELLO******\n");
             for (int i = 0; i < me.length; i++) {
                 if (me[i] != null) {
 
@@ -479,7 +478,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
             }
             
-            str.append("\n------------------THANK YOU------------------");
+            str.append("\n          ******THANK YOU******");
             System.out.println(str);
             pw.println(str);
         } catch (FileNotFoundException ex) {
