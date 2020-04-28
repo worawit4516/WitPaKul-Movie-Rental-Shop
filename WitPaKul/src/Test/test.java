@@ -31,20 +31,38 @@ public class test {
         miStore.CreateMember("EMP02", "firstname", "lastname", "password", 0, AccountStatus.PREMIUMMEMBER, AccountMovieStatus.ACTIVEB);
 
         //miStore.ListMembers();
-        miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);
-        miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);
-        miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);
+        miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);//0
+        miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);//1
+        miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);//2
         //miStore.ListMovieborrow();
         miStore.CheckoutMovieMember("MEM02", "MOV01");
-        miStore.CheckoutMovieMember("MEM02", "MOV02");
-        //  miStore.CheckoutMovieMember("MEM02", "MOV03");
+       // miStore.CheckoutMovieMember("MEM02", "MOV02");
+      //  miStore.CheckoutMovieMember("MEM02", "MOV03");
+        miStore.ListMovieborrow();
 
+       // miStore.returnMovie("MEM02", "MOV03");
+       // miStore.returnMovie("MEM02", "MOV02");
+        //miStore.returnMovie("MEM02", "MOV01");
+        // miStore.ListMovieborrow();
+        //miStore.ListMovieborrow();
+        miStore.ListMembers();
+        //Desktop.ListEmployees();
+       // miStore.DeleteMember("EMP02","MEM01");
+      //  miStore.ListMembers();   
+      //  miStore.ListMovie();
+      //  miStore.DeleteMovie("EMP02","MOV03");
+        //miStore.ListMovie();
+        miStore.ListMemberBorrowingList("MEM02");
+        
+        // miStore.returnMovie("MEM02", "MOV03");
+        //miStore.returnMovie("MEM01", "MOV01");
         miStore.CreateReceipts("MEM02");
+        //miStore.returnMovie("MEM02","MOV01");//ลบออกตำเเหน่งที่ 0
+        // miStore.returnMovie("MEM02","MOV02");
         //  miStore.ListMovieborrow();
         // miStore.ListMembers();
         // miStore.ListMemberBorrowingList("MEM02");
         // miStore.CheckoutMovieMember("MEM01", "MOV02");
-
         // miStore.ListMemberBorrowingList("MEM02");
         // miStore.ListMembers();
         // miStore.ListMovie();

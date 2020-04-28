@@ -53,7 +53,7 @@ public class MovieBorrowing {
             this.borrowAccount = borrowAccount;
             this.movieBorrow.setMovieStatus(MovieStatus.Borrowed);
             this.price = borrowMovie.getPrice();
-            System.out.println("Set Complete");
+           
             return this;
         }
         if (borrowAccount.getMemberStatus().equals(AccountStatus.PREMIUMMEMBER) && borrowMovie.getMovieStatus().equals(MovieStatus.Available)) {
@@ -63,7 +63,7 @@ public class MovieBorrowing {
             this.borrowAccount = borrowAccount;
             this.movieBorrow.setMovieStatus(MovieStatus.Borrowed);
             this.price = borrowMovie.getPrice();
-            System.out.println("Set Complete");
+            
             return this;
         }
 
@@ -73,7 +73,7 @@ public class MovieBorrowing {
         this.borrowAccount = borrowAccount;
         this.movieBorrow.setMovieStatus(MovieStatus.Borrowed);
         this.price = borrowMovie.getPrice();
-        System.out.println("Set Complete");
+        
 
         return this;
     }
@@ -94,7 +94,10 @@ public class MovieBorrowing {
         str.append("\n Due date:    " + dueDate);
         str.append("\r\n");
         str.append("\n Movie:  " + movieBorrow.getMovield() + " " + movieBorrow.getMovieTitle());
+        if (borrowAccount != null) {
         str.append("\n Member: " + borrowAccount.getId() + " " + borrowAccount.getFirstname() + " " + borrowAccount.getLastname());
+        }
+
         str.append("\r\n");
         str.append("--------------------------------------");
         str.append("\n                    Price: " + price);

@@ -9,14 +9,5 @@
                     Price: 30
                     Fine:  0
 ---------------------------------------
-2.  Borrow date: 2020-04-28
- Due date:    2020-05-03
-
- Movie:  MOV02 movieTitle
- Member: MEM02 firstname lastname
---------------------------------------
-                    Price: 30
-                    Fine:  0
----------------------------------------
-           Total price: 60
+           Total price: 30
         ******THANK YOU******

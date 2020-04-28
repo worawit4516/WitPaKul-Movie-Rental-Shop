@@ -70,7 +70,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         }
         if (EMPid.equals(this.employeeInstore.getId())) {
 
-            String id = String.format("MEM0%d", countmember + 1);
+            String id = String.format("MEM0%d", (countmember + 1));
 
             MemberAccount member = new MemberAccount(id, firstname, lastname, password, phone, status, acstatus);
             if (checkMember(id) == -1 && countmember < this.member.length) {
@@ -191,14 +191,14 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         if (movieID != null) {
             for (int i = 0; i < countMovieborrowing; i++) {
                 if (movieID == null ? cdStoreBorrowingMovie[i].getMovieBorrow().getMovield() == null : movieID.equals(cdStoreBorrowingMovie[i].getMovieBorrow().getMovield())) {
-                    System.out.println(member[i]);
+                    System.out.println(cdStoreBorrowingMovie[i]);
 
                 }
             }
 
-        } else {
-            System.out.println("404 data not found");
         }
+        System.out.println("404 data not found");
+
         return -1;
     }
 
@@ -209,17 +209,19 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
             return false;
         }
+        if (EMPid.equals(this.employeeInstore.getId()) && checkMovie(movieID) != -1) {
+            for (int i = 0; i < countMovie; i++) {
+                if (checkMovie(movieID) == i) {
 
-        if (EMPid.equals(this.employeeInstore.getId()) && checkMember(movieID) != -1) {
-            for (int i = checkMovie(EMPid); i < countMovie; i++) {
-                if (i == countMovie - 1) {
                     for (int j = i + 1; j < countMovie; j++) {
                         cdStoreMovie[i] = cdStoreMovie[j];
                     }
                     cdStoreMovie[--countMovie] = null;
+
                     return true;
                 }
             }
+
         }
         return false;
     }
@@ -231,12 +233,14 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             return false;
         }
 
-        for (int i = checkMovieBorrow(movieBorrowID); i < countMovieborrowing; i++) {
-            if (i == countMovieborrowing - 1) {
+        for (int i = 0; i < countMovieborrowing; i++) {
+            if (checkMovieBorrow(movieBorrowID) == i) {
+
                 for (int j = i + 1; j < countMovieborrowing; j++) {
                     cdStoreBorrowingMovie[i] = cdStoreBorrowingMovie[j];
                 }
                 cdStoreBorrowingMovie[--countMovieborrowing] = null;
+
                 return true;
             }
         }
@@ -252,15 +256,18 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             return false;
         }
         if (EMPid.equals(this.employeeInstore.getId()) && checkMember(memberID) != -1) {
-            for (int i = checkMember(memberID); i < countmember; i++) {
-                if (i == countmember - 1) {
+            for (int i = 0; i < countmember; i++) {
+                if (checkMember(memberID) == i) {
+
                     for (int j = i + 1; j < countmember; j++) {
                         member[i] = member[j];
                     }
                     member[--countmember] = null;
+
                     return true;
                 }
             }
+
         }
         return false;
 
@@ -446,17 +453,23 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
                 }
             }
         }
+
         return null;
 
     }
 
     private MovieBorrowing checkMovieborrowByID(String MovieborrowID) {
         if (MovieborrowID != null) {
+
             for (int i = 0; i < countMovieborrowing; i++) {
+
                 if (cdStoreBorrowingMovie[i].getMovieBorrow().getMovield() == null ? MovieborrowID == null : cdStoreBorrowingMovie[i].getMovieBorrow().getMovield().equals(MovieborrowID)) {
+
                     return cdStoreBorrowingMovie[i];
                 }
+
             }
+
         }
         return null;
 
@@ -468,16 +481,24 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         try (PrintWriter pw = new PrintWriter(new File("receipts.txt"))) {
             MovieBorrowing[] me = checkMemberByID(Memberid).ReturnIO();
             StringBuilder str = new StringBuilder();
-            str.append("\n           *******HELLO******\n");
-            for (int i = 0; i < me.length; i++) {
-                if (me[i] != null)  {
 
-                    str.append((i+1)+". "+me[i].toString());
+            str.append("\n           *******HELLO******\n");
+            if (me.equals(null)) {
+                str.append("NO Movie");
+            } else {
+                for (int i = 0; i < me.length; i++) {
+                    if (me[i] == null) {
+
+                    }
+                    if (me[i] != null) {
+
+                        str.append((i + 1) + ". " + me[i].toString());
+
+                    }
 
                 }
-
             }
-             str.append("           Total price: " + checkMemberByID(Memberid).getTotalprice());
+            str.append("           Total price: " + checkMemberByID(Memberid).getTotalprice());
             str.append("\n        ******THANK YOU******");
             System.out.println(str);
             pw.println(str);
