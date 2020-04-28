@@ -17,7 +17,7 @@ public interface EmployeeService {
 
     public boolean CreateMember(String Id, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus);
 
-    public boolean AddMovie(String id, String movieTitle, int premiumStatus, MovieStatus mos);
+    public boolean AddMovie(String id, String movieTitle,int premiumStatus, MovieStatus mos);
 
     public boolean EditData_Member(String id, String MemberID, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus);
 

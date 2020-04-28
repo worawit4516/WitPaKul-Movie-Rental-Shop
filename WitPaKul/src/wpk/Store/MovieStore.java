@@ -1,6 +1,11 @@
 package wpk.Store;
 
-import java.util.Iterator;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import wpk.Enum.AccountStatus;
 import wpk.Enum.MovieStatus;
 import wpk.account.MemberAccount;
@@ -35,7 +40,6 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     }
 
     public void SetService(ManagerService Service) {
-
         try {
             this.Service = Service;
             System.out.println("Complete");
@@ -51,22 +55,6 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         } else {
             System.out.println("failed to set your account");
         }
-    }
-
-    public Iterator<Movie> iterator() {
-        return new Iterator<Movie>() {
-            private int counter = 0;
-
-            @Override
-            public boolean hasNext() {
-                return counter < cdStoreMovie.length;
-            }
-
-            @Override
-            public Movie next() {
-                return cdStoreMovie[counter++];
-            }
-        };
     }
 
     //Employeeservice code part//
@@ -91,6 +79,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
                 return true;
             } else {
                 System.out.println("failed to create member");
+                return false;
             }
 
         }
@@ -98,6 +87,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     }
 
     public boolean AddMovie(String EMPid, String movieTitle, int premiumStatus, MovieStatus mos) {
+
         if (movieTitle == null || mos == null) {
             System.out.println("NULL are prohibited");
         }
@@ -293,7 +283,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             return null;
         }
 
-        if (checkMemberByID(memberId).getMemberStatus().equals(AccountStatus.MEMBER) && checkMovieByID(movieID).getPremiumStatus() != 1) {
+        if (checkMemberByID(memberId).getMemberStatus().equals(AccountStatus.MEMBER) && checkMovieByID(movieID).getPremiumStatus() == 1) {
             System.out.println("This movie is Premium");
             System.out.println("Please upgrade your account to borrow this movie");
             return null;
@@ -303,8 +293,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         MovieBorrowing movieBorrowing = new MovieBorrowing();
         MovieBorrowing checkoutMOvie = movieBorrowing.checkOutMovie(checkMovieByID(movieID), checkMemberByID(memberId));
         cdStoreBorrowingMovie[countMovieborrowing++] = checkoutMOvie;
-        System.out.println("Check out complete");
-        System.out.println(checkoutMOvie);
+        System.out.println("Check out complete\n");
 
         //checkMemberByID(memberId).checkoutMovie(checkoutMOvie);
         return checkoutMOvie;
@@ -364,7 +353,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
         for (int i = 0; i < countmember; i++) {
 
-            System.out.println("Members: " + member[i].toString());
+            System.out.println((i + 1) + " Members: " + member[i].toString());
 
         }
         return -1;
@@ -376,7 +365,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
         for (int i = 0; i < countMovie; i++) {
 
-            System.out.println("Movies: " + cdStoreMovie[i].toString());
+            System.out.println((i + 1) + " Movies: " + cdStoreMovie[i].toString());
 
         }
         return -1;
@@ -388,7 +377,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
         for (int i = 0; i < countMovieborrowing; i++) {
 
-            System.out.println(countMovieborrowing + ". " + cdStoreBorrowingMovie[i].toString());
+            System.out.println((i + 1) + ". " + cdStoreBorrowingMovie[i].getMovieBorrow().getMovield() + " " + cdStoreBorrowingMovie[i].getMovieBorrow().getMovieTitle());
 
         }
         return -1;
@@ -397,7 +386,6 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     public void ListMemberBorrowingList(String id) {
 
         checkMemberByID(id).getMovieBorrowList();
-       
 
     }
 
@@ -473,4 +461,49 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         return null;
 
     }
+
+    //IO path
+    public void CreateReceipts(String Memberid) {
+
+        try (PrintWriter pw = new PrintWriter(new File("receipts.txt"))) {
+            MovieBorrowing[] me = checkMemberByID(Memberid).ReturnIO();
+            StringBuilder str = new StringBuilder();
+            str.append("\n--------------------------------------------");
+            str.append("\n--------------------HELLO-------------------\n");
+            for (int i = 0; i < me.length; i++) {
+                if (me[i] != null) {
+
+                    str.append((i+1)+". "+me[i].toString());
+
+                }
+
+            }
+            
+            str.append("\n------------------THANK YOU------------------");
+            System.out.println(str);
+            pw.println(str);
+        } catch (FileNotFoundException ex) {
+        }
+    }
+
+    public void createNewReceipts(String text) {
+        File file = new File("receipts.txt");
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            try (BufferedWriter bf = new BufferedWriter(new FileWriter(file, false))) {
+                // bf.append(checkMemberByID(text).ReturnIO());
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

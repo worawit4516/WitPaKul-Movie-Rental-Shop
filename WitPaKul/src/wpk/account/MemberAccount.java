@@ -18,6 +18,7 @@ public class MemberAccount extends Account {
     private int overDue = 0;
     private AccountMovieStatus memberMovieStatus;
     private AccountStatus status;
+    private int totalprice = 0;
 
     public MemberAccount(String id, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus) {
         super(id, firstname, lastname, password, phone, status);
@@ -49,8 +50,8 @@ public class MemberAccount extends Account {
             this.borrowingMovie = new MovieBorrowing[Specifications.MAX_BORROWMOVIE_PREMIUMMEMBER];
 
         }
-        if (AccountStatus.MEMBER != status || AccountStatus.PREMIUMMEMBER != status) {
-            System.out.println("failed to create member account");
+        if (AccountStatus.EMPLOYEE == status || AccountStatus.MANAGER == status) {
+            System.out.println("failed");
         }
 
     }
@@ -74,29 +75,26 @@ public class MemberAccount extends Account {
     public String getMovieBorrowList() {
 
         System.out.println("Total: " + totalBorrowMovie);
-        if (totalBorrowMovie > 0) {
+        if (totalBorrowMovie >= 0) {
 
             for (int i = 0; i < totalBorrowMovie; i++) {
 
-                System.out.println("Movies: " + borrowingMovie[i].toString());
-                return borrowingMovie[i].toString();
+                System.out.println((i + 1) + " Movies: " + borrowingMovie[i].getMovieBorrow().getMovield() + " " + borrowingMovie[i].getMovieBorrow().getMovieTitle());
 
             }
         }
         return null;
     }
 
-    public String ReturnIO() {
-        if (totalBorrowMovie > 0) {
+    public MovieBorrowing[] ReturnIO() {
 
-            for (int i = 0; i < totalBorrowMovie; i++) {
+        if (totalBorrowMovie >= 1) {
 
-                System.out.println(". Movies: " + borrowingMovie[i].toString());
-                return borrowingMovie[i].toString();
+            return borrowingMovie;
 
-            }
         }
-        return "no borrow movie";
+        System.out.println("no borrow movie");
+        return null;
     }
 
     public boolean checkoutMovie(MovieBorrowing borrowMovie) {
@@ -104,7 +102,7 @@ public class MemberAccount extends Account {
             return false;
         }
         borrowingMovie[totalBorrowMovie++] = borrowMovie;
-
+        totalprice += borrowMovie.getPrice();
         return true;
 
     }
@@ -120,8 +118,10 @@ public class MemberAccount extends Account {
 
     void remove(int index) {
         for (int i = index; i < totalBorrowMovie; i++) {
+
             if (i == totalBorrowMovie - 1) {
                 for (int j = i + 1; j < totalBorrowMovie; j++) {
+                    this.totalprice -= borrowingMovie[i].getPrice();
                     borrowingMovie[i] = borrowingMovie[j];
                 }
                 borrowingMovie[--totalBorrowMovie] = null;
@@ -134,7 +134,6 @@ public class MemberAccount extends Account {
         int returnMovie = check(borrowingMovie);
         if (returnMovie >= 0) {
             remove(returnMovie);
-            //this.totalBorrowMovie--;
             if (fine > 0) {
                 this.overDue++;
             }
@@ -143,6 +142,10 @@ public class MemberAccount extends Account {
 
     public int checkForFine(MovieBorrowing borrowedMovie) {
         return borrowedMovie.getFine(LocalDate.now());
+    }
+
+    public int getTotalprice() {
+        return totalprice;
     }
 
     public boolean checkstatus(Account account) {

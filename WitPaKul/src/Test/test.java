@@ -19,32 +19,35 @@ public class test {
         Desktop.EditData_Manager("EMP00", "EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.MANAGER);
         Desktop.CreateEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
         Desktop.CreateEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
-        Desktop.CreateEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
-        Desktop.ListEmployees();
-        Desktop.SearchEmployees("EMP100", "EMP02");
+        // Desktop.CreateEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
+        //Desktop.ListEmployees();
+        //Desktop.SearchEmployees("EMP100", "EMP02");
 
-        Desktop.EditData_Employees("EMP100", "EMP01", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
-
+        //  Desktop.EditData_Employees("EMP100", "EMP01", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
         MovieStore miStore = new MovieStore("WitPaKul", 50, 50, 50, 50, 50, "EMP02");
         miStore.SetService(Desktop);
-        miStore.SetEmployeesinStore("EMP02","password");
+        miStore.SetEmployeesinStore("EMP02", "password");
         miStore.CreateMember("EMP02", "firstname", "lastname", "password", 0, AccountStatus.MEMBER, AccountMovieStatus.ACTIVEB);
-        miStore.CreateMember("EMP02", "firstname", "lastname", "password", 0, AccountStatus.MEMBER, AccountMovieStatus.ACTIVEB);
+        miStore.CreateMember("EMP02", "firstname", "lastname", "password", 0, AccountStatus.PREMIUMMEMBER, AccountMovieStatus.ACTIVEB);
 
-        miStore.ListMembers();
+        //miStore.ListMembers();
         miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);
-
-        miStore.ListMovieborrow();
+        miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);
+        miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);
+        //miStore.ListMovieborrow();
         miStore.CheckoutMovieMember("MEM02", "MOV01");
-        
-        miStore.ListMemberBorrowingList("MEM02");
-       
-        miStore.ListMembers();
-        miStore.ListMovie();
-        
-        Receipts rc = new Receipts(miStore);
-        rc.SetMemberID("MEM02");
-        rc.CreateReceipts();
+        miStore.CheckoutMovieMember("MEM02", "MOV02");
+        //  miStore.CheckoutMovieMember("MEM02", "MOV03");
+
+        miStore.CreateReceipts("MEM02");
+        //  miStore.ListMovieborrow();
+        // miStore.ListMembers();
+        // miStore.ListMemberBorrowingList("MEM02");
+        // miStore.CheckoutMovieMember("MEM01", "MOV02");
+
+        // miStore.ListMemberBorrowingList("MEM02");
+        // miStore.ListMembers();
+        // miStore.ListMovie();
     }
 
 }
