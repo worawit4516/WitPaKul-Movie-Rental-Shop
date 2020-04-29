@@ -16,7 +16,9 @@ public interface EmployeeService {
     public void SetService(ManagerService Service);
 
     public void SetEmployeesinStore(String EMPid ,String Password);
-
+   
+//ตรงนี้
+    
     public boolean CreateMember(MemberAccount newmember);
 
     public boolean AddMovie(Movie newMovie);

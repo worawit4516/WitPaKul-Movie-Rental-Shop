@@ -57,26 +57,25 @@ public class ManagerService {
 
     }
 
-    
-
     public boolean EditData_Employees(EmployeeAccount EMP) {
+
         String id = EMP.getId();
-        System.out.println(id);
         String firstname = EMP.getFirstname();
         String lastname = EMP.getLastname();
         String password = EMP.getPassword();
         long phone = EMP.getPhone();
         AccountStatus status = EMP.getStatus();
-       
+
         for (int i = 0; i < countEmployee; i++) {
-              
+            
             if (employees[i].getId().equals(id)) {
                 employees[i].editdata(firstname, lastname, password, phone, status);
                 System.out.println("Complete");
+                return true;
             }
 
         }
-        System.out.println(countEmployee);
+
         System.out.println("404 data not found");
 
         return true;

@@ -30,7 +30,18 @@ import wpk.account.MemberAccount;
 //123
 public class MainMenu {
 
-    static String menu = "--------Menu--------\n"
+    static String menu
+            = "--------Menu--------\n"
+            + "---Store System---\n"
+            + "1.Manager\n"
+            + "2.Employee\n"
+            + "3.Member\n"
+            + "4.Movie\n"
+            + "5.Exit...\n"
+            + "-------------------"
+            + "\nEnter Your Menu [1‐5]: ";
+    static String menuManager
+            = "--------Menu--------\n"
             + "---Store System---\n"
             + "1.Manager\n"
             + "2.Employee\n"
@@ -60,7 +71,45 @@ public class MainMenu {
                     //หน้าเมณูใหม่หลังจากล็อกอิน
                     //{ CreateEmployeesAccount
                     //EditData_Manager
-                    // EditData_Employees
+                    // 1EditData_Employees
+                    //SearchEmployees
+                    //ListEmployees()
+                    //DeleteEmployees
+                    //checkEmployeesByID}
+                    break;
+                case 2:
+                    Desktop.EditData_Employees(EditdataEmployeesAccount());
+                    //employeesใช้
+                    //Employeeslogin
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    break;
+                case 3:
+                    Desktop.ListEmployees();
+            }
+        } while (select != 0);
+        System.out.println("Good by");
+
+        do {
+            select = SeChoice();
+            switch (select) {
+                case 1:
+                    Desktop.CreateEmployeesAccount(CreateEmployeesAccount());
+                    //Managerlogin
+                    //managerใช้
+                    //หน้าเมณูใหม่หลังจากล็อกอิน
+                    //{ CreateEmployeesAccount
+                    //EditData_Manager
+                    // 1EditData_Employees
                     //SearchEmployees
                     //ListEmployees()
                     //DeleteEmployees
@@ -118,15 +167,31 @@ public class MainMenu {
         int count = 0;
         System.out.println("----Creat Mamber----");
         System.out.println("Firstname : ");
+        Sc.nextLine();
         String firstname = Sc.nextLine();
 
-        Sc.nextLine();
+        while (firstname.equals("")) {
+            System.out.println("firstname must not null");
+            System.out.println("Firstname : ");
+            firstname = Sc.nextLine();
+        }
 
         System.out.println("Lastname : ");
         String lastname = Sc.nextLine();
 
+        while (firstname.equals("")) {
+            System.out.println("Lastname must not null");
+            System.out.println("Lastname : ");
+            lastname = Sc.nextLine();
+        }
+
         System.out.println("Password : ");
         String password = Sc.nextLine();
+        while (lastname.equals("")) {
+            System.out.println("Password must not null");
+            System.out.println("Password : ");
+            password = Sc.nextLine();
+        }
 
         System.out.println("Phone : ");
         long phone = Sc.nextLong();
@@ -149,13 +214,30 @@ public class MainMenu {
         int count = 0;
         System.out.println("----Creat EmployeesAccount----");
         System.out.println("Firstname : ");
-        String firstname = Sc.nextLine();
         Sc.nextLine();
+        String firstname = Sc.nextLine();
+
+        while (firstname.equals("")) {
+            System.out.println("firstname must not null");
+            System.out.println("Firstname : ");
+            firstname = Sc.nextLine();
+        }
+
         System.out.println("Lastname : ");
         String lastname = Sc.nextLine();
+        while (lastname.equals("")) {
+            System.out.println("Lastname must not null");
+            System.out.println("Lastname : ");
+            lastname = Sc.nextLine();
+        }
 
         System.out.println("Password : ");
         String password = Sc.nextLine();
+        while (lastname.equals("")) {
+            System.out.println("Password must not null");
+            System.out.println("Password : ");
+            password = Sc.nextLine();
+        }
         System.out.println("Phone : ");
 
         long phone = Sc.nextLong();
@@ -179,23 +261,38 @@ public class MainMenu {
 
         System.out.println("----Edit EmployeesAccount----");
         System.out.println("ID :");
-        String id = Sc.nextLine();
+        String id = Sc.next();
         Sc.nextLine();
 
         System.out.println("Firstname : ");
         String firstname = Sc.nextLine();
+        while (firstname.equals("")) {
+            System.out.println("firstname must not null");
+            System.out.println("Firstname : ");
+            firstname = Sc.nextLine();
+        }
 
         System.out.println("Lastname : ");
         String lastname = Sc.nextLine();
+        while (lastname.equals("")) {
+            System.out.println("Lastname must not null");
+            System.out.println("Lastname : ");
+            lastname = Sc.nextLine();
+        }
 
         System.out.println("Password : ");
         String password = Sc.nextLine();
+        while (lastname.equals("")) {
+            System.out.println("Password must not null");
+            System.out.println("Password : ");
+            password = Sc.nextLine();
+        }
         System.out.println("Phone : ");
-
         long phone = Sc.nextLong();
+
         AccountStatus status = AccountStatus.EMPLOYEE;
 
-        if (firstname == null || lastname == null || password == null) {
+        if (id.equals("") || firstname.equals("") || lastname.equals("") || password.equals("")) {
             System.out.println("NULL are prohibited");
             EditdataEmployeesAccount();
         }
@@ -207,15 +304,26 @@ public class MainMenu {
 
     public static Movie AddMovie() {
         int count = 0;
-        System.out.println("movieTitle : ");
-        String movieTitle = Sc.nextLine();
+
+        System.out.println("MovieTitle : ");
         Sc.nextLine();
-        
-       System.out.println("PremiumStatus : ");
+        String movieTitle = Sc.nextLine();
+        while (movieTitle.equals("")) {
+            System.out.println("Movietitle must not null");
+            System.out.println("Movietitle : ");
+            movieTitle = Sc.nextLine();
+        }
+
+        System.out.println("PremiumStatus : ");
         int premiumStatus = Sc.nextInt();
+        while (movieTitle.equals("")) {
+            System.out.println("PremiumStatus must not null");
+            System.out.println("PremiumStatus : ");
+            premiumStatus = Sc.nextInt();
+        }
         MovieStatus mos = MovieStatus.Available;
 
-        if (movieTitle == null ) {
+        if (movieTitle == null) {
             System.out.println("NULL are prohibited");
             AddMovie();
         }
