@@ -58,58 +58,56 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     }
 
     //Employeeservice code part//
-    public boolean CreateMember(String EMPid, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus) {
-        if (firstname == null || lastname == null || password == null || status == null || acstatus == null) {
-            System.out.println("NULL are prohibited");
+    public boolean CreateMember(MemberAccount newmember) {
+
+        if (checkMember(newmember.getId()) == -1 && countmember < this.member.length) {
+            this.member[countmember++] = newmember;
+            System.out.println("successfully created");
+            return true;
+        } else {
+            System.out.println("failed to create member");
             return false;
         }
 
-        if (EMPid == null) {
-            System.out.println("NULL are prohibited");
-            return false;
-        }
-        if (EMPid.equals(this.employeeInstore.getId())) {
-
-            String id = String.format("MEM0%d", (countmember + 1));
-
-            MemberAccount member = new MemberAccount(id, firstname, lastname, password, phone, status, acstatus);
-            if (checkMember(id) == -1 && countmember < this.member.length) {
-                this.member[countmember++] = member;
-                System.out.println("successfully created");
-                return true;
-            } else {
-                System.out.println("failed to create member");
-                return false;
-            }
-
-        }
-        return false;
     }
 
-    public boolean AddMovie(String EMPid, String movieTitle, int premiumStatus, MovieStatus mos) {
+//    public boolean AddMovie(String EMPid, String movieTitle, int premiumStatus, MovieStatus mos) {
+//
+//        if (movieTitle == null || mos == null) {
+//            System.out.println("NULL are prohibited");
+//        }
+//
+//        if (EMPid == null) {
+//            System.out.println("NULL are prohibited");
+//        }
+//        if (premiumStatus == 1 || premiumStatus == 0) {
+//
+//            if (EMPid.equals(this.employeeInstore.getId())) {
+//                String MovieID = String.format("MOV0%d", countMovie + 1);
+//                Movie newMovie = new Movie(MovieID, movieTitle, premiumStatus, mos);
+//                if (checkMovie(MovieID) == -1 && countMovie < cdStoreMovie.length) {
+//                    this.cdStoreMovie[countMovie++] = newMovie;
+//                    System.out.println("successfully created");
+//                    return true;
+//
+//                } else {
+//                    System.out.println("failed to create data");
+//                }
+//            }
+//        }
+//        return true;
+//    }
+    public boolean AddMovie(Movie newMovie) {
 
-        if (movieTitle == null || mos == null) {
-            System.out.println("NULL are prohibited");
+        if (checkMovie(newMovie.getMovield()) == -1 && countMovie < cdStoreMovie.length) {
+            this.cdStoreMovie[countMovie++] = newMovie;
+            System.out.println("successfully created");
+            return true;
+
+        } else {
+            System.out.println("failed to create data");
         }
 
-        if (EMPid == null) {
-            System.out.println("NULL are prohibited");
-        }
-        if (premiumStatus == 1 || premiumStatus == 0) {
-
-            if (EMPid.equals(this.employeeInstore.getId())) {
-                String MovieID = String.format("MOV0%d", countMovie + 1);
-                Movie newMovie = new Movie(MovieID, movieTitle, premiumStatus, mos);
-                if (checkMovie(MovieID) == -1 && countMovie < cdStoreMovie.length) {
-                    this.cdStoreMovie[countMovie++] = newMovie;
-                    System.out.println("successfully created");
-                    return true;
-
-                } else {
-                    System.out.println("failed to create data");
-                }
-            }
-        }
         return true;
     }
 

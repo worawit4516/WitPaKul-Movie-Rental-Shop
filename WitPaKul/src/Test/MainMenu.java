@@ -38,7 +38,7 @@ public class MainMenu {
             + "4.Movie\n"
             + "5.Exit...\n"
             + "-------------------"
-            + "Enter Your Menu [1‐5]: ";
+            + "\nEnter Your Menu [1‐5]: ";
 
     static Scanner Sc = new Scanner(System.in);
 
@@ -46,27 +46,44 @@ public class MainMenu {
         ManagerAccount m1 = new ManagerAccount("EMP00", "firstname", "lastname", "password", 05254, AccountStatus.MANAGER);
         ManagerService Desktop = new ManagerService(5, m1);
         Desktop.ManagerServiceLogin("EMP00", "password");
+        //  Desktop.CreateEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
+        MovieStore WPK = new MovieStore("WitPaKul", 50, 50, 50, 50, 50, "EMP02");
 
         int select;
         do {
             select = SeChoice();
             switch (select) {
                 case 1:
-                    //Managerlogin();
-                    System.out.println("insert name");
-                    String menu = Sc.nextLine();
-                    Desktop.CreateEmployeesAccount(menu, menu, menu, menu, select, AccountStatus.MEMBER);
+                    Desktop.CreateEmployeesAccount(CreateEmployeesAccount());
+                    //Managerlogin
+                    //managerใช้
+                    //หน้าเมณูใหม่หลังจากล็อกอิน
+                    //{ CreateEmployeesAccount
+                    //EditData_Manager
+                    // EditData_Employees
+                    //SearchEmployees
+                    //ListEmployees()
+                    //DeleteEmployees
+                    //checkEmployeesByID}
                     break;
                 case 2:
-
+                    Desktop.EditData_Employees(EditdataEmployeesAccount());
+                    //employeesใช้
+                    //Employeeslogin
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
                     break;
                 case 3:
-
-                    break;
-                case 4:
-
-                    break;
-                case 5:
+                    Desktop.ListEmployees();
             }
         } while (select != 0);
         System.out.println("Good by");
@@ -75,8 +92,8 @@ public class MainMenu {
     public static int SeChoice() {
         System.out.print("\n----------------------------\n");
         System.out.print(menu);
-
-        return Sc.nextInt();//Integer.parseInt(input.nextLine());
+        int select = Sc.nextInt();
+        return select;//Integer.parseInt(input.nextLine());
     }
 
 //    public static void Mnlogin() {
@@ -97,23 +114,28 @@ public class MainMenu {
         return false;
     }
 
-    public MemberAccount CreateMember() {
+    public static MemberAccount CreateMember() {
         int count = 0;
-        String EMPid = Sc.nextLine();
+        System.out.println("----Creat Mamber----");
+        System.out.println("Firstname : ");
         String firstname = Sc.nextLine();
-        String lastname = Sc.nextLine();
-        String password = Sc.nextLine();
-        long phone = Sc.nextLong();
-        AccountStatus status = null;
-        AccountMovieStatus acstatus = null;
-        if (firstname == null || lastname == null || password == null || status == null || acstatus == null) {
-            System.out.println("NULL are prohibited");
-            return null;
-        }
 
-        if (EMPid == null) {
+        Sc.nextLine();
+
+        System.out.println("Lastname : ");
+        String lastname = Sc.nextLine();
+
+        System.out.println("Password : ");
+        String password = Sc.nextLine();
+
+        System.out.println("Phone : ");
+        long phone = Sc.nextLong();
+
+        AccountStatus status = AccountStatus.MEMBER;
+        AccountMovieStatus acstatus = AccountMovieStatus.ACTIVEB;
+        if (firstname == "" || lastname == "" || password == "") {
             System.out.println("NULL are prohibited");
-            return null;
+            CreateMember();
         }
 
         String id = String.format("MEM0%d", (count + 1));
@@ -123,25 +145,27 @@ public class MainMenu {
         return member;
     }
 
-    public EmployeeAccount CreateEmployeesAccount() {
+    public static EmployeeAccount CreateEmployeesAccount() {
         int count = 0;
-        String managerID = Sc.nextLine();
+        System.out.println("----Creat EmployeesAccount----");
+        System.out.println("Firstname : ");
         String firstname = Sc.nextLine();
+        Sc.nextLine();
+        System.out.println("Lastname : ");
         String lastname = Sc.nextLine();
+
+        System.out.println("Password : ");
         String password = Sc.nextLine();
+        System.out.println("Phone : ");
+
         long phone = Sc.nextLong();
-        AccountStatus status = null;
-        AccountMovieStatus acstatus = null;
+        AccountStatus status = AccountStatus.EMPLOYEE;
 
-        if (firstname == null || lastname == null || password == null || status == null || acstatus == null) {
+        if (firstname == null || lastname == null || password == null) {
             System.out.println("NULL are prohibited");
-            return null;
+            CreateEmployeesAccount();
         }
 
-        if (managerID == null) {
-            System.out.println("NULL are prohibited");
-            return null;
-        }
         String id = String.format("EMP0%d", (count + 1));
 
         EmployeeAccount employee = new EmployeeAccount(id, firstname, lastname, password, phone, status);
@@ -149,21 +173,54 @@ public class MainMenu {
         return employee;
     }
 
-    public Movie AddMovie() {
+    public static EmployeeAccount EditdataEmployeesAccount() {
+
         int count = 0;
-        String EMPid = Sc.nextLine();
+
+        System.out.println("----Edit EmployeesAccount----");
+        System.out.println("ID :");
+        String id = Sc.nextLine();
+        Sc.nextLine();
+
+        System.out.println("Firstname : ");
+        String firstname = Sc.nextLine();
+
+        System.out.println("Lastname : ");
+        String lastname = Sc.nextLine();
+
+        System.out.println("Password : ");
+        String password = Sc.nextLine();
+        System.out.println("Phone : ");
+
+        long phone = Sc.nextLong();
+        AccountStatus status = AccountStatus.EMPLOYEE;
+
+        if (firstname == null || lastname == null || password == null) {
+            System.out.println("NULL are prohibited");
+            EditdataEmployeesAccount();
+        }
+
+        EmployeeAccount employee = new EmployeeAccount(id, firstname, lastname, password, phone, status);
+
+        return employee;
+    }
+
+    public static Movie AddMovie() {
+        int count = 0;
+        System.out.println("movieTitle : ");
         String movieTitle = Sc.nextLine();
+        Sc.nextLine();
+        
+       System.out.println("PremiumStatus : ");
         int premiumStatus = Sc.nextInt();
-        MovieStatus mos = null;
+        MovieStatus mos = MovieStatus.Available;
 
-        if (movieTitle == null || mos == null) {
+        if (movieTitle == null ) {
             System.out.println("NULL are prohibited");
+            AddMovie();
         }
 
-        if (EMPid == null) {
-            System.out.println("NULL are prohibited");
-        }
-        String id = String.format("EMP0%d", (count + 1));
+        String id = String.format("MOV0%d", (count + 1));
 
         Movie newMovie = new Movie(id, movieTitle, premiumStatus, mos);
 

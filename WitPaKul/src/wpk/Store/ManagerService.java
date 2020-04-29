@@ -30,21 +30,16 @@ public class ManagerService {
         return false;
     }
 
-    public boolean CreateEmployeesAccount(String managerID, String firstname, String lastname, String password, long phone, AccountStatus status) {
+    public boolean CreateEmployeesAccount(EmployeeAccount newEMP) {
 
-        if (manager.getId().equals(managerID)) {
-            String id = String.format("EMP0%d", countEmployee + 1);
-
-            EmployeeAccount employee = new EmployeeAccount(id, firstname, lastname, password, phone, status);
-
-            if (check(id) == -1 && countEmployee < this.employees.length && employee.getStatus() == AccountStatus.EMPLOYEE) {
-                this.employees[countEmployee++] = employee;
-                System.out.println("succeed");
-                return true;
-            }
+        if (check(newEMP.getId()) == -1 && countEmployee < this.employees.length && newEMP.getStatus() == AccountStatus.EMPLOYEE) {
+            this.employees[countEmployee++] = newEMP;
+            System.out.println("succeed");
+            return true;
         } else {
             System.out.println("failed to create data");
         }
+
         return true;
 
     }
@@ -62,18 +57,28 @@ public class ManagerService {
 
     }
 
-    public boolean EditData_Employees(String managerID, String id, String firstname, String lastname, String password, long phone, AccountStatus status) {
-        if (manager.getId().equals(managerID) && check(id) != -1) {
-            for (int i = 0; i < countEmployee; i++) {
-                if (employees[i].getId() == null ? id == null : employees[i].getId().equals(id)) {
-                    employees[i].editdata(firstname, lastname, password, phone, status);
-                    System.out.println("Complete");
-                }
+    
+
+    public boolean EditData_Employees(EmployeeAccount EMP) {
+        String id = EMP.getId();
+        System.out.println(id);
+        String firstname = EMP.getFirstname();
+        String lastname = EMP.getLastname();
+        String password = EMP.getPassword();
+        long phone = EMP.getPhone();
+        AccountStatus status = EMP.getStatus();
+       
+        for (int i = 0; i < countEmployee; i++) {
+              
+            if (employees[i].getId().equals(id)) {
+                employees[i].editdata(firstname, lastname, password, phone, status);
+                System.out.println("Complete");
             }
 
-        } else {
-            System.out.println("404 data not found");
         }
+        System.out.println(countEmployee);
+        System.out.println("404 data not found");
+
         return true;
 
     }

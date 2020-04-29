@@ -3,7 +3,9 @@ package wpk.serviceITF;
 import wpk.Enum.AccountMovieStatus;
 import wpk.Enum.MovieStatus;
 import wpk.Enum.AccountStatus;
+import wpk.Movie.Movie;
 import wpk.Store.ManagerService;
+import wpk.account.MemberAccount;
 
 /**
  *
@@ -15,9 +17,9 @@ public interface EmployeeService {
 
     public void SetEmployeesinStore(String EMPid ,String Password);
 
-    public boolean CreateMember(String Id, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus);
+    public boolean CreateMember(MemberAccount newmember);
 
-    public boolean AddMovie(String id, String movieTitle,int premiumStatus, MovieStatus mos);
+    public boolean AddMovie(Movie newMovie);
 
     public boolean EditData_Member(String id, String MemberID, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus);
 
