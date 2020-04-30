@@ -20,6 +20,7 @@ import wpk.account.Account;
  *
  * @author user
  */
+/*
 public class Menu {
 
     private String id = "1";
@@ -111,20 +112,15 @@ public class Menu {
         }
     }
 
-    public boolean Managerlogin() {
+    public static boolean Managerlogin() {
         System.out.println("----Login Manager----");
         System.out.println("Name :");
-        String ids = Sc.nextLine();
+        String id = Sc.nextLine();
         System.out.println("Password :");
-        String passwords = Sc.nextLine();
+        String password = Sc.nextLine();
 
-        if (this.id.equals(ids) && this.password.equals(passwords)) {
-
-            return true;
-
-        }
-        
-        return false;
+        return this.id.equals(id) && this.password.equals(password);
     }
 
 }
+*/
