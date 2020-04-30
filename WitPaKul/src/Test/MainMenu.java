@@ -116,16 +116,16 @@ public class MainMenu {
                             case 2://EditData_Employees
                                 Desktop.EditData_Employees(EditdataEmployeesAccount());
                                 break;
-                            case 3://SearchEmployees
+                            case 3://SearchEmployees เอริส
 
                                 break;
-                            case 4://ListEmployees
+                            case 4://ListEmployees เอริส
 
                                 break;
-                            case 5://DeleteEmployee
+                            case 5://DeleteEmployee เอริส
 
                                 break;
-                            case 6://checkEmployeesByID
+                            case 6://checkEmployeesByID เอริส
 
                                 break;
                             case 0:
@@ -163,10 +163,10 @@ public class MainMenu {
                                     case 5://ListMembers
 
                                         break;
-                                    case 6://ListMemberBorrowingList
+                                    case 6://ListMemberBorrowingList 
 
                                         break;
-                                    case 7://CheckForFine
+                                    case 7://CheckForFine เอริส
 
                                         break;
                                 }
@@ -190,10 +190,10 @@ public class MainMenu {
 
                                         break;
 
-                                    case 6://CheckoutMovieMember
+                                    case 6://CheckoutMovieMember เอริส
 
                                         break;
-                                    case 7://returnMovie
+                                    case 7://returnMovie เอริส
 
                                         break;
                                 }
