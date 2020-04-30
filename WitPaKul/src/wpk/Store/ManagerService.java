@@ -111,8 +111,8 @@ public class ManagerService {
         return -1;
     }
 
-    public boolean DeleteEmployees(String managerID, String id) {
-        if (manager.getId().equals(managerID) && check(id) != -1) {
+    public boolean DeleteEmployees(String id) {
+        if (check(id) != -1) {
             for (int i = check(id); i < countEmployee; i++) {
                 // EmployeeAccount employeeAccount = employee[i];
                 if (i == countEmployee - 1) {
@@ -125,6 +125,7 @@ public class ManagerService {
 
             }
             countEmployee--;
+            return true;
         }
         System.out.println("404 data not found");
         return false;
@@ -153,7 +154,7 @@ public class ManagerService {
                 }
             }
         }
-        System.out.println("404 data not found");
+        
 
         return checkEmployeesByID(id);
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Test;
+package wpk.MainMenu;
 
 import wpk.Store.MovieStore;
 import wpk.Enum.AccountStatus;
@@ -12,7 +12,7 @@ import wpk.account.ManagerAccount;
 import wpk.Enum.AccountMovieStatus;
 import wpk.Enum.MovieStatus;
 import java.util.Scanner;
-import Test.MainMenu;
+import wpk.MainMenu.MainMenu;
 import wpk.account.ManagerAccount;
 import wpk.account.Account;
 

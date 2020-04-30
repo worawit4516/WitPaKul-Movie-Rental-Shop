@@ -14,7 +14,7 @@ public interface MemberService {
 
     public int CheckForFine(String memberId, String movieID);
 
-    public boolean CheckoutMovieMember(String memberId, String movieID);
+    public boolean CheckoutMovie(String memberId, String movieID);
 
     public boolean returnMovie(String memberId, String movieborrowID);
 

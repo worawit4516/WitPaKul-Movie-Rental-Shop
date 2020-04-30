@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Test;
+package wpk.MainMenu;
 
 import java.util.Scanner;
-
+import wpk.MenuMethod.MM_Manager;
 import wpk.Store.MovieStore;
 import wpk.Enum.AccountStatus;
 import wpk.Store.ManagerService;
@@ -14,8 +14,8 @@ import wpk.account.ManagerAccount;
 import wpk.Enum.AccountMovieStatus;
 import wpk.Enum.MovieStatus;
 import java.util.Scanner;
-import Test.MainMenu;
-import static Test.MainMenu.Sc;
+import wpk.MainMenu.MainMenu;
+import static wpk.MainMenu.MainMenu.Sc;
 import wpk.Movie.Movie;
 import wpk.account.ManagerAccount;
 import wpk.account.Account;
@@ -47,8 +47,7 @@ public class MainMenu {
             + "2.EditData_Employees\n"
             + "3.SearchEmployees\n"
             + "4.ListEmployees\n"
-            + "5.DeleteEmployees\n"
-            + "6.checkEmployeesByID\n"
+            + "5.DeleteEmployees\n"   
             + "0...Return to the menu...\n"
             + "-------------------"
             + "\nEnter Your Menu [1‐6]: ";
@@ -81,23 +80,21 @@ public class MainMenu {
             + "3.DeleteMovie\n"
             + "4.ListMovie\n"
             + "5.ListMovieborrow\n"
-            + "6.CheckoutMovieMember\n"
+            + "6.CheckoutMovie\n"
             + "7.returnMovie\n"
             + "0...Return to the menu...\n"
             + "-------------------"
             + "\nEnter Your Menu [1‐14]: ";
 
-    static Scanner Sc = new Scanner(System.in);
+    public static Scanner Sc = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         ManagerAccount m1 = new ManagerAccount("EMP00", "firstname", "lastname", "password", 05254, AccountStatus.MANAGER);
         ManagerService Desktop = new ManagerService(5, m1);
-        MovieStore miStore = new MovieStore("WitPaKul", 50, 50, 50, 50, 50, "EMP02");
-
         Desktop.ManagerServiceLogin("EMP00", "password");
-        //  Desktop.CreateEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
         MovieStore WPK = new MovieStore("WitPaKul", 50, 50, 50, 50, 50, "EMP02");
+        MM_Manager me = new MM_Manager();
 
         int select;
         do {
@@ -109,36 +106,38 @@ public class MainMenu {
                         //do{
                         switch (SeChoiceManager()) {
                             case 1://CreateEmployeesAccount
-                                Desktop.CreateEmployeesAccount(CreateEmployeesAccount());
+                                Desktop.CreateEmployeesAccount(MM_Manager.CreateEmployeesAccount());
 
                                 break;
 
                             case 2://EditData_Employees
-                                Desktop.EditData_Employees(EditdataEmployeesAccount());
+                                Desktop.EditData_Employees(MM_Manager.EditdataEmployeesAccount());
                                 break;
                             case 3://SearchEmployees เอริส
-
+                                Desktop.SearchEmployees(MM_Manager.SearchEmployees());
                                 break;
                             case 4://ListEmployees เอริส
-
+                                 Desktop.ListEmployees();
                                 break;
                             case 5://DeleteEmployee เอริส
-
+                                  Desktop.DeleteEmployees(MM_Manager.DeleteEmployees());
                                 break;
-                            case 6://checkEmployeesByID เอริส
-
-                                break;
+                           
                             case 0:
-                                while (select != 0);
+                                while (select == 0 );
                                 System.out.println("Bye");
 
                                 break;
 
                         }
+                        if (SeChoiceManager() > 5 ) {
+                            break;
+                        }
 
                         // }while (select != 0);
                         //     System.out.println("Bye");
                     }
+                    
                     break;
 
                 case 2:
@@ -148,7 +147,7 @@ public class MainMenu {
 
                                 switch (SeChoiceEmployeesMember()) {
                                     case 1://CreateMember
-                                        miStore.CreateMember(CreateMember());
+                                        WPK.CreateMember(MM_Manager.CreateMember());
                                         break;
                                     case 2://EditData_Member
 
@@ -161,7 +160,7 @@ public class MainMenu {
                                         break;
 
                                     case 5://ListMembers
-
+                                        WPK.ListMembers();
                                         break;
                                     case 6://ListMemberBorrowingList 
 
@@ -175,7 +174,7 @@ public class MainMenu {
                             case 2:
                                 switch (SeChoiceEmployeesMovie()) {
                                     case 1://AddMovie
-                                        miStore.AddMovie(AddMovie());
+                                        WPK.AddMovie(MM_Manager.AddMovie());
                                         break;
                                     case 2://SearchMovie
 
@@ -200,7 +199,7 @@ public class MainMenu {
                                 break;
 
                             case 0:
-                                while (select != 0);
+                                while (select == 0);
                                 System.out.println("Bye");
 
                                 break;
@@ -320,102 +319,12 @@ public class MainMenu {
         
         return false;
     }*/
-    public static EmployeeAccount CreateEmployeesAccount() {
-        int count = 0;
-        System.out.println("----Creat EmployeesAccount----");
-        System.out.println("Firstname : ");
-        Sc.nextLine();
-        String firstname = Sc.nextLine();
-
-        while (firstname.equals("")) {
-            System.out.println("firstname must not null");
-            System.out.println("Firstname : ");
-            firstname = Sc.nextLine();
-        }
-
-        System.out.println("Lastname : ");
-        String lastname = Sc.nextLine();
-        while (lastname.equals("")) {
-            System.out.println("Lastname must not null");
-            System.out.println("Lastname : ");
-            lastname = Sc.nextLine();
-        }
-
-        System.out.println("Password : ");
-        String password = Sc.nextLine();
-        while (lastname.equals("")) {
-            System.out.println("Password must not null");
-            System.out.println("Password : ");
-            password = Sc.nextLine();
-        }
-        System.out.println("Phone : ");
-
-        long phone = Sc.nextLong();
-        AccountStatus status = AccountStatus.EMPLOYEE;
-
-        if (firstname == null || lastname == null || password == null) {
-            System.out.println("NULL are prohibited");
-            CreateEmployeesAccount();
-        }
-
-        String id = String.format("EMP0%d", (count + 1));
-
-        EmployeeAccount employee = new EmployeeAccount(id, firstname, lastname, password, phone, status);
-
-        return employee;
-    }
-
-    public static EmployeeAccount EditdataEmployeesAccount() {
-
-        int count = 0;
-
-        System.out.println("----Edit EmployeesAccount----");
-        System.out.println("ID :");
-        String id = Sc.next();
-        Sc.nextLine();
-
-        System.out.println("Firstname : ");
-        String firstname = Sc.nextLine();
-        while (firstname.equals("")) {
-            System.out.println("firstname must not null");
-            System.out.println("Firstname : ");
-            firstname = Sc.nextLine();
-        }
-
-        System.out.println("Lastname : ");
-        String lastname = Sc.nextLine();
-        while (lastname.equals("")) {
-            System.out.println("Lastname must not null");
-            System.out.println("Lastname : ");
-            lastname = Sc.nextLine();
-        }
-
-        System.out.println("Password : ");
-        String password = Sc.nextLine();
-        while (lastname.equals("")) {
-            System.out.println("Password must not null");
-            System.out.println("Password : ");
-            password = Sc.nextLine();
-        }
-        System.out.println("Phone : ");
-        long phone = Sc.nextLong();
-
-        AccountStatus status = AccountStatus.EMPLOYEE;
-
-        if (id.equals("") || firstname.equals("") || lastname.equals("") || password.equals("")) {
-            System.out.println("NULL are prohibited");
-            EditdataEmployeesAccount();
-        }
-
-        EmployeeAccount employee = new EmployeeAccount(id, firstname, lastname, password, phone, status);
-
-        return employee;
-    }
+    
 
     //-------------------MenuManager--------------------------------
     //------------------MenuEmployee------------------------------
     public static boolean Employeelogin() {
-        System.out.println("----Login Manager----");
+        System.out.println("----Login Employee----");
         System.out.println("Name :");
         String id = Sc.nextLine();
         Sc.nextLine();
@@ -430,84 +339,6 @@ public class MainMenu {
         return false;
     }
 
-    public static MemberAccount CreateMember() {
-        int count = 0;
-        System.out.println("----Creat Mamber----");
-        System.out.println("Firstname : ");
-        Sc.nextLine();
-        String firstname = Sc.nextLine();
-
-        while (firstname.equals("")) {
-            System.out.println("firstname must not null");
-            System.out.println("Firstname : ");
-            firstname = Sc.nextLine();
-        }
-
-        System.out.println("Lastname : ");
-        String lastname = Sc.nextLine();
-
-        while (firstname.equals("")) {
-            System.out.println("Lastname must not null");
-            System.out.println("Lastname : ");
-            lastname = Sc.nextLine();
-        }
-
-        System.out.println("Password : ");
-        String password = Sc.nextLine();
-        while (lastname.equals("")) {
-            System.out.println("Password must not null");
-            System.out.println("Password : ");
-            password = Sc.nextLine();
-        }
-
-        System.out.println("Phone : ");
-        long phone = Sc.nextLong();
-
-        AccountStatus status = AccountStatus.MEMBER;
-        AccountMovieStatus acstatus = AccountMovieStatus.ACTIVEB;
-        if (firstname == "" || lastname == "" || password == "") {
-            System.out.println("NULL are prohibited");
-            CreateMember();
-        }
-
-        String id = String.format("MEM0%d", (count + 1));
-
-        MemberAccount member = new MemberAccount(id, firstname, lastname, password, phone, status, acstatus);
-
-        return member;
-    }
-
-    public static Movie AddMovie() {
-        int count = 0;
-
-        System.out.println("MovieTitle : ");
-        Sc.nextLine();
-        String movieTitle = Sc.nextLine();
-        while (movieTitle.equals("")) {
-            System.out.println("Movietitle must not null");
-            System.out.println("Movietitle : ");
-            movieTitle = Sc.nextLine();
-        }
-
-        System.out.println("PremiumStatus : ");
-        int premiumStatus = Sc.nextInt();
-        while (movieTitle.equals("")) {
-            System.out.println("PremiumStatus must not null");
-            System.out.println("PremiumStatus : ");
-            premiumStatus = Sc.nextInt();
-        }
-        MovieStatus mos = MovieStatus.Available;
-
-        if (movieTitle == null) {
-            System.out.println("NULL are prohibited");
-            AddMovie();
-        }
-
-        String id = String.format("MOV0%d", (count + 1));
-
-        Movie newMovie = new Movie(id, movieTitle, premiumStatus, mos);
-
-        return newMovie;
-    }
-
+    
+    
 }

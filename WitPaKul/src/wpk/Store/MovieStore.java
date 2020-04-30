@@ -48,8 +48,8 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         }
     }
 
-    public void SetEmployeesinStore(String EMPid, String Password) {
-        if (Service.checkEmployeesByID(EMPid).getId().equals(EMPid) && Service.checkEmployeesByID(EMPid).getPassword().equals(Password)) {
+    public void SetEmployeesinStore(String EMPid) {
+        if (Service.checkEmployeesByID(EMPid).getId().equals(EMPid)) {
             this.employeeInstore = this.Service.checkEmployeesByID(EMPid);
             System.out.println("Complete");
         } else {
@@ -71,32 +71,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
     }
 
-//    public boolean AddMovie(String EMPid, String movieTitle, int premiumStatus, MovieStatus mos) {
-//
-//        if (movieTitle == null || mos == null) {
-//            System.out.println("NULL are prohibited");
-//        }
-//
-//        if (EMPid == null) {
-//            System.out.println("NULL are prohibited");
-//        }
-//        if (premiumStatus == 1 || premiumStatus == 0) {
-//
-//            if (EMPid.equals(this.employeeInstore.getId())) {
-//                String MovieID = String.format("MOV0%d", countMovie + 1);
-//                Movie newMovie = new Movie(MovieID, movieTitle, premiumStatus, mos);
-//                if (checkMovie(MovieID) == -1 && countMovie < cdStoreMovie.length) {
-//                    this.cdStoreMovie[countMovie++] = newMovie;
-//                    System.out.println("successfully created");
-//                    return true;
-//
-//                } else {
-//                    System.out.println("failed to create data");
-//                }
-//            }
-//        }
-//        return true;
-//    }
+
     public boolean AddMovie(Movie newMovie) {
 
         if (checkMovie(newMovie.getMovield()) == -1 && countMovie < cdStoreMovie.length) {
@@ -201,13 +176,13 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     }
 
     //Delete Part
-    public boolean DeleteMovie(String EMPid, String movieID) {
-        if (EMPid == null || movieID == null) {
+    public boolean DeleteMovie(String movieID) {
+        if (movieID == null) {
             System.out.println("NULL are prohibited");
 
             return false;
         }
-        if (EMPid.equals(this.employeeInstore.getId()) && checkMovie(movieID) != -1) {
+        if (checkMovie(movieID) != -1) {
             for (int i = 0; i < countMovie; i++) {
                 if (checkMovie(movieID) == i) {
 
@@ -246,14 +221,14 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         return false;
     }
 
-    public boolean DeleteMember(String EMPid, String memberID) {
+    public boolean DeleteMember(String memberID) {
 
-        if (EMPid == null || memberID == null) {
+        if ( memberID == null) {
             System.out.println("NULL are prohibited");
 
             return false;
         }
-        if (EMPid.equals(this.employeeInstore.getId()) && checkMember(memberID) != -1) {
+        if ( checkMember(memberID) != -1) {
             for (int i = 0; i < countmember; i++) {
                 if (checkMember(memberID) == i) {
 
@@ -304,7 +279,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         return checkoutMOvie;
     }
 
-    public boolean CheckoutMovieMember(String memberId, String movieID) {
+    public boolean CheckoutMovie(String memberId, String movieID) {
         if (memberId == null || movieID == null) {
             System.out.println("NULL are prohibited");
             return false;

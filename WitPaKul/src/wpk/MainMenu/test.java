@@ -1,4 +1,4 @@
-package Test;
+package wpk.MainMenu;
 
 import wpk.Store.MovieStore;
 import wpk.Enum.AccountStatus;
@@ -27,14 +27,14 @@ public class test {
         //  Desktop.EditData_Employees("EMP100", "EMP01", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
         MovieStore miStore = new MovieStore("WitPaKul", 50, 50, 50, 50, 50, "EMP02");
         miStore.SetService(Desktop);
-        miStore.SetEmployeesinStore("EMP02", "password");
+       // miStore.SetEmployeesinStore("EMP02", "password");
 
         //miStore.ListMembers();
         // miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);//0
         //  miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);//1
         // miStore.AddMovie("EMP02", "movieTitle", 1, MovieStatus.Available);//2
         //miStore.ListMovieborrow();
-        miStore.CheckoutMovieMember("MEM02", "MOV01");
+      //  miStore.CheckoutMovieMember("MEM02", "MOV01");
         // miStore.CheckoutMovieMember("MEM02", "MOV02");
         //  miStore.CheckoutMovieMember("MEM02", "MOV03");
         miStore.ListMovieborrow();

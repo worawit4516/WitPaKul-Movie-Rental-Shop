@@ -15,23 +15,23 @@ public interface EmployeeService {
 
     public void SetService(ManagerService Service);
 
-    public void SetEmployeesinStore(String EMPid ,String Password);
+    public void SetEmployeesinStore(String EMPid );
    
 //ตรงนี้
     
-    public boolean CreateMember(MemberAccount newmember);
+    public boolean CreateMember(MemberAccount newmember);//
 
-    public boolean AddMovie(Movie newMovie);
+    public boolean AddMovie(Movie newMovie);//
 
-    public boolean EditData_Member(String id, String MemberID, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus);
+    public boolean EditData_Member(String id, String MemberID, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus);//
 
     public int SearchMovie(String movieTitle);
 
     public int SearchMember(String MemberID);
 
-    public boolean DeleteMovie(String id, String movieID);
+    public boolean DeleteMovie( String movieID);
 
-    public boolean DeleteMember(String id, String memberID);
+    public boolean DeleteMember( String memberID);
 
     public int ListMembers();
 
