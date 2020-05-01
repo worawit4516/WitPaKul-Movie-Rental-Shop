@@ -85,7 +85,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
         return true;
     }
-
+/*
     public boolean EditData_Member(String EMPid, String MemberID, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus) {
         if (firstname == null || lastname == null || password == null || status == null || acstatus == null) {
             System.out.println("NULL are prohibited");
@@ -110,7 +110,33 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         return true;
 
     }
+*/
+    
+    public boolean EditData_Member(MemberAccount MB) {
+      
+        String id = MB.getId();
+        String firstname = MB.getFirstname();
+        String lastname = MB.getLastname();
+        String password = MB.getPassword();
+        long phone = MB.getPhone();
+        AccountStatus status = MB.getStatus();
 
+        
+        
+            for (int i = 0; i < countmember; i++) {
+                if (member[i].getId().equals(id)) {
+                    member[i].editDataMember(firstname, lastname, password, phone, status, AccountMovieStatus.ACTIVEB);
+                    System.out.println("Complete");
+                }
+            }
+
+     
+            System.out.println("404 data not found");
+        
+        return true;
+
+    }
+    
     //Search Part
     public int SearchMovie(String movieTitle) {
         if (movieTitle == null) {
@@ -176,6 +202,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     }
 
     //Delete Part
+    /*
     public boolean DeleteMovie(String movieID) {
         if (movieID == null) {
             System.out.println("NULL are prohibited");
@@ -198,29 +225,10 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         }
         return false;
     }
-
-    private boolean DeleteBorrowMovie(String movieBorrowID) {
-        if (movieBorrowID == null) {
-            System.out.println("NULL are prohibited");
-
-            return false;
-        }
-
-        for (int i = 0; i < countMovieborrowing; i++) {
-            if (checkMovieBorrow(movieBorrowID) == i) {
-
-                for (int j = i + 1; j < countMovieborrowing; j++) {
-                    cdStoreBorrowingMovie[i] = cdStoreBorrowingMovie[j];
-                }
-                cdStoreBorrowingMovie[--countMovieborrowing] = null;
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
+    */
+    
+    
+/*
     public boolean DeleteMember(String memberID) {
 
         if ( memberID == null) {
@@ -245,6 +253,39 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         return false;
 
     }
+    */
+    //-----------
+    public boolean DeleteMember(String memberID) {
+    if (check(memberID) != -1) {
+            for (int i = check(memberID); i < countmember; i++) {
+                // EmployeeAccount employeeAccount = employee[i];
+                if (i == countmember - 1) {
+                    member[i] = null;
+                    System.out.println("succeed");
+
+                } else {
+                     member[i] =  member[i + 1];
+                }
+
+            }
+             countmember--;
+            return true;
+        }
+        System.out.println("404 data not found");
+        return false;
+    }
+private int check(String id) {
+        if (id != null) {
+            for (int i = 0; i < countmember; i++) {
+                if (member[i].getId() == null ? id == null : member[i].getId().equals(id)) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+
+    }
+//---------
 
     //MovieService Code part//
     private MovieBorrowing checkOutMovieinstore(String memberId, String movieID) {
@@ -498,5 +539,45 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             e.printStackTrace();
         }
     }
+public boolean DeleteMovie(String movieID){
+ if (checkMovie(movieID) != -1) {
+            for (int i = checkMovie(movieID); i < countMovie; i++) {
+                // EmployeeAccount employeeAccount = employee[i];
+                if (i == countMovie - 1) {
+                    cdStoreMovie[i] = null;
+                    System.out.println("succeed");
 
+                } else {
+                     cdStoreMovie[i] = cdStoreMovie[i + 1];
+                }
+
+            }
+             countMovie--;
+            return true;
+        }
+        System.out.println("404 data not found");
+        return false;
+    }
+ 
+    private boolean DeleteBorrowMovie(String movieBorrowID) {
+        if (movieBorrowID == null) {
+            System.out.println("NULL are prohibited");
+
+            return false;
+        }
+
+        for (int i = 0; i < countMovieborrowing; i++) {
+            if (checkMovieBorrow(movieBorrowID) == i) {
+
+                for (int j = i + 1; j < countMovieborrowing; j++) {
+                    cdStoreBorrowingMovie[i] = cdStoreBorrowingMovie[j];
+                }
+                cdStoreBorrowingMovie[--countMovieborrowing] = null;
+
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

@@ -16,6 +16,7 @@ import wpk.Enum.MovieStatus;
 import java.util.Scanner;
 import wpk.MainMenu.MainMenu;
 import static wpk.MainMenu.MainMenu.Sc;
+import wpk.MenuMethod.MM_Employees;
 import wpk.Movie.Movie;
 import wpk.account.ManagerAccount;
 import wpk.account.Account;
@@ -32,7 +33,6 @@ public class MainMenu {
     //private String Mpassword = "1";
 
     static String menu
-
             = "<<< Menu >>>\n"
             + "Store System \n"
             + "1.Manager  \n"
@@ -47,7 +47,7 @@ public class MainMenu {
             + "2.EditData_Employees\n"
             + "3.SearchEmployees\n"
             + "4.ListEmployees\n"
-            + "5.DeleteEmployees\n"   
+            + "5.DeleteEmployees\n"
             + "0...Return to the menu...\n"
             + "-------------------"
             + "\nEnter Your Menu [1‐6]: ";
@@ -95,10 +95,11 @@ public class MainMenu {
         Desktop.ManagerServiceLogin("EMP00", "password");
         MovieStore WPK = new MovieStore("WitPaKul", 50, 50, 50, 50, 50, "EMP02");
         MM_Manager me = new MM_Manager();
-
+        MM_Employees em = new MM_Employees();
         int select;
         do {
             select = SeChoice();
+
             switch (select) {
                 case 1:
                     // Desktop.CreateEmployeesAccount(CreateEmployeesAccount());
@@ -117,27 +118,28 @@ public class MainMenu {
                                 Desktop.SearchEmployees(MM_Manager.SearchEmployees());
                                 break;
                             case 4://ListEmployees เอริส
-                                 Desktop.ListEmployees();
+                                Desktop.ListEmployees();
                                 break;
                             case 5://DeleteEmployee เอริส
-                                  Desktop.DeleteEmployees(MM_Manager.DeleteEmployees());
+                                Desktop.DeleteEmployees(MM_Manager.DeleteEmployees());
                                 break;
-                           
+
                             case 0:
-                                while (select == 0 );
+                                while (select == 0);
                                 System.out.println("Bye");
 
                                 break;
 
                         }
-                        if (SeChoiceManager() > 5 ) {
+                        while(SeChoiceManager() > 5) {
+                            
                             break;
                         }
 
                         // }while (select != 0);
-                        //     System.out.println("Bye");
+                        //     System.out.pr2intln("Bye");
                     }
-                    
+
                     break;
 
                 case 2:
@@ -147,16 +149,17 @@ public class MainMenu {
 
                                 switch (SeChoiceEmployeesMember()) {
                                     case 1://CreateMember
-                                        WPK.CreateMember(MM_Manager.CreateMember());
+                                        WPK.CreateMember(MM_Employees.CreateMember());
                                         break;
                                     case 2://EditData_Member
-
+                                        WPK.EditData_Member(MM_Employees.EditData_Member());
                                         break;
 
                                     case 3://SearchMember
+                                        WPK.SearchMember(MM_Employees.SearchMember());
                                         break;
                                     case 4://DeleteMember
-
+                                        WPK.DeleteMember(MM_Employees.DeleteMember());
                                         break;
 
                                     case 5://ListMembers
@@ -168,28 +171,34 @@ public class MainMenu {
                                     case 7://CheckForFine เอริส
 
                                         break;
+
+                                    case 0:
+                                        while (select == 0);
+                                        System.out.println("Bye");
+
+                                        break;
                                 }
                                 break;
 
                             case 2:
                                 switch (SeChoiceEmployeesMovie()) {
                                     case 1://AddMovie
-                                        WPK.AddMovie(MM_Manager.AddMovie());
+                                        WPK.AddMovie(MM_Employees.AddMovie());
                                         break;
                                     case 2://SearchMovie
-
+                                        WPK.SearchMovie(MM_Employees.SearchMovie());
                                         break;
                                     case 3://DeleteMovie
-
+                                        WPK.DeleteMovie(MM_Employees.DeleteMovie());
                                         break;
                                     case 4://ListMovie
-
+                                        WPK.ListMovie();
                                         break;
                                     case 5://ListMovieborrow
-
+                                        WPK.ListMovieborrow();
                                         break;
 
-                                    case 6://CheckoutMovieMember เอริส
+                                    case 6://CheckoutMovieเอริส
 
                                         break;
                                     case 7://returnMovie เอริส
@@ -203,11 +212,12 @@ public class MainMenu {
                                 System.out.println("Bye");
 
                                 break;
+
+                        }
+                        if (SeChoiceEmployees() > 9) {
+                            break;
                         }
                     }
-
-                    break;
-                case 3:
 
             }
         } while (select != 0);
@@ -319,8 +329,6 @@ public class MainMenu {
         
         return false;
     }*/
-    
-
     //-------------------MenuManager--------------------------------
     //------------------MenuEmployee------------------------------
     public static boolean Employeelogin() {
@@ -339,6 +347,4 @@ public class MainMenu {
         return false;
     }
 
-    
-    
 }

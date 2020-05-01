@@ -23,7 +23,7 @@ public interface EmployeeService {
 
     public boolean AddMovie(Movie newMovie);//
 
-    public boolean EditData_Member(String id, String MemberID, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus);//
+    public boolean EditData_Member(MemberAccount MB);//
 
     public int SearchMovie(String movieTitle);
 
