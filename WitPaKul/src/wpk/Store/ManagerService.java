@@ -23,7 +23,8 @@ public class ManagerService {
     public boolean ManagerServiceLogin(String ManagerID, String Password) {
         if (manager.getId().equals(ManagerID) && manager.getPassword().equals(Password)) {
             System.out.println("Login Complete");
-
+            System.out.println("Welcome Manager");
+             
             return true;
         }
         System.out.println("failed to login");
@@ -163,4 +164,11 @@ public class ManagerService {
     public String checkmanager() {
         return manager.toString();
     }
+
+    public ManagerAccount getManager() {
+        return manager;
+    }
+    
+    
 }
+

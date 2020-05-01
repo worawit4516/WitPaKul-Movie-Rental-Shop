@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package wpk.MenuMethod;
-
 import static wpk.MainMenu.MainMenu.Sc;
-import wpk.Enum.AccountMovieStatus;
 import wpk.Enum.AccountStatus;
-import wpk.Enum.MovieStatus;
-import wpk.Movie.Movie;
 import wpk.account.EmployeeAccount;
-import wpk.account.MemberAccount;
 
 /**
  *
@@ -110,33 +100,7 @@ public class MM_Manager {
         return employee;
     }
 
-    public static String SearchEmployees() {
-
-        System.out.println("----Employees ID----");
-        System.out.println("ID : ");
-        Sc.nextLine();
-        String id = Sc.nextLine();
-        return id;
-
-    }
-
-    public static String DeleteEmployees() {
-
-        System.out.println("----Employees ID----");
-        System.out.println("ID : ");
-        Sc.nextLine();
-        String id = Sc.nextLine();
-        while (id.equals("")) {
-            System.out.println("Employees ID must not null");
-            System.out.println("Employees ID : ");
-            id = Sc.nextLine();
-        }
-       
-        return id;
-
-    }
-
-    public static String checkEmployees() {
+    public static String InputEmployeesID() {
 
         System.out.println("----Employees ID----");
         System.out.println("ID : ");
@@ -153,6 +117,4 @@ public class MM_Manager {
     }
 
     //-------------------MenuManager--------------------------------
-    
-
 }

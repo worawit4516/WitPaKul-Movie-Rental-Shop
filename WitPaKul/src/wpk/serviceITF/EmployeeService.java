@@ -15,7 +15,7 @@ public interface EmployeeService {
 
     public void SetService(ManagerService Service);
 
-    public void SetEmployeesinStore(String EMPid );
+    public boolean LoginEmployeesinStore(String EMPid,String password);
    
 //ตรงนี้
     
@@ -28,6 +28,8 @@ public interface EmployeeService {
     public int SearchMovie(String movieTitle);
 
     public int SearchMember(String MemberID);
+    
+    public int SearchMovieBorrowinstore(String movieID); 
 
     public boolean DeleteMovie( String movieID);
 
@@ -38,5 +40,7 @@ public interface EmployeeService {
     public int ListMovie();
 
     public int ListMovieborrow();
+    
+    public void CreateReceipts(String Memberid);
 
 }

@@ -1,36 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package wpk.MainMenu;
 
-import java.util.Scanner;
 import wpk.MenuMethod.MM_Manager;
 import wpk.Store.MovieStore;
 import wpk.Enum.AccountStatus;
 import wpk.Store.ManagerService;
-import wpk.account.ManagerAccount;
-import wpk.Enum.AccountMovieStatus;
-import wpk.Enum.MovieStatus;
 import java.util.Scanner;
-import wpk.MainMenu.MainMenu;
 import static wpk.MainMenu.MainMenu.Sc;
 import wpk.MenuMethod.MM_Employees;
-import wpk.Movie.Movie;
 import wpk.account.ManagerAccount;
-import wpk.account.Account;
-import wpk.account.EmployeeAccount;
-import wpk.account.MemberAccount;
 
-/**
- *
- * @author user
- */
-//123
 public class MainMenu {
-//private String Mid = "1";
-    //private String Mpassword = "1";
 
     static String menu
             = "<<< Menu >>>\n"
@@ -90,12 +69,10 @@ public class MainMenu {
 
     public static void main(String[] args) {
 
-        ManagerAccount m1 = new ManagerAccount("EMP00", "firstname", "lastname", "password", 05254, AccountStatus.MANAGER);
+        ManagerAccount m1 = new ManagerAccount("EMP00", "firstname", "lastname", "4516", 05254, AccountStatus.MANAGER);
         ManagerService Desktop = new ManagerService(5, m1);
-        Desktop.ManagerServiceLogin("EMP00", "password");
         MovieStore WPK = new MovieStore("WitPaKul", 50, 50, 50, 50, 50, "EMP02");
-        MM_Manager me = new MM_Manager();
-        MM_Employees em = new MM_Employees();
+        WPK.SetService(Desktop);
         int select;
         do {
             select = SeChoice();
@@ -103,156 +80,133 @@ public class MainMenu {
             switch (select) {
                 case 1:
                     // Desktop.CreateEmployeesAccount(CreateEmployeesAccount());
-                    if (Managerlogin()) {
+                    if (Desktop.ManagerServiceLogin(loginID(),loginPassaword())) {
                         //do{
-                        switch (SeChoiceManager()) {
-                            case 1://CreateEmployeesAccount
-                                Desktop.CreateEmployeesAccount(MM_Manager.CreateEmployeesAccount());
 
-                                break;
+                        do {
 
-                            case 2://EditData_Employees
-                                Desktop.EditData_Employees(MM_Manager.EditdataEmployeesAccount());
-                                break;
-                            case 3://SearchEmployees เอริส
-                                Desktop.SearchEmployees(MM_Manager.SearchEmployees());
-                                break;
-                            case 4://ListEmployees เอริส
-                                Desktop.ListEmployees();
-                                break;
-                            case 5://DeleteEmployee เอริส
-                                Desktop.DeleteEmployees(MM_Manager.DeleteEmployees());
-                                break;
+                            switch (SeChoiceManager()) {
+                                case 1://CreateEmployeesAccount
+                                    Desktop.CreateEmployeesAccount(MM_Manager.CreateEmployeesAccount());
+                                    break;
 
-                            case 0:
-                                while (select == 0);
-                                System.out.println("Bye");
+                                case 2://EditData_Employees
+                                    Desktop.EditData_Employees(MM_Manager.EditdataEmployeesAccount());
+                                    break;
+                                case 3://SearchEmployees เอริส
+                                    Desktop.SearchEmployees(MM_Manager.InputEmployeesID());
+                                    break;
+                                case 4://ListEmployees เอริส
+                                    Desktop.ListEmployees();
+                                    break;
+                                case 5://DeleteEmployee เอริส
+                                    Desktop.DeleteEmployees(MM_Manager.InputEmployeesID());
+                                    break;
 
-                                break;
-
-                        }
-                        while(SeChoiceManager() > 5) {
-                            
-                            break;
-                        }
-
-                        // }while (select != 0);
-                        //     System.out.pr2intln("Bye");
+                                case 0:
+                                    while (select == 0);
+                                    System.out.println("Bye");
+                                    break;
+                            }
+                          
+                        } while (SeChoiceManager() != 0);
                     }
-
                     break;
 
                 case 2:
-                    if (Employeelogin()) {
-                        switch (SeChoiceEmployees()) {
-                            case 1:
+                    if (WPK.LoginEmployeesinStore(loginID(),loginPassaword())) {
+                        do {
 
-                                switch (SeChoiceEmployeesMember()) {
-                                    case 1://CreateMember
-                                        WPK.CreateMember(MM_Employees.CreateMember());
-                                        break;
-                                    case 2://EditData_Member
-                                        WPK.EditData_Member(MM_Employees.EditData_Member());
-                                        break;
+                            switch (SeChoiceEmployees()) {
+                                case 1:
+                                    do {
 
-                                    case 3://SearchMember
-                                        WPK.SearchMember(MM_Employees.SearchMember());
-                                        break;
-                                    case 4://DeleteMember
-                                        WPK.DeleteMember(MM_Employees.DeleteMember());
-                                        break;
+                                        switch (SeChoiceEmployeesMember()) {
+                                            case 1://CreateMember
+                                                WPK.CreateMember(MM_Employees.CreateMember());
+                                                break;
+                                            case 2://EditData_Member
+                                                WPK.EditData_Member(MM_Employees.EditData_Member());
+                                                break;
 
-                                    case 5://ListMembers
-                                        WPK.ListMembers();
-                                        break;
-                                    case 6://ListMemberBorrowingList 
+                                            case 3://SearchMember
+                                                WPK.SearchMember(MM_Employees.InputMemberID());
+                                                break;
+                                            case 4://DeleteMember
+                                                WPK.DeleteMember(MM_Employees.InputMemberID());
+                                                break;
 
-                                        break;
-                                    case 7://CheckForFine เอริส
+                                            case 5://ListMembers
+                                                WPK.ListMembers();
+                                                break;
+                                            case 6://ListMemberBorrowingList 
+                                                WPK.ListMemberBorrowingList(MM_Employees.InputMemberID());
+                                                break;
+                                            case 7://CheckForFine เอริส
+                                                WPK.CheckForFine(MM_Employees.InputMemberIDFor(), MM_Employees.InputMovieIDFor());
+                                                break;
 
-                                        break;
+                                            case 0:
+                                                while (select == 0);
+                                                System.out.println("Bye");
 
-                                    case 0:
-                                        while (select == 0);
-                                        System.out.println("Bye");
-
+                                                break;
+                                        }
                                         break;
-                                }
-                                break;
+                                    } while (SeChoiceEmployeesMember() != 0);
 
-                            case 2:
-                                switch (SeChoiceEmployeesMovie()) {
-                                    case 1://AddMovie
-                                        WPK.AddMovie(MM_Employees.AddMovie());
-                                        break;
-                                    case 2://SearchMovie
-                                        WPK.SearchMovie(MM_Employees.SearchMovie());
-                                        break;
-                                    case 3://DeleteMovie
-                                        WPK.DeleteMovie(MM_Employees.DeleteMovie());
-                                        break;
-                                    case 4://ListMovie
-                                        WPK.ListMovie();
-                                        break;
-                                    case 5://ListMovieborrow
-                                        WPK.ListMovieborrow();
-                                        break;
+                                    break;
 
-                                    case 6://CheckoutMovieเอริส
+                                case 2:
+                                    do {
 
+                                        switch (SeChoiceEmployeesMovie()) {
+                                            case 1://AddMovie
+                                                WPK.AddMovie(MM_Employees.AddMovie());
+                                                break;
+                                            case 2://SearchMovie
+                                                WPK.SearchMovie(MM_Employees.InputMemberID());
+                                                break;
+                                            case 3://DeleteMovie
+                                                WPK.DeleteMovie(MM_Employees.InputMovieID());
+                                                break;
+                                            case 4://ListMovie
+                                                WPK.ListMovie();
+                                                break;
+                                            case 5://ListMovieborrow
+                                                WPK.ListMovieborrow();
+                                                break;
+
+                                            case 6://CheckoutMovieเอริส
+                                                WPK.CheckoutMovie(MM_Employees.InputMemberIDFor(), MM_Employees.InputMovieIDFor());
+                                                break;
+                                            case 7://returnMovie เอริส
+                                                WPK.returnMovie(MM_Employees.InputMemberIDFor(), MM_Employees.InputMovieBorrowID());
+                                                break;
+
+                                            case 0:
+                                                while (select == 0);
+                                                System.out.println("Bye");
+                                                break;
+                                        }
                                         break;
-                                    case 7://returnMovie เอริส
+                                    } while (SeChoiceEmployeesMovie() != 0);
+                                    break;
+                                case 0:
+                                    while (select == 0);
+                                    System.out.println("Bye");
+                                    break;
 
-                                        break;
-                                }
-                                break;
+                            }
 
-                            case 0:
-                                while (select == 0);
-                                System.out.println("Bye");
+                        } while (SeChoiceEmployees() != 0);
 
-                                break;
-
-                        }
-                        if (SeChoiceEmployees() > 9) {
-                            break;
-                        }
                     }
 
             }
         } while (select != 0);
         System.out.println("Good by");
 
-        /* do {
-            select = SeChoiceManager();
-            switch (select) {
-                case 1:
-                    Desktop.CreateEmployeesAccount(CreateEmployeesAccount());
-
-                case 2:
-                    Desktop.EditData_Employees(EditdataEmployeesAccount());
-                    //employeesใช้
-                    //Employeeslogin
-                    break;
-
-        
-                case 3:
-                    Desktop.ListEmployees();
-
-                    break;
-                case 4:
-
-                    break;
-                case 5:
-
-                    break;
-                case 6:
-
-                    break;
-            }
-        } while (select != 0);
-        System.out.println("Good by");
-         */
     }
 
     public static int SeChoice() {
@@ -266,6 +220,12 @@ public class MainMenu {
         System.out.print("\n----------------------------\n");
         System.out.print(menuManager);
         int select = Sc.nextInt();
+        if (select > 5) {
+            do {
+                select = SeChoiceManager();
+            } while (select > 5);
+
+        }
         return select;//Integer.parseInt(input.nextLine());
     }
 
@@ -273,6 +233,12 @@ public class MainMenu {
         System.out.print("\n----------------------------\n");
         System.out.print(menuEmployee);
         int select = Sc.nextInt();
+        if (select > 2) {
+
+            do {
+                select = SeChoiceEmployees();
+            } while (select > 2);
+        }
         return select;//Integer.parseInt(input.nextLine());
     }
 
@@ -280,6 +246,12 @@ public class MainMenu {
         System.out.print("\n----------------------------\n");
         System.out.print(menuEmployeeMember);
         int select = Sc.nextInt();
+        if (select > 7) {
+
+            do {
+                select = SeChoiceEmployeesMember();
+            } while (select > 7);
+        }
         return select;//Integer.parseInt(input.nextLine());
     }
 
@@ -287,64 +259,47 @@ public class MainMenu {
         System.out.print("\n----------------------------\n");
         System.out.print(menuEmployeeMovie);
         int select = Sc.nextInt();
+        if (select > 7) {
+
+            do {
+                select = SeChoiceEmployeesMovie();
+            } while (select > 7);
+        }
         return select;//Integer.parseInt(input.nextLine());
     }
 
     //----------------------MenuManager-------------------
-    public void Mnlogin() {
-        while (Managerlogin() == false) {
-            System.out.println("Wrong code.... Request to enter a new code correctly.");
+//    public void Mnlogin() {
+//        while (Managerlogin() == false) {
+//            System.out.println("Wrong code.... Request to enter a new code correctly.");
+//        }
+//    }
+    public static String loginID() {
+        System.out.println("----Login----");
+        System.out.println("ID :");
+        Sc.nextLine();
+        String id = Sc.nextLine();
+        while (id.equals(null)) {
+            System.out.println("ID must not null");
+            System.out.println("ID : ");
+            id = Sc.nextLine();
         }
+        return id;
     }
 
-    public static boolean Managerlogin() {
-        System.out.println("----Login Manager----");
-        System.out.println("Name :");
-        String id = Sc.nextLine();
-        Sc.nextLine();
+    public static String loginPassaword() {
         System.out.println("Password :");
         String password = Sc.nextLine();
-
-        if (id.equals(id) && password.equals(password)) {
-            System.out.println("OK GO");
-            return true;
-
+        while (password.equals(null)) {
+            System.out.println("Password must not null");
+            System.out.println("Password: ");
+            password = Sc.nextLine();
         }
-
-        return false;
+        return password;
     }
 
-    /*} public   boolean Managerlogin() {
-        System.out.println("----Login Manager----");
-        System.out.println("Name :");
-        String ids = Sc.nextLine();
-        System.out.println("Password :");
-        String passwords = Sc.nextLine();
-
-        if (this.Mid.equals(ids) && this.Mpassword.equals(passwords)) {
-
-            return true;
-
-        }
-        
-        return false;
-    }*/
     //-------------------MenuManager--------------------------------
     //------------------MenuEmployee------------------------------
-    public static boolean Employeelogin() {
-        System.out.println("----Login Employee----");
-        System.out.println("Name :");
-        String id = Sc.nextLine();
-        Sc.nextLine();
-        System.out.println("Password :");
-        String password = Sc.nextLine();
-
-        if (id.equals(id) && password.equals(password)) {
-            System.out.println("OK GO");
-            return true;
-
-        }
-        return false;
-    }
+   
 
 }

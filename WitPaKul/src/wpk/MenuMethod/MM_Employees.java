@@ -10,7 +10,6 @@ import wpk.Enum.AccountStatus;
 import wpk.Enum.MovieStatus;
 import static wpk.MainMenu.MainMenu.Sc;
 import wpk.Movie.Movie;
-import wpk.account.EmployeeAccount;
 import wpk.account.MemberAccount;
 
 /**
@@ -18,6 +17,7 @@ import wpk.account.MemberAccount;
  * @author Earty
  */
 public class MM_Employees {
+
     public static MemberAccount CreateMember() {
         int count = 0;
         System.out.println("----Creat Mamber----");
@@ -64,6 +64,7 @@ public class MM_Employees {
 
         return member;
     }
+
     //
     public static MemberAccount EditData_Member() {
 
@@ -110,33 +111,9 @@ public class MM_Employees {
         return member;
     }
     //-----------
-    public static String SearchMember() {
 
-        System.out.println("----Member ID----");
-        System.out.println("ID : ");
-        Sc.nextLine();
-        String id = Sc.nextLine();
-        return id;
-
-    }
-    public static String DeleteMember() {
-
-        System.out.println("----Member ID----");
-        System.out.println("ID : ");
-        Sc.nextLine();
-        String id = Sc.nextLine();
-        while (id.equals("")) {
-            System.out.println("Member ID must not null");
-            System.out.println("Member ID : ");
-            id = Sc.nextLine();
-        }
-       
-        return id;//ของMemberมันคือ memberID ??
-
-    }
-    
     //-----------MenuEmployeeMovie------------
-       public static Movie AddMovie() {
+    public static Movie AddMovie() {
         int count = 0;
 
         System.out.println("MovieTitle : ");
@@ -168,16 +145,8 @@ public class MM_Employees {
 
         return newMovie;
     }
-    public static String SearchMovie() {
 
-        System.out.println("----Movie ID----");
-        System.out.println("ID : ");
-        Sc.nextLine();
-        String id = Sc.nextLine();
-        return id;
-
-    }
-          public static String DeleteMovie() {
+    public static String InputMovieID() {
 
         System.out.println("----Movie ID----");
         System.out.println("ID : ");
@@ -188,8 +157,71 @@ public class MM_Employees {
             System.out.println("Movie ID : ");
             id = Sc.nextLine();
         }
-       
-        return id;//ของMemberมันคือ memberID ??
+
+        return id;//ของMemberมันคือ MovieID 
 
     }
+
+    public static String InputMovieBorrowID() {
+
+        System.out.println("----MovieBorrow ID----");
+        System.out.println("ID : ");
+        String id = Sc.nextLine();
+        while (id.equals("")) {
+            System.out.println("MovieBorrow ID must not null");
+            System.out.println("MovieBorrow ID : ");
+            id = Sc.nextLine();
+        }
+
+        return id;//ของMemberมันคือ MovieID 
+
+    }
+
+    public static String InputMemberID() {
+
+        System.out.println("----Member ID----");
+        System.out.println("ID : ");
+        Sc.nextLine();
+        String id = Sc.nextLine();
+        while (id.equals("")) {
+            System.out.println("Member ID must not null");
+            System.out.println("Member ID : ");
+            id = Sc.nextLine();
+        }
+
+        return id;//ของMemberมันคือ memberID 
+
+    }
+
+    public static String InputMemberIDFor() {
+
+        System.out.println("----Member ID----");
+        System.out.println("ID : ");
+        Sc.nextLine();
+        String id = Sc.nextLine();
+        while (id.equals("")) {
+            System.out.println("Member ID must not null");
+            System.out.println("Member ID : ");
+            id = Sc.nextLine();
+        }
+
+        return id;//ของMemberมันคือ memberID 
+
+    }
+
+    public static String InputMovieIDFor() {
+
+        System.out.println("----Movie ID----");
+        System.out.println("ID : ");
+        String id = Sc.nextLine();
+        while (id.equals("")) {
+            System.out.println("Movie ID must not null");
+            System.out.println("Movie ID : ");
+            id = Sc.nextLine();
+        }
+
+        return id;//ของMemberมันคือ MovieID 
+
+    }
+
 }
