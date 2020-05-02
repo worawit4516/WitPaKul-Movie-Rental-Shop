@@ -28,6 +28,8 @@ public interface EmployeeService {
     public int SearchMovie(String movieTitle);
 
     public int SearchMember(String MemberID);
+   
+    //public boolean CheckMoviePrice(String movieID);
     
     public int SearchMovieBorrowinstore(String movieID); 
 

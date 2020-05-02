@@ -27,6 +27,7 @@ public class MainMenu {
             + "3.SearchEmployees\n"
             + "4.ListEmployees\n"
             + "5.DeleteEmployees\n"
+            + "6.EditdataManager\n"
             + "0...Return to the menu...\n"
             + "-------------------"
             + "\nEnter Your Menu [1‐6]: ";
@@ -71,7 +72,7 @@ public class MainMenu {
 
         ManagerAccount m1 = new ManagerAccount("EMP00", "firstname", "lastname", "4516", 05254, AccountStatus.MANAGER);
         ManagerService Desktop = new ManagerService(5, m1);
-        MovieStore WPK = new MovieStore("WitPaKul", 50, 50, 50, 50, 50, "EMP02");
+        MovieStore WPK = new MovieStore("WitPaKul", 50, 50, 50, 50);
         WPK.SetService(Desktop);
         int select;
         do {
@@ -102,7 +103,9 @@ public class MainMenu {
                                 case 5://DeleteEmployee เอริส
                                     Desktop.DeleteEmployees(MM_Manager.InputEmployeesID());
                                     break;
-
+                                case 6:
+                                    Desktop.EditData_Manager(MM_Manager.EditdataManagerAccount());
+                                    break;
                                 case 0:
                                     while (select == 0);
                                     System.out.println("Bye");
@@ -220,10 +223,10 @@ public class MainMenu {
         System.out.print("\n----------------------------\n");
         System.out.print(menuManager);
         int select = Sc.nextInt();
-        if (select > 5) {
+        if (select > 6) {
             do {
                 select = SeChoiceManager();
-            } while (select > 5);
+            } while (select > 6);
 
         }
         return select;//Integer.parseInt(input.nextLine());

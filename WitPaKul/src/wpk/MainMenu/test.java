@@ -16,7 +16,7 @@ public class test {
         ManagerService Desktop = new ManagerService(5, m1);
 
         Desktop.ManagerServiceLogin("EMP00", "password");
-        Desktop.EditData_Manager("EMP00", "EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.MANAGER);
+       // Desktop.EditData_Manager("EMP00", "EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.MANAGER);
         // Desktop.CreateEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
         //  Desktop.CreateEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
         // Desktop.CreateEmployeesAccount("EMP100", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
@@ -25,8 +25,7 @@ public class test {
         //Desktop.ListEmployees(); "EMP02");
 
         //  Desktop.EditData_Employees("EMP100", "EMP01", "firstname", "lastname", "password", 5462552, AccountStatus.EMPLOYEE);
-        MovieStore miStore = new MovieStore("WitPaKul", 50, 50, 50, 50, 50, "EMP02");
-        miStore.SetService(Desktop);
+       // MovieStore miStore = new MovieStore("WitPaKul", 50, 50, 50, 50, 50, "EMP02");
        // miStore.SetEmployeesinStore("EMP02", "password");
 
         //miStore.ListMembers();
@@ -37,25 +36,25 @@ public class test {
       //  miStore.CheckoutMovieMember("MEM02", "MOV01");
         // miStore.CheckoutMovieMember("MEM02", "MOV02");
         //  miStore.CheckoutMovieMember("MEM02", "MOV03");
-        miStore.ListMovieborrow();
+        //miStore.ListMovieborrow();
 
         // miStore.returnMovie("MEM02", "MOV03");
         // miStore.returnMovie("MEM02", "MOV02");
         //miStore.returnMovie("MEM02", "MOV01");
         // miStore.ListMovieborrow();
         //miStore.ListMovieborrow();
-        miStore.ListMembers();
+        //miStore.ListMembers();
         //Desktop.ListEmployees();
         // miStore.DeleteMember("EMP02","MEM01");
         //  miStore.ListMembers();   
         //  miStore.ListMovie();
         //  miStore.DeleteMovie("EMP02","MOV03");
         //miStore.ListMovie();
-        miStore.ListMemberBorrowingList("MEM02");
+       // miStore.ListMemberBorrowingList("MEM02");
 
         // miStore.returnMovie("MEM02", "MOV03");
         //miStore.returnMovie("MEM01", "MOV01");
-        miStore.CreateReceipts("MEM02");
+        //miStore.CreateReceipts("MEM02");
         //miStore.returnMovie("MEM02","MOV01");//ลบออกตำเเหน่งที่ 0
         // miStore.returnMovie("MEM02","MOV02");
         //  miStore.ListMovieborrow();

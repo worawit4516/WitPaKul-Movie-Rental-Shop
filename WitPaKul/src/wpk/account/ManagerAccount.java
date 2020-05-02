@@ -16,9 +16,8 @@ public class ManagerAccount extends Account {
         return super.toString(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void editmanager(String id, String firstname, String lastname, String password, long phone, AccountStatus status) {
+    public void editmanager( String firstname, String lastname, String password, long phone, AccountStatus status) {
         this.setFirstname(firstname);
-        this.setId(id);
         this.setLastname(lastname);
         this.setPassword(password);
         this.setPhone(phone);

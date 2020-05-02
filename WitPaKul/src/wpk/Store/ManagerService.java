@@ -24,7 +24,7 @@ public class ManagerService {
         if (manager.getId().equals(ManagerID) && manager.getPassword().equals(Password)) {
             System.out.println("Login Complete");
             System.out.println("Welcome Manager");
-             
+
             return true;
         }
         System.out.println("failed to login");
@@ -45,10 +45,17 @@ public class ManagerService {
 
     }
 
-    public boolean EditData_Manager(String managerID, String id, String firstname, String lastname, String password, long phone, AccountStatus status) {
-        if (manager.getId().equals(managerID)) {
+    public boolean EditData_Manager(ManagerAccount manager) {
+        
+        
+        String firstname = manager.getFirstname();
+        String lastname = manager.getLastname();
+        String password = manager.getPassword();
+        long phone = manager.getPhone();
+        AccountStatus status = manager.getStatus();
+        if (manager.getId().equals(this.manager.getId())) {
 
-            this.manager.editmanager(id, firstname, lastname, password, phone, status);
+            this.manager.editmanager(firstname, lastname, password, phone, status);
 
             System.out.println("Complete");
         } else {
@@ -68,7 +75,7 @@ public class ManagerService {
         AccountStatus status = EMP.getStatus();
 
         for (int i = 0; i < countEmployee; i++) {
-            
+
             if (employees[i].getId().equals(id)) {
                 employees[i].editdata(firstname, lastname, password, phone, status);
                 System.out.println("Complete");
@@ -155,7 +162,6 @@ public class ManagerService {
                 }
             }
         }
-        
 
         return checkEmployeesByID(id);
 
@@ -168,7 +174,5 @@ public class ManagerService {
     public ManagerAccount getManager() {
         return manager;
     }
-    
-    
-}
 
+}

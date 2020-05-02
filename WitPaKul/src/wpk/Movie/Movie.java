@@ -16,10 +16,10 @@ public class Movie {
     private MovieStatus movieStatus;
     private int premiumStatus = 0;
 
-    public Movie(String movield, String movieTitle, int premiumStatus, MovieStatus mos) {
+    public Movie(String movield, String movieTitle, int premiumStatus, MovieStatus movieStatus) {
         this.movield = movield;
         this.movieTitle = movieTitle;
-        this.movieStatus = mos;
+        this.movieStatus = movieStatus;
         this.premiumStatus = premiumStatus;
         if (premiumStatus == 1) {
             this.Price = Specifications.PremiumMovie_Price;

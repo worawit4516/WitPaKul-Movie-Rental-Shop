@@ -31,7 +31,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     private ManagerService Service;
     private int countmember = 0, countMovie = 0, countMovieborrowing = 0;
 
-    public MovieStore(String storeName, int maxcustomer, int maxmember, int maxcdStoreMovie, int maxcdStoreBorrowingMovie, int maxemployees, String id) {
+    public MovieStore(String storeName, int maxcustomer, int maxmember, int maxcdStoreMovie, int maxcdStoreBorrowingMovie) {
         this.storeName = storeName;
         this.member = new MemberAccount[maxmember];
         this.cdStoreMovie = new Movie[maxcdStoreMovie];
@@ -96,32 +96,6 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         return true;
     }
 
-    /*
-    public boolean EditData_Member(String EMPid, String MemberID, String firstname, String lastname, String password, long phone, AccountStatus status, AccountMovieStatus acstatus) {
-        if (firstname == null || lastname == null || password == null || status == null || acstatus == null) {
-            System.out.println("NULL are prohibited");
-            return false;
-        }
-
-        if (EMPid == null) {
-            System.out.println("NULL are prohibited");
-            return false;
-        }
-        if (EMPid.equals(this.employeeInstore.getId()) && checkMember(MemberID) != -1) {
-            for (int i = 0; i < countmember; i++) {
-                if (member[i].getId() == null ? MemberID == null : member[i].getId().equals(MemberID)) {
-                    member[i].editDataMember(firstname, lastname, password, phone, status, acstatus);
-                    System.out.println("Complete");
-                }
-            }
-
-        } else {
-            System.out.println("404 data not found");
-        }
-        return true;
-
-    }
-     */
     @Override
     public boolean EditData_Member(MemberAccount MB) {
 
@@ -136,12 +110,13 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             if (member[i].getId().equals(id)) {
                 member[i].editDataMember(firstname, lastname, password, phone, status, AccountMovieStatus.ACTIVEB);
                 System.out.println("Complete");
+                return true;
             }
         }
 
         System.out.println("404 data not found");
 
-        return true;
+        return false;
 
     }
 
@@ -228,12 +203,13 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
                         cdStoreMovie[i] = cdStoreMovie[j];
                     }
                     cdStoreMovie[--countMovie] = null;
-
+                    System.out.println("Compleate");
                     return true;
                 }
             }
 
         }
+        System.out.println("404 data not found");
         return false;
     }
 
@@ -253,12 +229,13 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
                         member[i] = member[j];
                     }
                     member[--countmember] = null;
-
+                    System.out.println("Compleate");
                     return true;
                 }
             }
 
         }
+        System.out.println("404 data not found");
         return false;
 
     }
@@ -339,7 +316,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             return false;
         }
         checkMemberByID(memberId).checkoutMovie(checkOutMovieinstore(memberId, movieID));
-        return false;
+        return true;
     }
 
     @Override
@@ -376,6 +353,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         }
 
         if (checkMember(memberId) >= 0) {
+            System.out.println("\nYour Fine for this movie is : "+checkMemberByID(memberId).checkForFine(checkMovieborrowByID(movieID)));
             return checkMemberByID(memberId).checkForFine(checkMovieborrowByID(movieID));
         } else {
             System.out.println("No Member or Movie in Store");
@@ -426,8 +404,9 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
     @Override
     public void ListMemberBorrowingList(String id) {
-
-        checkMemberByID(id).getMovieBorrowList();
+        if (checkMember(id) != -1) {
+            checkMemberByID(id).getMovieBorrowList();
+        }
 
     }
 
@@ -480,7 +459,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
     }
 
-    public MemberAccount checkMemberByID(String MemberID) {
+    private MemberAccount checkMemberByID(String MemberID) {
         if (MemberID != null) {
             for (int i = 0; i < countmember; i++) {
                 if (member[i].getId() == null ? MemberID == null : member[i].getId().equals(MemberID)) {
