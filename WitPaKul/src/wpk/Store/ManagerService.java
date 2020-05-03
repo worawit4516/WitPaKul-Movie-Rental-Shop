@@ -46,8 +46,7 @@ public class ManagerService {
     }
 
     public boolean EditData_Manager(ManagerAccount manager) {
-        
-        
+
         String firstname = manager.getFirstname();
         String lastname = manager.getLastname();
         String password = manager.getPassword();
@@ -91,18 +90,18 @@ public class ManagerService {
     }
 
     public int SearchEmployees(String id) {
+        if (id == null) {
+            System.out.println("NULL are prohibited");
+        }
 
-        if (id != null) {
-            for (int i = 0; i < countEmployee; i++) {
-                if (id == null ? employees[i].getId() == null : id.equals(employees[i].getId())) {
-                    System.out.println(employees[i]);
-                }
-
+        for (int i = 0; i < countEmployee; i++) {
+            if (id == null ? employees[i].getId() == null : id.equals(employees[i].getId())) {
+                System.out.println(employees[i]);
             }
 
-        } else {
-            System.out.println("404 data not found");
         }
+
+        System.out.println("404 data not found");
 
         return -1;
     }

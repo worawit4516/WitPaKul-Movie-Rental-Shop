@@ -44,5 +44,6 @@ public interface EmployeeService {
     public int ListMovieborrow();
     
     public void CreateReceipts(String Memberid);
-
+    
+    public int checkprice(String MovieID);
 }

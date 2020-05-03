@@ -70,84 +70,86 @@ public class MainMenu {
 
     public static void main(String[] args) {
 
-        ManagerAccount m1 = new ManagerAccount("EMP00", "firstname", "lastname", "4516", 05254, AccountStatus.MANAGER);
+        ManagerAccount m1 = new ManagerAccount("1", "firstname", "lastname", "1", 05254, AccountStatus.MANAGER);
         ManagerService Desktop = new ManagerService(5, m1);
         MovieStore WPK = new MovieStore("WitPaKul", 50, 50, 50, 50);
         WPK.SetService(Desktop);
         int select;
+        int selectmanager;
+        int selectEmployees;
+        int selectEmployeesMovie;
+        int selectEmployeesMember;
         do {
             select = SeChoice();
 
             switch (select) {
                 case 1:
                     // Desktop.CreateEmployeesAccount(CreateEmployeesAccount());
-                    if (Desktop.ManagerServiceLogin(loginID(),loginPassaword())) {
+                    if (Desktop.ManagerServiceLogin(loginID(), loginPassaword())) {
                         //do{
 
                         do {
 
-                            switch (SeChoiceManager()) {
+                            switch (selectmanager = SeChoiceManager()) {
                                 case 1://CreateEmployeesAccount
                                     Desktop.CreateEmployeesAccount(MM_Manager.CreateEmployeesAccount());
-                                    break;
-
+                                    continue;
                                 case 2://EditData_Employees
                                     Desktop.EditData_Employees(MM_Manager.EditdataEmployeesAccount());
-                                    break;
+                                    continue;
                                 case 3://SearchEmployees เอริส
                                     Desktop.SearchEmployees(MM_Manager.InputEmployeesID());
-                                    break;
+                                    continue;
                                 case 4://ListEmployees เอริส
                                     Desktop.ListEmployees();
-                                    break;
+                                    continue;
                                 case 5://DeleteEmployee เอริส
                                     Desktop.DeleteEmployees(MM_Manager.InputEmployeesID());
-                                    break;
+                                    continue;
                                 case 6:
                                     Desktop.EditData_Manager(MM_Manager.EditdataManagerAccount());
-                                    break;
+                                    continue;
                                 case 0:
-                                    while (select == 0);
                                     System.out.println("Bye");
                                     break;
                             }
-                          
-                        } while (SeChoiceManager() != 0);
+                            break;
+                        } while (selectmanager != 0);
                     }
                     break;
 
                 case 2:
-                    if (WPK.LoginEmployeesinStore(loginID(),loginPassaword())) {
+                    if (WPK.LoginEmployeesinStore(loginID(), loginPassaword())) {
                         do {
 
-                            switch (SeChoiceEmployees()) {
+                            switch (selectEmployees = SeChoiceEmployees()) {
                                 case 1:
                                     do {
 
-                                        switch (SeChoiceEmployeesMember()) {
+                                        switch (selectEmployeesMember=SeChoiceEmployeesMember()) {
                                             case 1://CreateMember
                                                 WPK.CreateMember(MM_Employees.CreateMember());
-                                                break;
+                                                continue;
                                             case 2://EditData_Member
                                                 WPK.EditData_Member(MM_Employees.EditData_Member());
-                                                break;
+                                                continue;
 
                                             case 3://SearchMember
                                                 WPK.SearchMember(MM_Employees.InputMemberID());
-                                                break;
+                                                continue;
                                             case 4://DeleteMember
                                                 WPK.DeleteMember(MM_Employees.InputMemberID());
-                                                break;
+                                                continue;
 
                                             case 5://ListMembers
                                                 WPK.ListMembers();
-                                                break;
+                                                continue;
                                             case 6://ListMemberBorrowingList 
                                                 WPK.ListMemberBorrowingList(MM_Employees.InputMemberID());
-                                                break;
+                                                continue;
                                             case 7://CheckForFine เอริส
                                                 WPK.CheckForFine(MM_Employees.InputMemberIDFor(), MM_Employees.InputMovieIDFor());
-                                                break;
+                                                continue;
 
                                             case 0:
                                                 while (select == 0);
@@ -156,36 +158,39 @@ public class MainMenu {
                                                 break;
                                         }
                                         break;
-                                    } while (SeChoiceEmployeesMember() != 0);
+                                    } while (selectEmployeesMember != 0);
 
                                     break;
 
                                 case 2:
                                     do {
 
-                                        switch (SeChoiceEmployeesMovie()) {
+                                        switch (selectEmployeesMovie = SeChoiceEmployeesMovie()) {
                                             case 1://AddMovie
                                                 WPK.AddMovie(MM_Employees.AddMovie());
-                                                break;
+                                                continue;
                                             case 2://SearchMovie
                                                 WPK.SearchMovie(MM_Employees.InputMemberID());
-                                                break;
+                                                continue;
                                             case 3://DeleteMovie
                                                 WPK.DeleteMovie(MM_Employees.InputMovieID());
-                                                break;
+                                                continue;
                                             case 4://ListMovie
                                                 WPK.ListMovie();
-                                                break;
+                                                continue;
                                             case 5://ListMovieborrow
                                                 WPK.ListMovieborrow();
-                                                break;
+                                                continue;
 
                                             case 6://CheckoutMovieเอริส
                                                 WPK.CheckoutMovie(MM_Employees.InputMemberIDFor(), MM_Employees.InputMovieIDFor());
-                                                break;
+                                                continue;
                                             case 7://returnMovie เอริส
                                                 WPK.returnMovie(MM_Employees.InputMemberIDFor(), MM_Employees.InputMovieBorrowID());
-                                                break;
+                                                continue;
+                                            case 8:
+                                                WPK.checkprice(MM_Employees.InputMovieID());
+                                                continue;
 
                                             case 0:
                                                 while (select == 0);
@@ -193,7 +198,7 @@ public class MainMenu {
                                                 break;
                                         }
                                         break;
-                                    } while (SeChoiceEmployeesMovie() != 0);
+                                    } while (selectEmployeesMovie != 0);
                                     break;
                                 case 0:
                                     while (select == 0);
@@ -202,7 +207,7 @@ public class MainMenu {
 
                             }
 
-                        } while (SeChoiceEmployees() != 0);
+                        } while (selectEmployees!= 0);
 
                     }
 
@@ -262,11 +267,11 @@ public class MainMenu {
         System.out.print("\n----------------------------\n");
         System.out.print(menuEmployeeMovie);
         int select = Sc.nextInt();
-        if (select > 7) {
+        if (select > 8) {
 
             do {
                 select = SeChoiceEmployeesMovie();
-            } while (select > 7);
+            } while (select > 8);
         }
         return select;//Integer.parseInt(input.nextLine());
     }
@@ -303,6 +308,4 @@ public class MainMenu {
 
     //-------------------MenuManager--------------------------------
     //------------------MenuEmployee------------------------------
-   
-
 }

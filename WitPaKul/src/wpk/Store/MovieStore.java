@@ -52,16 +52,24 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
     @Override
     public boolean LoginEmployeesinStore(String EMPid, String password) {
-        if (Service.getManager().getId().equals(EMPid) && Service.getManager().getPassword().equals(password)) {
-            System.out.println("Login Complete");
-            System.out.println("Welcome");
+        if (EMPid != null || password == null) {
+
+            if (Service.getManager().getId().equals(EMPid) && Service.getManager().getPassword().equals(password)) {
+                System.out.println("Login Complete");
+                System.out.println("Welcome");
+                return true;
+            }
+            if (Service.checkEmployeesByID(EMPid).getId().equals(EMPid) && password.equals(Service.checkEmployeesByID(EMPid).getPassword())) {
+                System.out.println("Welcome");
+                return true;
+            }
             return true;
         }
-        if (Service.checkEmployeesByID(EMPid).getId().equals(EMPid) && password.equals(Service.checkEmployeesByID(EMPid).getPassword())) {
-            System.out.println("Welcome");
-            return true;
+        if (Service.checkEmployeesByID(EMPid) == null) {
+            System.out.println("failed to Login");
+            return false;
         }
-        System.out.println("failed to Login");
+
         return false;
 
     }
@@ -129,17 +137,15 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             return -1;
         }
 
-        if (movieTitle != null) {
-            for (int i = 0; i < countMovie; i++) {
-                if (movieTitle == null ? cdStoreMovie[i].getMovieTitle() == null : movieTitle.equals(cdStoreMovie[i].getMovieTitle())) {
-                    System.out.println(cdStoreMovie[i]);
+        for (int i = 0; i < countMovie; i++) {
+            if (movieTitle == null ? cdStoreMovie[i].getMovieTitle() == null : movieTitle.equals(cdStoreMovie[i].getMovieTitle())) {
+                System.out.println(cdStoreMovie[i]);
 
-                }
             }
-
-        } else {
-            System.out.println("404 data not found");
         }
+
+        System.out.println("404 data not found");
+
         return -1;
     }
 
@@ -151,17 +157,15 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             return -1;
         }
 
-        if (MemberID != null) {
-            for (int i = 0; i < countmember; i++) {
-                if (MemberID == null ? member[i].getId() == null : MemberID.equals(member[i].getId())) {
-                    System.out.println(member[i]);
-
-                }
+        for (int i = 0; i < countmember; i++) {
+            if (MemberID == null ? member[i].getId() == null : MemberID.equals(member[i].getId())) {
+                System.out.println(member[i]);
+                return 1;
             }
-
-        } else {
-            System.out.println("404 data not found");
         }
+
+        System.out.println("404 data not found");
+
         return -1;
     }
 
@@ -173,18 +177,22 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             return -1;
         }
 
-        if (movieID != null) {
-            for (int i = 0; i < countMovieborrowing; i++) {
-                if (movieID == null ? cdStoreBorrowingMovie[i].getMovieBorrow().getMovield() == null : movieID.equals(cdStoreBorrowingMovie[i].getMovieBorrow().getMovield())) {
-                    System.out.println(cdStoreBorrowingMovie[i]);
+        for (int i = 0; i < countMovieborrowing; i++) {
+            if (movieID == null ? cdStoreBorrowingMovie[i].getMovieBorrow().getMovield() == null : movieID.equals(cdStoreBorrowingMovie[i].getMovieBorrow().getMovield())) {
+                System.out.println(cdStoreBorrowingMovie[i]);
 
-                }
             }
-
         }
+
         System.out.println("404 data not found");
 
         return -1;
+    }
+    
+    @Override
+    public int checkprice(String MovieID) {
+        System.out.println("This Movie Price is : "+checkMovieByID(MovieID).getPrice());
+        return 1;
     }
 
     //Delete Part
@@ -283,6 +291,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
             return null;
         }
+
         if (checkMemberByID(memberId).getAccountMovieStatus() != AccountMovieStatus.ACTIVEB) {
             System.out.println("Your account is inACTIVE");
             return null;
@@ -315,6 +324,11 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             System.out.println("NULL are prohibited");
             return false;
         }
+        if (checkMemberByID(memberId) == null || checkMovieByID(movieID) == null) {
+            System.out.println("Your not Member or No Movie in this Store");
+            return false;
+
+        }
         checkMemberByID(memberId).checkoutMovie(checkOutMovieinstore(memberId, movieID));
         return true;
     }
@@ -327,6 +341,11 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             return false;
         }
 
+        if (checkMemberByID(memberId) == null || checkMovieborrowByID(movieborrowID) == null) {
+            System.out.println("Your not Member or No Movie in this Store");
+            return false;
+
+        }
         if (checkMemberByID(memberId).getId().equals(memberId) && checkMovieborrowByID(movieborrowID).getMovieBorrow().getMovield().equals(movieborrowID)) {
 
             int fine = checkMovieborrowByID(movieborrowID).returnMovie(checkMemberByID(memberId));
@@ -353,7 +372,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
         }
 
         if (checkMember(memberId) >= 0) {
-            System.out.println("\nYour Fine for this movie is : "+checkMemberByID(memberId).checkForFine(checkMovieborrowByID(movieID)));
+            System.out.println("\nYour Fine for this movie is : " + checkMemberByID(memberId).checkForFine(checkMovieborrowByID(movieID)));
             return checkMemberByID(memberId).checkForFine(checkMovieborrowByID(movieID));
         } else {
             System.out.println("No Member or Movie in Store");
