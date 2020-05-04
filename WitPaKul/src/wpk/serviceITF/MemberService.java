@@ -15,4 +15,5 @@ public interface MemberService {
     
     public boolean returnMovie(String memberId, String movieborrowID);
 
+    public int checkprice(String MovieID);
 }

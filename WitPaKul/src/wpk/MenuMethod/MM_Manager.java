@@ -12,9 +12,11 @@ import wpk.account.ManagerAccount;
  */
 public class MM_Manager {
 
+    private static int countEmployees = 0;
+
     //-------------------MenuManager--------------------------------
     public static EmployeeAccount CreateEmployeesAccount() {
-        int count = 0;  long phone = 0;
+        long phone = 0;
         System.out.println("----Creat EmployeesAccount----");
         System.out.println("Firstname : ");
         Sc.nextLine();
@@ -36,14 +38,13 @@ public class MM_Manager {
 
         System.out.println("Password : ");
         String password = Sc.nextLine();
-        while (lastname.equals("")) {
+        while (password.equals("")) {
             System.out.println("Password must not null");
             System.out.println("Password : ");
             password = Sc.nextLine();
         }
-     
 
-           do {
+        do {
             try {
                 System.out.println("Phone : ");
                 phone = Sc.nextLong();
@@ -63,10 +64,10 @@ public class MM_Manager {
             CreateEmployeesAccount();
         }
 
-        String id = String.format("EMP0%d", (count + 1));
+        String id = String.format("EMP0%d", (countEmployees + 1));
 
         EmployeeAccount employee = new EmployeeAccount(id, firstname, lastname, password, phone, status);
-
+        countEmployees++;
         return employee;
     }
 
@@ -95,7 +96,7 @@ public class MM_Manager {
 
         System.out.println("Password : ");
         String password = Sc.nextLine();
-        while (lastname.equals("")) {
+        while (password.equals("")) {
             System.out.println("Password must not null");
             System.out.println("Password : ");
             password = Sc.nextLine();
@@ -134,6 +135,11 @@ public class MM_Manager {
         System.out.println("ID :");
         String id = Sc.next();
         Sc.nextLine();
+         while (id.equals("")) {
+            System.out.println("Employees ID must not null");
+            System.out.println("Employees ID : ");
+            id = Sc.nextLine();
+        }
 
         System.out.println("Firstname : ");
         String firstname = Sc.nextLine();
@@ -153,7 +159,7 @@ public class MM_Manager {
 
         System.out.println("Password : ");
         String password = Sc.nextLine();
-        while (lastname.equals("")) {
+        while (password.equals("")) {
             System.out.println("Password must not null");
             System.out.println("Password : ");
             password = Sc.nextLine();

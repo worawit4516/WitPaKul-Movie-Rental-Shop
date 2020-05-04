@@ -45,5 +45,5 @@ public interface EmployeeService {
     
     public void CreateReceipts(String Memberid);
     
-    public int checkprice(String MovieID);
+  
 }

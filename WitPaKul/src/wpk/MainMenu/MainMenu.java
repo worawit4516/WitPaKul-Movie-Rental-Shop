@@ -70,7 +70,7 @@ public class MainMenu {
 
     public static void main(String[] args) {
 
-        ManagerAccount m1 = new ManagerAccount("MA01", "firstname", "lastname", "123", 05254, AccountStatus.MANAGER);
+        ManagerAccount m1 = new ManagerAccount("1", "firstname", "lastname", "1", 05254, AccountStatus.MANAGER);
         ManagerService Desktop = new ManagerService(5, m1);
         MovieStore WPK = new MovieStore("WitPaKul", 50, 50, 50, 50);
         WPK.SetService(Desktop);

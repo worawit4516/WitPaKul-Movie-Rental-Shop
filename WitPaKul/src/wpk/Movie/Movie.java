@@ -99,7 +99,18 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie" + " Movield " + movield + ", movieTitle=" + movieTitle + ", Price " + Price + ", movieStatus=" + movieStatus + " " + premiumStatus;
+        StringBuilder str = new StringBuilder();
+        str.append("Movie" + " Movield " + movield);
+        str.append(", movieTitle=" + movieTitle);
+        str.append(", Price " + Price);
+        str.append(", movieStatus=" + movieStatus);
+        if (premiumStatus == 1) {
+            str.append(" " + "Premium");
+        } else {
+            str.append(" " + "Not Premium");
+        }
+
+        return str.toString();
     }
 
 }

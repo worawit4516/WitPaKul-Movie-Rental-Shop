@@ -18,9 +18,11 @@ import wpk.account.MemberAccount;
  */
 public class MM_Employees {
 
+    private static int countMember = 0;
+    private static int countMovie = 0;
+
     public static MemberAccount CreateMember() {
-        
-        int count = 0; long phone =0;
+        long phone = 0;
         System.out.println("----Creat Mamber----");
         System.out.println("Firstname : ");
         Sc.nextLine();
@@ -35,7 +37,7 @@ public class MM_Employees {
         System.out.println("Lastname : ");
         String lastname = Sc.nextLine();
 
-        while (firstname.equals("")) {
+        while (lastname.equals("")) {
             System.out.println("Lastname must not null");
             System.out.println("Lastname : ");
             lastname = Sc.nextLine();
@@ -43,13 +45,13 @@ public class MM_Employees {
 
         System.out.println("Password : ");
         String password = Sc.nextLine();
-        while (lastname.equals("")) {
+        while (password.equals("")) {
             System.out.println("Password must not null");
             System.out.println("Password : ");
             password = Sc.nextLine();
         }
 
-         do {
+        do {
             try {
                 System.out.println("Phone : ");
                 phone = Sc.nextLong();
@@ -57,7 +59,7 @@ public class MM_Employees {
             } catch (Exception o) {
                 Sc.nextLine();
 
-                System.out.println("Please enter only numbers");
+                System.out.println("Please enter only numbers.");
                 continue;
             }
             break;
@@ -70,17 +72,19 @@ public class MM_Employees {
             CreateMember();
         }
 
-        String id = String.format("MEM0%d", (count + 1));
+        String id = String.format("MEM0%d", (countMember + 1));
 
         MemberAccount member = new MemberAccount(id, firstname, lastname, password, phone, status, acstatus);
+
+        countMember++;
 
         return member;
     }
 
     //
     public static MemberAccount EditData_Member() {
-long phone =0;
-        System.out.println("----Edit Member----");
+        long phone = 0;
+        System.out.println("----Edit EmployeesAccount----");
         System.out.println("ID :");
         String id = Sc.next();
         Sc.nextLine();
@@ -103,12 +107,13 @@ long phone =0;
 
         System.out.println("Password : ");
         String password = Sc.nextLine();
-        while (lastname.equals("")) {
+        while (password.equals("")) {
             System.out.println("Password must not null");
             System.out.println("Password : ");
             password = Sc.nextLine();
         }
-         do {
+
+        do {
             try {
                 System.out.println("Phone : ");
                 phone = Sc.nextLong();
@@ -137,7 +142,6 @@ long phone =0;
 
     //-----------MenuEmployeeMovie------------
     public static Movie AddMovie() {
-        int count = 0;
 
         System.out.println("MovieTitle : ");
         Sc.nextLine();
@@ -148,16 +152,15 @@ long phone =0;
             movieTitle = Sc.nextLine();
         }
 
-        
         System.out.println("PremiumStatus : ");
+        System.out.println("PremiumStatus must only 1 or 0");
+        System.out.println("1 is Premium");
         int premiumStatus = Sc.nextInt();
-        while (movieTitle.equals("")) {
-            System.out.println("PremiumStatus must not null");
+        while (premiumStatus > 1) {
+            System.out.println("PremiumStatus must only 1 or 0");
             System.out.println("PremiumStatus : ");
             premiumStatus = Sc.nextInt();
         }
-        
-        
         MovieStatus mos = MovieStatus.Available;
 
         if (movieTitle == null) {
@@ -165,10 +168,10 @@ long phone =0;
             AddMovie();
         }
 
-        String id = String.format("MOV0%d", (count + 1));
+        String id = String.format("MOV0%d", (countMovie + 1));
 
         Movie newMovie = new Movie(id, movieTitle, premiumStatus, mos);
-
+        countMovie++;
         return newMovie;
     }
 
