@@ -156,6 +156,7 @@ public class MM_Employees {
         System.out.println("PremiumStatus must only 1 or 0");
         System.out.println("1 is Premium");
         int premiumStatus = Sc.nextInt();
+        
         while (premiumStatus > 1) {
             System.out.println("PremiumStatus must only 1 or 0");
             System.out.println("PremiumStatus : ");
@@ -174,7 +175,21 @@ public class MM_Employees {
         countMovie++;
         return newMovie;
     }
+  public static String InputMoviename() {
 
+        System.out.println("----Movie name----");
+        System.out.println("Name : ");
+        Sc.nextLine();
+        String name = Sc.nextLine();
+        while (name.equals("")) {
+            System.out.println("Moviename must not null");
+            System.out.println("Moviename : ");
+            name = Sc.nextLine();
+        }
+
+        return name;//ของMemberมันคือ MovieID 
+
+    }
     public static String InputMovieID() {
 
         System.out.println("----Movie ID----");

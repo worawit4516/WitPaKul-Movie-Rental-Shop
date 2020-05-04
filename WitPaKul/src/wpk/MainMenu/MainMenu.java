@@ -170,7 +170,7 @@ public class MainMenu {
                                                 WPK.AddMovie(MM_Employees.AddMovie());
                                                 continue;
                                             case 2://SearchMovie
-                                                WPK.SearchMovie(MM_Employees.InputMemberID());
+                                                WPK.SearchMovie(MM_Employees.InputMovieID());
                                                 continue;
                                             case 3://DeleteMovie
                                                 WPK.DeleteMovie(MM_Employees.InputMovieID());
