@@ -23,6 +23,7 @@ public class MM_Employees {
 
     public static MemberAccount CreateMember() {
         long phone = 0;
+        AccountStatus status = null;
         System.out.println("----Creat Mamber----");
         System.out.println("Firstname : ");
         Sc.nextLine();
@@ -65,7 +66,23 @@ public class MM_Employees {
             break;
         } while (true);
 
-        AccountStatus status = AccountStatus.MEMBER;
+        System.out.println("AccountStatus status must only 1 or 0");
+        System.out.println("1 is PremiumMember or 0 is Member");
+        System.out.println("AccountStatus status : ");
+        int statusinput = Sc.nextInt();
+        while (password.equals("")) {
+            System.out.println("AccountStatus status must not null");
+            System.out.println("AccountStatus status : ");
+            statusinput = Sc.nextInt();
+        }
+        if (statusinput == 1) {
+           status = AccountStatus.PREMIUMMEMBER;
+        } 
+        
+        if (statusinput == 0) {
+           status = AccountStatus.MEMBER;
+        }
+       
         AccountMovieStatus acstatus = AccountMovieStatus.ACTIVEB;
         if (firstname == "" || lastname == "" || password == "") {
             System.out.println("NULL are prohibited");

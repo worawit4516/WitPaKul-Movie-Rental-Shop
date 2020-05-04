@@ -5,7 +5,6 @@ import wpk.Store.MovieStore;
 import wpk.Enum.AccountStatus;
 import wpk.Store.ManagerService;
 import java.util.Scanner;
-import static wpk.MainMenu.MainMenu.Sc;
 import wpk.MenuMethod.MM_Employees;
 import wpk.account.ManagerAccount;
 
