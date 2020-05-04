@@ -13,11 +13,11 @@ public class MainMenu {
 
     static String menu
             = "<<< Menu >>>\n"
-            + "Store System \n"
+            + "--Store System-- \n"
             + "1.Manager  \n"
             + "2.Employee  \n"
             + "0.Exit    \n"
-            + "--------------"
+            + "----------------"
             + "\nEnter Your Menu [1‐2]: ";
     static String menuManager
             = "<<< MenuManager >>>\n"
@@ -49,7 +49,7 @@ public class MainMenu {
             + "5.ListMembers\n"
             + "6.ListMemberBorrowingList\n"
             + "7.CheckForFine\n"
-            + "0...Return to the menu...\n"
+            + "0...Return to the menuEmployee...\n"
             + "-------------------"
             + "\nEnter Your Menu [1‐7]: ";
     static String menuEmployeeMovie
@@ -70,7 +70,7 @@ public class MainMenu {
 
     public static void main(String[] args) {
 
-        ManagerAccount m1 = new ManagerAccount("1", "firstname", "lastname", "1", 05254, AccountStatus.MANAGER);
+        ManagerAccount m1 = new ManagerAccount("MA01", "firstname", "lastname", "123", 05254, AccountStatus.MANAGER);
         ManagerService Desktop = new ManagerService(5, m1);
         MovieStore WPK = new MovieStore("WitPaKul", 50, 50, 50, 50);
         WPK.SetService(Desktop);
@@ -110,7 +110,7 @@ public class MainMenu {
                                     Desktop.EditData_Manager(MM_Manager.EditdataManagerAccount());
                                     continue;
                                 case 0:
-                                    System.out.println("Bye");
+                                    System.out.println("Good luck");
                                     break;
                             }
                             break;
@@ -126,7 +126,7 @@ public class MainMenu {
                                 case 1:
                                     do {
 
-                                        switch (selectEmployeesMember=SeChoiceEmployeesMember()) {
+                                        switch (selectEmployeesMember = SeChoiceEmployeesMember()) {
                                             case 1://CreateMember
                                                 WPK.CreateMember(MM_Employees.CreateMember());
                                                 continue;
@@ -153,7 +153,7 @@ public class MainMenu {
 
                                             case 0:
                                                 while (select == 0);
-                                                System.out.println("Bye");
+                                                System.out.println("Good luck");
 
                                                 break;
                                         }
@@ -194,7 +194,7 @@ public class MainMenu {
 
                                             case 0:
                                                 while (select == 0);
-                                                System.out.println("Bye");
+                                                System.out.println("Good luck");
                                                 break;
                                         }
                                         break;
@@ -202,78 +202,140 @@ public class MainMenu {
                                     break;
                                 case 0:
                                     while (select == 0);
-                                    System.out.println("Bye");
+                                    System.out.println("Good luck");
                                     break;
 
                             }
 
-                        } while (selectEmployees!= 0);
+                        } while (selectEmployees != 0);
 
                     }
 
             }
         } while (select != 0);
-        System.out.println("Good by");
+        System.out.println("Good luck");
 
     }
 
     public static int SeChoice() {
-        System.out.print("\n--------------\n");
+        int select = 0;
+        System.out.print("\n----------------\n");
         System.out.print(menu);
-        int select = Sc.nextInt();
-        return select;//Integer.parseInt(input.nextLine());
+
+        do {
+            try {
+                select = Sc.nextInt();
+                //Integer.parseInt(input.nextLine());
+            } catch (Exception e) {
+                Sc.nextLine();
+                System.out.println("Please enter only numbers");
+                System.out.println("Enter Your Menu [1‐2]:");
+                continue;
+
+            }
+            return select;
+
+        } while (true);
+
     }
 
     public static int SeChoiceManager() {
+        int select = 0;
         System.out.print("\n----------------------------\n");
         System.out.print(menuManager);
-        int select = Sc.nextInt();
-        if (select > 6) {
-            do {
-                select = SeChoiceManager();
-            } while (select > 6);
+        do {
+            try {
+                select = Sc.nextInt();
+            } catch (Exception e) {
+                Sc.nextLine();
+                System.out.println("Please enter only numbers");
+                System.out.println("Enter Your Menu [1-6]:");
+                if (select > 6) {
+                    do {
+                        select = SeChoiceManager();
+                    } while (select > 6);
 
-        }
-        return select;//Integer.parseInt(input.nextLine());
+                }
+                continue;
+            }
+            return select;
+
+        } while (true);
+
     }
 
     public static int SeChoiceEmployees() {
+        int select = 0;
         System.out.print("\n----------------------------\n");
         System.out.print(menuEmployee);
-        int select = Sc.nextInt();
-        if (select > 2) {
+        do {
+            try {
+                select = Sc.nextInt();
+            } catch (Exception e) {
+                Sc.nextLine();
+                System.out.println("Please enter only numbers");
+                System.out.println("Enter Your Menu [1-2]:");
+                if (select > 2) {
+                    do {
+                        select = SeChoiceEmployees();
+                    } while (select > 2);
 
-            do {
-                select = SeChoiceEmployees();
-            } while (select > 2);
-        }
-        return select;//Integer.parseInt(input.nextLine());
+                }
+                continue;
+            }
+            return select;
+
+        } while (true);
     }
 
     public static int SeChoiceEmployeesMember() {
+        int select = 0;
         System.out.print("\n----------------------------\n");
         System.out.print(menuEmployeeMember);
-        int select = Sc.nextInt();
-        if (select > 7) {
 
-            do {
-                select = SeChoiceEmployeesMember();
-            } while (select > 7);
-        }
-        return select;//Integer.parseInt(input.nextLine());
+        do {
+            try {
+                select = Sc.nextInt();
+            } catch (Exception e) {
+                Sc.nextLine();
+                System.out.println("Please enter only numbers");
+                System.out.println("Enter Your Menu [1-7]:");
+                if (select > 7) {
+                    do {
+                        select = SeChoiceEmployeesMember();
+                    } while (select > 7);
+
+                }
+                continue;
+            }
+            return select;
+
+        } while (true);
     }
 
     public static int SeChoiceEmployeesMovie() {
+        int select = 0;
         System.out.print("\n----------------------------\n");
         System.out.print(menuEmployeeMovie);
-        int select = Sc.nextInt();
-        if (select > 8) {
 
-            do {
-                select = SeChoiceEmployeesMovie();
-            } while (select > 8);
-        }
-        return select;//Integer.parseInt(input.nextLine());
+        do {
+            try {
+                select = Sc.nextInt();
+            } catch (Exception e) {
+                Sc.nextLine();
+                System.out.println("Please enter only numbers");
+                System.out.println("Enter Your Menu [1-7]:");
+                if (select > 8) {
+                    do {
+                        select = SeChoiceEmployeesMovie();
+                    } while (select > 8);
+
+                }
+                continue;
+            }
+            return select;
+
+        } while (true);
     }
 
     //----------------------MenuManager-------------------

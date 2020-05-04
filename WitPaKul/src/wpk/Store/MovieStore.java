@@ -49,7 +49,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             System.out.println("failed to set");
         }
     }
-
+////...
     @Override
     public boolean LoginEmployeesinStore(String EMPid, String password) {
         if (EMPid != null || password == null) {
@@ -59,16 +59,16 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
                 System.out.println("Welcome");
                 return true;
             }
-            if (Service.checkEmployeesByID(EMPid).getId().equals(EMPid) && password.equals(Service.checkEmployeesByID(EMPid).getPassword())) {
-                System.out.println("Welcome");
-                return true;
-            }
-            return true;
-        }
-        if (Service.checkEmployeesByID(EMPid) == null) {
+            if (Service.checkEmployeesByID(EMPid) == null) {
             System.out.println("failed to Login");
             return false;
         }
+            return true;
+        }
+        if (Service.checkEmployeesByID(EMPid).getId().equals(EMPid) && password.equals(Service.checkEmployeesByID(EMPid).getPassword())) {
+                System.out.println("Welcome");
+                return true;
+            }
 
         return false;
 
@@ -425,6 +425,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     public void ListMemberBorrowingList(String id) {
         if (checkMember(id) != -1) {
             checkMemberByID(id).getMovieBorrowList();
+          
         }
 
     }

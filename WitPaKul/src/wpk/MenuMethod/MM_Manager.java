@@ -1,5 +1,6 @@
 package wpk.MenuMethod;
 
+import java.util.InputMismatchException;
 import static wpk.MainMenu.MainMenu.Sc;
 import wpk.Enum.AccountStatus;
 import wpk.account.EmployeeAccount;
@@ -13,7 +14,7 @@ public class MM_Manager {
 
     //-------------------MenuManager--------------------------------
     public static EmployeeAccount CreateEmployeesAccount() {
-        int count = 0;
+        int count = 0;  long phone = 0;
         System.out.println("----Creat EmployeesAccount----");
         System.out.println("Firstname : ");
         Sc.nextLine();
@@ -40,9 +41,21 @@ public class MM_Manager {
             System.out.println("Password : ");
             password = Sc.nextLine();
         }
-        System.out.println("Phone : ");
+     
 
-        long phone = Sc.nextLong();
+           do {
+            try {
+                System.out.println("Phone : ");
+                phone = Sc.nextLong();
+
+            } catch (Exception o) {
+                Sc.nextLine();
+
+                System.out.println("Please enter only numbers.");
+                continue;
+            }
+            break;
+        } while (true);
         AccountStatus status = AccountStatus.EMPLOYEE;
 
         if (firstname == null || lastname == null || password == null) {
@@ -58,7 +71,7 @@ public class MM_Manager {
     }
 
     public static EmployeeAccount EditdataEmployeesAccount() {
-
+        long phone = 0;
         System.out.println("----Edit EmployeesAccount----");
         System.out.println("ID :");
         String id = Sc.next();
@@ -87,9 +100,22 @@ public class MM_Manager {
             System.out.println("Password : ");
             password = Sc.nextLine();
         }
-        System.out.println("Phone : ");
-        long phone = Sc.nextLong();
+        do {
+            try {
+                System.out.println("Phone : ");
+                phone = Sc.nextLong();
 
+            } catch (Exception o) {
+                Sc.nextLine();
+
+                System.out.println("Please enter only numbers.");
+                continue;
+            } //catch (Exception e) {
+            // System.out.println(e);
+            // System.out.println("Please enter only numbers.");
+            // }
+            break;
+        } while (true);
         AccountStatus status = AccountStatus.EMPLOYEE;
 
         if (id.equals("") || firstname.equals("") || lastname.equals("") || password.equals("")) {
@@ -103,7 +129,7 @@ public class MM_Manager {
     }
 
     public static ManagerAccount EditdataManagerAccount() {
-
+        long phone = 0;
         System.out.println("----Edit ManagerAccount----");
         System.out.println("ID :");
         String id = Sc.next();
@@ -132,11 +158,24 @@ public class MM_Manager {
             System.out.println("Password : ");
             password = Sc.nextLine();
         }
-        System.out.println("Phone : ");
-        long phone = Sc.nextLong();
+        do {
+            try {
+                System.out.println("Phone : ");
+                phone = Sc.nextLong();
+
+            } catch (Exception o) {
+                Sc.nextLine();
+
+                System.out.println("Please enter only numbers.");
+                continue;
+            } //catch (Exception e) {
+            // System.out.println(e);
+            // System.out.println("Please enter only numbers.");
+            // }
+            break;
+        } while (true);
 
         AccountStatus status = AccountStatus.EMPLOYEE;
-
         if (id.equals("") || firstname.equals("") || lastname.equals("") || password.equals("")) {
             System.out.println("NULL are prohibited");
             EditdataManagerAccount();

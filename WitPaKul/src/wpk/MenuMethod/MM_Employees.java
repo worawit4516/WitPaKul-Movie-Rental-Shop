@@ -19,7 +19,8 @@ import wpk.account.MemberAccount;
 public class MM_Employees {
 
     public static MemberAccount CreateMember() {
-        int count = 0;
+        
+        int count = 0; long phone =0;
         System.out.println("----Creat Mamber----");
         System.out.println("Firstname : ");
         Sc.nextLine();
@@ -48,8 +49,19 @@ public class MM_Employees {
             password = Sc.nextLine();
         }
 
-        System.out.println("Phone : ");
-        long phone = Sc.nextLong();
+         do {
+            try {
+                System.out.println("Phone : ");
+                phone = Sc.nextLong();
+
+            } catch (Exception o) {
+                Sc.nextLine();
+
+                System.out.println("Please enter only numbers");
+                continue;
+            }
+            break;
+        } while (true);
 
         AccountStatus status = AccountStatus.MEMBER;
         AccountMovieStatus acstatus = AccountMovieStatus.ACTIVEB;
@@ -67,8 +79,8 @@ public class MM_Employees {
 
     //
     public static MemberAccount EditData_Member() {
-
-        System.out.println("----Edit EmployeesAccount----");
+long phone =0;
+        System.out.println("----Edit Member----");
         System.out.println("ID :");
         String id = Sc.next();
         Sc.nextLine();
@@ -96,8 +108,19 @@ public class MM_Employees {
             System.out.println("Password : ");
             password = Sc.nextLine();
         }
-        System.out.println("Phone : ");
-        long phone = Sc.nextLong();
+         do {
+            try {
+                System.out.println("Phone : ");
+                phone = Sc.nextLong();
+
+            } catch (Exception o) {
+                Sc.nextLine();
+
+                System.out.println("Please enter only numbers.");
+                continue;
+            }
+            break;
+        } while (true);
 
         AccountStatus status = AccountStatus.MEMBER;
 
@@ -125,6 +148,7 @@ public class MM_Employees {
             movieTitle = Sc.nextLine();
         }
 
+        
         System.out.println("PremiumStatus : ");
         int premiumStatus = Sc.nextInt();
         while (movieTitle.equals("")) {
@@ -132,6 +156,8 @@ public class MM_Employees {
             System.out.println("PremiumStatus : ");
             premiumStatus = Sc.nextInt();
         }
+        
+        
         MovieStatus mos = MovieStatus.Available;
 
         if (movieTitle == null) {
