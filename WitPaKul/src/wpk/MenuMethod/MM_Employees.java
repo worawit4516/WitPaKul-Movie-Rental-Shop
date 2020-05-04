@@ -142,7 +142,7 @@ public class MM_Employees {
 
     //-----------MenuEmployeeMovie------------
     public static Movie AddMovie() {
-
+        int premiumStatus = 0;
         System.out.println("MovieTitle : ");
         Sc.nextLine();
         String movieTitle = Sc.nextLine();
@@ -152,16 +152,24 @@ public class MM_Employees {
             movieTitle = Sc.nextLine();
         }
 
-        System.out.println("PremiumStatus : ");
-        System.out.println("PremiumStatus must only 1 or 0");
-        System.out.println("1 is Premium");
-        int premiumStatus = Sc.nextInt();
-        
-        while (premiumStatus > 1) {
-            System.out.println("PremiumStatus must only 1 or 0");
-            System.out.println("PremiumStatus : ");
-            premiumStatus = Sc.nextInt();
-        }
+        do {
+            try {
+                System.out.println("PremiumStatus must only 1 or 0");
+                System.out.println("PremiumStatus : ");
+                premiumStatus = Sc.nextInt();
+
+            } catch (Exception o) {
+                Sc.nextLine();
+                while (premiumStatus > 1) {
+
+                    premiumStatus = Sc.nextInt();
+                }
+                System.out.println("Please enter only 1 or 0");
+                continue;
+            }
+            break;
+        } while (true);
+
         MovieStatus mos = MovieStatus.Available;
 
         if (movieTitle == null) {
@@ -175,7 +183,8 @@ public class MM_Employees {
         countMovie++;
         return newMovie;
     }
-  public static String InputMoviename() {
+
+    public static String InputMoviename() {
 
         System.out.println("----Movie name----");
         System.out.println("Name : ");
@@ -190,6 +199,7 @@ public class MM_Employees {
         return name;//ของMemberมันคือ MovieID 
 
     }
+
     public static String InputMovieID() {
 
         System.out.println("----Movie ID----");

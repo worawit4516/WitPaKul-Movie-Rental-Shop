@@ -49,7 +49,7 @@ public class MainMenu {
             + "5.ListMembers\n"
             + "6.ListMemberBorrowingList\n"
             + "7.CheckForFine\n"
-            + "0...Return to the menuEmployee...\n"
+            + "0...Return to the MenuEmployee...\n"
             + "-------------------"
             + "\nEnter Your Menu [1‐7]: ";
     static String menuEmployeeMovie
@@ -62,7 +62,7 @@ public class MainMenu {
             + "5.ListMovieborrow\n"
             + "6.CheckoutMovie\n"
             + "7.returnMovie\n"
-            + "0...Return to the menu...\n"
+            + "0...Return to the MenuEmployee...\n"
             + "-------------------"
             + "\nEnter Your Menu [1‐14]: ";
 
