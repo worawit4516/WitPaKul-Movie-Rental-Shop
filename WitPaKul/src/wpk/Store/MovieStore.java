@@ -49,7 +49,8 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             System.out.println("failed to set");
         }
     }
-////...
+
+
     @Override
     public boolean LoginEmployeesinStore(String EMPid, String password) {
         if (EMPid != null || password == null) {
@@ -60,15 +61,15 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
                 return true;
             }
             if (Service.checkEmployeesByID(EMPid) == null) {
-            System.out.println("failed to Login");
-            return false;
-        }
+                System.out.println("failed to Login");
+                return false;
+            }
             return true;
         }
         if (Service.checkEmployeesByID(EMPid).getId().equals(EMPid) && password.equals(Service.checkEmployeesByID(EMPid).getPassword())) {
-                System.out.println("Welcome");
-                return true;
-            }
+            System.out.println("Welcome");
+            return true;
+        }
 
         return false;
 
@@ -188,10 +189,19 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
         return -1;
     }
-    
+
     @Override
     public int checkprice(String MovieID) {
-        System.out.println("This Movie Price is : "+checkMovieByID(MovieID).getPrice());
+
+        
+        try {
+            System.out.println("This Movie Price is : " + checkMovieByID(MovieID).getPrice());
+        } catch (Exception e) {
+
+            System.out.println("Please enter only the MovieID");
+
+        }
+
         return 1;
     }
 
@@ -425,7 +435,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     public void ListMemberBorrowingList(String id) {
         if (checkMember(id) != -1) {
             checkMemberByID(id).getMovieBorrowList();
-          
+
         }
 
     }
@@ -538,6 +548,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
             System.out.println(str);
             pw.println(str);
         } catch (FileNotFoundException ex) {
+
         }
     }
 

@@ -174,10 +174,7 @@ public class MM_Manager {
 
                 System.out.println("Please enter only numbers.");
                 continue;
-            } //catch (Exception e) {
-            // System.out.println(e);
-            // System.out.println("Please enter only numbers.");
-            // }
+            } 
             break;
         } while (true);
 

@@ -58,7 +58,7 @@ public class MainMenu {
             + "2.SearchMovie\n"
             + "3.DeleteMovie\n"
             + "4.ListMovie\n"
-            + "5.ListMovieborrow\n"
+            + "5.ListMovieborro2\n"
             + "6.CheckoutMovie\n"
             + "7.returnMovie\n"
             + "8.CreateReceipts\n"
@@ -71,8 +71,8 @@ public class MainMenu {
 
     public static void main(String[] args) {
 
-        ManagerAccount m1 = new ManagerAccount("1", "firstname", "lastname", "1", 05254, AccountStatus.MANAGER);
-        ManagerService Desktop = new ManagerService(5, m1);
+        ManagerAccount m1 = new ManagerAccount("MA01", "firstname", "lastname", "1", 05254, AccountStatus.MANAGER);
+        ManagerService Desktop = new ManagerService(50, m1);
         MovieStore WPK = new MovieStore("WitPaKul", 50, 50, 50, 50);
         WPK.SetService(Desktop);
         int select;
@@ -80,6 +80,7 @@ public class MainMenu {
         int selectEmployees;
         int selectEmployeesMovie;
         int selectEmployeesMember;
+
         do {
             select = SeChoice();
 
@@ -98,13 +99,13 @@ public class MainMenu {
                                 case 2://EditData_Employees
                                     Desktop.EditData_Employees(MM_Manager.EditdataEmployeesAccount());
                                     continue;
-                                case 3://SearchEmployees เอริส
+                                case 3://SearchEmployees 
                                     Desktop.SearchEmployees(MM_Manager.InputEmployeesID());
                                     continue;
-                                case 4://ListEmployees เอริส
+                                case 4://ListEmployees 
                                     Desktop.ListEmployees();
                                     continue;
-                                case 5://DeleteEmployee เอริส
+                                case 5://DeleteEmployee 
                                     Desktop.DeleteEmployees(MM_Manager.InputEmployeesID());
                                     continue;
                                 case 6:
@@ -148,7 +149,7 @@ public class MainMenu {
                                             case 6://ListMemberBorrowingList 
                                                 WPK.ListMemberBorrowingList(MM_Employees.InputMemberID());
                                                 continue;
-                                            case 7://CheckForFine เอริส
+                                            case 7://CheckForFine 
                                                 WPK.CheckForFine(MM_Employees.InputMemberIDFor(), MM_Employees.InputMovieIDFor());
                                                 continue;
 
@@ -189,7 +190,7 @@ public class MainMenu {
                                             case 7://returnMovie เอริส
                                                 WPK.returnMovie(MM_Employees.InputMemberIDFor(), MM_Employees.InputMovieBorrowID());
                                                 continue;
-                                                         
+
                                             case 8:
                                                 WPK.CreateReceipts(MM_Employees.InputMemberID());
                                                 continue;

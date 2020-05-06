@@ -23,6 +23,8 @@ public class MM_Employees {
 
     public static MemberAccount CreateMember() {
         long phone = 0;
+        int statusinput;
+
         AccountStatus status = null;
         System.out.println("----Creat Mamber----");
         System.out.println("Firstname : ");
@@ -66,23 +68,34 @@ public class MM_Employees {
             break;
         } while (true);
 
-        System.out.println("AccountStatus status must only 1 or 0");
-        System.out.println("1 is PremiumMember or 0 is Member");
-        System.out.println("AccountStatus status : ");
-        int statusinput = Sc.nextInt();
-        while (password.equals("")) {
-            System.out.println("AccountStatus status must not null");
-            System.out.println("AccountStatus status : ");
-            statusinput = Sc.nextInt();
-        }
+        do {
+            try {
+                System.out.println("AccountStatus status must only 1 or 0");
+                System.out.println("1 is PremiumMember or 0 is Member");
+                System.out.println("AccountStatus status : ");
+                statusinput = Sc.nextInt();
+
+            } catch (Exception o) {
+                Sc.nextLine();
+                while (password.equals("")) {
+                    System.out.println("AccountStatus status must not null");
+                    System.out.println("AccountStatus status : ");
+                    statusinput = Sc.nextInt();
+                }
+                continue;
+            }
+            break;
+        } while (true);
+
+            
         if (statusinput == 1) {
-           status = AccountStatus.PREMIUMMEMBER;
-        } 
-        
-        if (statusinput == 0) {
-           status = AccountStatus.MEMBER;
+            status = AccountStatus.PREMIUMMEMBER;
         }
-       
+
+        if (statusinput == 0) {
+            status = AccountStatus.MEMBER;
+        }
+
         AccountMovieStatus acstatus = AccountMovieStatus.ACTIVEB;
         if (firstname == "" || lastname == "" || password == "") {
             System.out.println("NULL are prohibited");
@@ -98,7 +111,7 @@ public class MM_Employees {
         return member;
     }
 
-    //
+    
     public static MemberAccount EditData_Member() {
         long phone = 0;
         System.out.println("----Edit EmployeesAccount----");
@@ -260,7 +273,7 @@ public class MM_Employees {
             id = Sc.nextLine();
         }
 
-        return id;//ของMemberมันคือ memberID 
+        return id;
 
     }
 
@@ -276,7 +289,7 @@ public class MM_Employees {
             id = Sc.nextLine();
         }
 
-        return id;//ของMemberมันคือ memberID 
+        return id;
 
     }
 
@@ -291,7 +304,7 @@ public class MM_Employees {
             id = Sc.nextLine();
         }
 
-        return id;//ของMemberมันคือ MovieID 
+        return id;
 
     }
 
