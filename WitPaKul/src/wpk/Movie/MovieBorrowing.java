@@ -46,7 +46,7 @@ public class MovieBorrowing {
     }
 
     public MovieBorrowing checkOutMovie(Movie borrowMovie, MemberAccount borrowAccount) {
-        if (borrowAccount.getMemberStatus().equals(AccountStatus.MEMBER) && borrowMovie.getMovieStatus().equals(MovieStatus.Available)) {
+        if (borrowAccount.getMemberStatus().equals(AccountStatus.MEMBER) && borrowMovie.getMovieStatus().equals(MovieStatus.Available) ) {
             this.borrowDate = LocalDate.now();
             this.dueDate = borrowDate.plus(Specifications.MAX_BORROWDAYS, ChronoUnit.DAYS);
             this.movieBorrow = borrowMovie;

@@ -17,10 +17,6 @@ import wpk.serviceITF.EmployeeService;
 import wpk.serviceITF.MemberService;
 import wpk.account.ManagerAccount;
 
-/**
- *
- * @author user
- */
 public class MovieStore implements Specifications, EmployeeService, MemberService {
 
     private final String storeName;
@@ -31,7 +27,7 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     private ManagerService Service;
     private int countmember = 0, countMovie = 0, countMovieborrowing = 0;
 
-    public MovieStore(String storeName, int maxcustomer, int maxmember, int maxcdStoreMovie, int maxcdStoreBorrowingMovie) {
+    public MovieStore(String storeName, int maxmember, int maxcdStoreMovie, int maxcdStoreBorrowingMovie) {
         this.storeName = storeName;
         this.member = new MemberAccount[maxmember];
         this.cdStoreMovie = new Movie[maxcdStoreMovie];
@@ -192,8 +188,12 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
 
     @Override
     public int checkprice(String MovieID) {
-
         
+        if (checkMovieByID(MovieID) == null) {
+            System.out.println("Data 404 not found");
+            return -1;
+        }
+  
         try {
             System.out.println("This Movie Price is : " + checkMovieByID(MovieID).getPrice());
         } catch (Exception e) {
@@ -281,17 +281,6 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     }
     //-----------
 
-    private int check(String id) {
-        if (id != null) {
-            for (int i = 0; i < countmember; i++) {
-                if (member[i].getId() == null ? id == null : member[i].getId().equals(id)) {
-                    return i;
-                }
-            }
-        }
-        return -1;
-
-    }
 //---------
 
     //MovieService Code part//

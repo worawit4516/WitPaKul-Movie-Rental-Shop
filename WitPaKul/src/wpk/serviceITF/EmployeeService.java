@@ -1,8 +1,5 @@
 package wpk.serviceITF;
 
-import wpk.Enum.AccountMovieStatus;
-import wpk.Enum.MovieStatus;
-import wpk.Enum.AccountStatus;
 import wpk.Movie.Movie;
 import wpk.Store.ManagerService;
 import wpk.account.MemberAccount;

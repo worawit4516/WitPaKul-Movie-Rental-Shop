@@ -73,7 +73,7 @@ public class MainMenu {
 
         ManagerAccount m1 = new ManagerAccount("MA01", "firstname", "lastname", "1", 05254, AccountStatus.MANAGER);
         ManagerService Desktop = new ManagerService(50, m1);
-        MovieStore WPK = new MovieStore("WitPaKul", 50, 50, 50, 50);
+        MovieStore WPK = new MovieStore("WitPaKul",50, 50, 50);
         WPK.SetService(Desktop);
         int select;
         int selectmanager;
