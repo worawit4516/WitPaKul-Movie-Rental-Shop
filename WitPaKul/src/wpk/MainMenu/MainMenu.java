@@ -61,6 +61,8 @@ public class MainMenu {
             + "5.ListMovieborrow\n"
             + "6.CheckoutMovie\n"
             + "7.returnMovie\n"
+            + "8.CreateReceipts\n"
+            + "9.Checkprice\n"
             + "0...Return to the MenuEmployee...\n"
             + "-------------------"
             + "\nEnter Your Menu [1‐14]: ";
@@ -187,7 +189,11 @@ public class MainMenu {
                                             case 7://returnMovie เอริส
                                                 WPK.returnMovie(MM_Employees.InputMemberIDFor(), MM_Employees.InputMovieBorrowID());
                                                 continue;
+                                                         
                                             case 8:
+                                                WPK.CreateReceipts(MM_Employees.InputMemberID());
+                                                continue;
+                                            case 9:
                                                 WPK.checkprice(MM_Employees.InputMovieID());
                                                 continue;
 
