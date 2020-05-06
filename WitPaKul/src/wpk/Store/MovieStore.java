@@ -522,6 +522,11 @@ public class MovieStore implements Specifications, EmployeeService, MemberServic
     //IO path
     @Override
     public void CreateReceipts(String Memberid) {
+        if (checkMemberByID(Memberid) == null) {
+            System.out.println("No this member in Store");
+            return;
+        }
+        
 
         try (PrintWriter pw = new PrintWriter(new File("receipts.txt"))) {
             MovieBorrowing[] me = checkMemberByID(Memberid).ReturnIO();
